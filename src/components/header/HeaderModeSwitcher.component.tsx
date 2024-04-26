@@ -6,11 +6,11 @@ import styles from './header-mode-switcher.module.css';
 
 export const HeaderModeSwitcherComponent = () => (
     <div className={styles.headerModeSwitcher}>
-        <a href="#">
+        <a href="/">
             <SunIconSVG />
         </a>
         <DividerIconSVG />
-        <a href="#">
+        <a href="/">
             <MoonIconSVG />
         </a>
     </div>
