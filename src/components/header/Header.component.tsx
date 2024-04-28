@@ -8,23 +8,25 @@ import { HeaderNavigationComponent } from './HeaderNavigation.component.tsx';
 import styles from './header.module.css';
 
 export const HeaderComponent = () => (
-    <header className={`${styles.header} ${styles.headerColumnWrapper}`}>
-        <div className={styles.headerColumn}>
-            <div className={styles.headerColumnContainer}>
-                <HeaderLogoComponent />
-                <HeaderModeSwitcherComponent />
-            </div>
-        </div>
-        <div className={styles.headerColumn}>
-            <div className={styles.headerColumnWrapper}>
-                <div className={styles.headerColumn}>
-                    <HeaderNavigationComponent />
+    <header className={styles.header}>
+        <div className={`contentWrapper ${styles.headerColumnWrapper}`}>
+            <div className={styles.headerColumn}>
+                <div className={styles.headerColumnContainer}>
+                    <HeaderLogoComponent />
+                    <HeaderModeSwitcherComponent />
                 </div>
-                <div className={styles.headerColumn}>
-                    <div className={`${styles.headerColumnContainer} ${styles.headerColumnRight}`}>
-                        <HeaderCartComponent />
-                        <HeaderAccountComponent />
-                        <HeaderMobileMenuComponent />
+            </div>
+            <div className={styles.headerColumn}>
+                <div className={styles.headerColumnWrapper}>
+                    <div className={styles.headerColumn}>
+                        <HeaderNavigationComponent />
+                    </div>
+                    <div className={styles.headerColumn}>
+                        <div className={`${styles.headerColumnContainer} ${styles.headerColumnRight}`}>
+                            <HeaderCartComponent />
+                            <HeaderAccountComponent />
+                            <HeaderMobileMenuComponent />
+                        </div>
                     </div>
                 </div>
             </div>

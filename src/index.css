@@ -10,6 +10,7 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark light;
+  padding: 0 0 40px;
   font-synthesis: none;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
@@ -33,9 +34,13 @@ body {
   min-height: 100vh;
 }
 
-.page-wrapper {
+.pageWrapper {
+  width: 100%;
+}
+
+.contentWrapper {
   max-width: 1174px;
-  padding: 0 0 40px;
+  margin: 0 auto;
 }
 
 .button {
@@ -56,9 +61,12 @@ main {
 
 @media (max-width: 768px) {
 
-  .page-wrapper {
-    width: 100%;
+  :root {
     padding: 0 0 30px;
+  }
+
+  .contentWrapper {
+    width: 100%;
   }
 
   main {

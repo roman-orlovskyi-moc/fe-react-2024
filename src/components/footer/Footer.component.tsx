@@ -11,7 +11,7 @@ interface FooterProps {
 
 export const FooterComponent: React.FC<FooterProps> = ({ name }) => (
     <>
-        <footer className={styles.footer}>
+        <footer className={`contentWrapper ${styles.footer}`}>
             <div className={styles.footerDivider}></div>
             <FooterSocialIconsComponent />
             <FooterInfoComponent name={name} />
