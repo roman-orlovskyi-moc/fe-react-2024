@@ -5,6 +5,6 @@
 @media (max-width: 768px) {
 
   .headerMobileMenu {
-    display: block;
+    display: flex;
   }
 }
