@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface CategoryProps {
+export interface CategoryProps {
     id: number;
     name: string;
     image: string;

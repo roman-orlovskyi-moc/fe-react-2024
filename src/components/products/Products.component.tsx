@@ -1,12 +1,6 @@
 import React from 'react';
 
-interface CategoryProps {
-    id: number;
-    name: string;
-    image: string;
-    creationAt: string;
-    updatedAt: string;
-}
+import type { CategoryProps } from '../categories/Categories.component.tsx';
 
 type ExcludedCategoryProps = Exclude<CategoryProps, 'image' | 'creationAt' | 'updatedAt'>;
 
