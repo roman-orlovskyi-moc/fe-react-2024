@@ -6,15 +6,15 @@ import { FooterSocialIconsComponent } from './FooterSocialIcons.component.tsx';
 import styles from './footer.module.css';
 
 interface FooterProps {
-    name: string;
+    fullName: string;
 }
 
-export const FooterComponent: React.FC<FooterProps> = ({ name }) => (
+export const FooterComponent: React.FC<FooterProps> = ({ fullName }) => (
     <>
         <footer className={`contentWrapper ${styles.footer}`}>
             <div className={styles.footerDivider}></div>
             <FooterSocialIconsComponent />
-            <FooterInfoComponent name={name} />
+            <FooterInfoComponent fullName={fullName} />
         </footer>
     </>
 );

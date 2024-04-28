@@ -5,16 +5,16 @@ import { HeaderComponent } from './components/header/Header.component.tsx';
 import './App.css';
 
 function App() {
-    const name: string = `Roman Orlovskyi`;
-    const nikName: string = `roman-orlovskyi-moc`;
+    const FULL_NAME: string = `Roman Orlovskyi`;
+    const NIK_NAME: string = `roman-orlovskyi-moc`;
 
     return (
         <>
             <HeaderComponent />
             <main className="contentWrapper">
-                <AboutMeComponent name={name} nikName={nikName} />
+                <AboutMeComponent fullName={FULL_NAME} nikName={NIK_NAME} />
             </main>
-            <FooterComponent name={name} />
+            <FooterComponent fullName={FULL_NAME} />
         </>
     );
 }

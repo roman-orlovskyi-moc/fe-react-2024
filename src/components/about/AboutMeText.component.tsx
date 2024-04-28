@@ -1,17 +1,17 @@
 import React from 'react';
 
 interface AboutMeTextProps {
-    name: string;
+    fullName: string;
     nikName: string;
 }
 
-export const AboutMeTextComponent: React.FC<AboutMeTextProps> = ({ name, nikName }) => (
+export const AboutMeTextComponent: React.FC<AboutMeTextProps> = ({ fullName, nikName }) => (
     <>
         <h1>About me</h1>
         <div>
             <p>
-                Hi! My name is {name} and I&apos;m a Junior Frontend Developer. I am already familiar with main Web Technologies like React,
-                HTML, CSS, JavaScript and Git version control system.
+                Hi! My name is {fullName} and I&apos;m a Junior Frontend Developer. I am already familiar with main Web Technologies like
+                React, HTML, CSS, JavaScript and Git version control system.
             </p>
             <p>This page was developed during the course &apos;Intro to React&apos; from Masters Academy in 2024.</p>
             <p>
