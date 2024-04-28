@@ -10,33 +10,27 @@ export enum SocialIconName {
     LINKEDIN = 'linkedin',
 }
 
+const SocialIcon: Record<SocialIconName, React.FC<{ title?: string }>> = {
+    [SocialIconName.FACEBOOK]: FacebookIconSVG,
+    [SocialIconName.INSTAGRAM]: InstagramIconSVG,
+    [SocialIconName.LINKEDIN]: LinkedinIconSVG,
+};
+
+function renderIcon(iconName: SocialIconName, title?: string) {
+    const ICON_COMPONENT = SocialIcon[iconName];
+    const ICON_TITLE = title || `${iconName} logo`;
+
+    return <ICON_COMPONENT title={ICON_TITLE} />;
+}
+
 interface SocialIconProps {
     iconName: SocialIconName;
     url: string;
     title?: string;
 }
 
-function getIcon(iconName: SocialIconName, title?: string) {
-    const iconTitle = title || `${iconName} logo`;
-
-    switch (iconName) {
-        case 'facebook': {
-            return <FacebookIconSVG title={iconTitle} />;
-        }
-        case 'instagram': {
-            return <InstagramIconSVG title={iconTitle} />;
-        }
-        case 'linkedin': {
-            return <LinkedinIconSVG title={iconTitle} />;
-        }
-        default: {
-            return null;
-        }
-    }
-}
-
 export const SocialIconComponent: React.FC<SocialIconProps> = ({ iconName, url, title }) => (
     <a href={url} target="_blank" rel="noreferrer">
-        {getIcon(iconName, title)}
+        {renderIcon(iconName, title)}
     </a>
 );
