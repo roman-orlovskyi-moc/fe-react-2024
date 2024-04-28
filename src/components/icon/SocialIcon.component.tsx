@@ -17,10 +17,10 @@ const SocialIcon: Record<SocialIconName, React.FC<{ title?: string }>> = {
 };
 
 function renderIcon(iconName: SocialIconName, title?: string) {
-    const ICON_COMPONENT = SocialIcon[iconName];
+    const ICON = SocialIcon[iconName];
     const ICON_TITLE = title || `${iconName} logo`;
 
-    return <ICON_COMPONENT title={ICON_TITLE} />;
+    return <ICON title={ICON_TITLE} />;
 }
 
 interface SocialIconProps {
