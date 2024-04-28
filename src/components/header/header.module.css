@@ -32,3 +32,35 @@
     padding-right: 30px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+
+  .header {
+    color: #FFF;
+    background-color: #111;
+  }
+
+  .header a {
+    color: #FFF;
+  }
+
+  .header a:hover {
+    color: #FFF;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  .header {
+    color: #FFF;
+    background-color: #111;
+  }
+
+  .header a {
+    color: #FFF;
+  }
+
+  .header a:hover {
+    color: #FFF;
+  }
+}

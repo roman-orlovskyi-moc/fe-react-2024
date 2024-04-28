@@ -4,17 +4,32 @@
   gap: 10px;
 }
 
-.loginButton {
-  background: #333 !important;
-}
-
-.loginButton:hover {
-  background: #585858 !important;
-}
-
 @media (max-width: 768px) {
 
   .headerAccount {
     display: none;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+
+  .loginButton {
+    background: #333 !important;
+  }
+
+  .loginButton:hover {
+    background: #585858 !important;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  .loginButton {
+    background: #333 !important;
+  }
+
+  .loginButton:hover {
+    background: #585858 !important;
+  }
+}
+
