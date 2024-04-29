@@ -12,8 +12,9 @@
 
 .footerDivider {
   max-width: 1148px;
-  margin: 0 auto 40px;
-  border: 1px solid #333;
+  margin: 0 13px 40px;
+  border-width: 1px;
+  border-style: solid;
 }
 
 @media (max-width: 768px) {
@@ -24,6 +25,20 @@
 
   .footerDivider {
     width: 100%;
-    margin: 0 auto 30px;
+    margin: 0 0 30px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .footerDivider {
+    border-color: #333;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  .footerDivider {
+    border-color: #CCC;
   }
 }
