@@ -2,14 +2,6 @@
   text-align: center;
 }
 
-.footer a {
-  color: #EF4934;
-}
-
-.footer a:hover {
-  color: #D43824;
-}
-
 .footerDivider {
   margin: 0 13px 40px;
   border-width: 1px;

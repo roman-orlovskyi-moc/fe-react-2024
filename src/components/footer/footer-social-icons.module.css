@@ -5,6 +5,6 @@
   margin-bottom: 15px;
 }
 
-.footerSocialIcons a:hover svg path {
+.footerSocialIconLink:hover svg path {
   fill: #D43824;
 }

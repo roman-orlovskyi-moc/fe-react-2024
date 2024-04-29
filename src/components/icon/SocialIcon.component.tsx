@@ -31,10 +31,11 @@ interface SocialIconProps {
     iconName: SocialIconName;
     url: string;
     title?: string;
+    className?: string;
 }
 
-export const SocialIconComponent: React.FC<SocialIconProps> = ({ iconName, url, title }) => (
-    <a href={url} target="_blank" rel="noreferrer">
+export const SocialIconComponent: React.FC<SocialIconProps> = ({ iconName, url, title, className }) => (
+    <a className={className} href={url} target="_blank" rel="noreferrer">
         {renderIcon(iconName, title)}
     </a>
 );
