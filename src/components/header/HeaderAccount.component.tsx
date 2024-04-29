@@ -5,11 +5,11 @@ import styles from './header-account.module.css';
 
 export const HeaderAccountComponent = () => (
     <div className={styles.headerAccount}>
-        <a href="/login" className={`button ${styles.loginButton}`}>
+        <a href="/login" className={`${styles.headerButton} ${styles.loginButton}`}>
             <LoginIconComponent />
             Login
         </a>
-        <a href="/register" className="button">
+        <a href="/register" className={styles.headerButton}>
             <CreateAccountIconComponent />
             Sign Up
         </a>

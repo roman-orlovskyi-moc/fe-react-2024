@@ -4,6 +4,20 @@
   gap: 10px;
 }
 
+.headerButton {
+  display: flex;
+  gap: 5px;
+  border-radius: 40px;
+  padding: 5px 10px;
+  background: #EF4934;
+  color: #FFF;
+}
+
+.headerButton:hover {
+  background: #D43824;
+  color: #FFF;
+}
+
 @media (max-width: 768px) {
 
   .headerAccount {
@@ -13,23 +27,23 @@
 
 @media (prefers-color-scheme: dark) {
 
-  .loginButton {
-    background: #333 !important;
+  .headerButton.loginButton {
+    background: #333;
   }
 
-  .loginButton:hover {
-    background: #585858 !important;
+  .headerButton.loginButton:hover {
+    background: #585858;
   }
 }
 
 @media (prefers-color-scheme: light) {
 
-  .loginButton {
-    background: #333 !important;
+  .headerButton.loginButton {
+    background: #333;
   }
 
-  .loginButton:hover {
-    background: #585858 !important;
+  .headerButton.loginButton:hover {
+    background: #585858;
   }
 }
 

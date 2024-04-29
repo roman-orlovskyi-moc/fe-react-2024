@@ -43,18 +43,6 @@ body {
   margin: 0 auto;
 }
 
-.button {
-  display: flex;
-  gap: 5px;
-  border-radius: 40px;
-  padding: 5px 10px;
-  background: #EF4934;
-}
-
-.button:hover {
-  background: #D43824;
-}
-
 .mainContentWrapper {
   padding-top: 60px;
   padding-bottom: 120px;
