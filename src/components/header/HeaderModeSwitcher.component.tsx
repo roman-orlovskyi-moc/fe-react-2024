@@ -1,17 +1,17 @@
-import DividerIconSVG from '@/assets/icons/header/divider.svg?react';
-import MoonIconSVG from '@/assets/icons/header/moon.svg?react';
-import SunIconSVG from '@/assets/icons/header/sun.svg?react';
+import { ColorModeDividerIconComponent } from '../icon/ColorModeDividerIcon.component.tsx';
+import { ColorModeMoonIconComponent } from '../icon/ColorModeMoonIcon.component.tsx';
+import { ColorModeSunIconComponent } from '../icon/ColorModeSunIcon.component.tsx';
 
 import styles from './header-mode-switcher.module.css';
 
 export const HeaderModeSwitcherComponent = () => (
     <div className={styles.headerModeSwitcher}>
         <a href="/">
-            <SunIconSVG />
+            <ColorModeSunIconComponent />
         </a>
-        <DividerIconSVG />
+        <ColorModeDividerIconComponent />
         <a href="/">
-            <MoonIconSVG />
+            <ColorModeMoonIconComponent />
         </a>
     </div>
 );
