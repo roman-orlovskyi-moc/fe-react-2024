@@ -68,14 +68,17 @@ body {
   }
 }
 
+@media (max-width: 950px) {
+
+  .mainContentWrapper {
+    padding-bottom: 60px;
+  }
+}
+
 @media (max-width: 768px) {
 
   :root {
     padding: 0 0 30px;
-  }
-
-  .contentWrapper {
-    width: 100%;
   }
 
   .mainContentWrapper {

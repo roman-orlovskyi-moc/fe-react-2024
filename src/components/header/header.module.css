@@ -9,11 +9,12 @@
 }
 
 .headerLeftColumn {
-  flex: 1 50%;
+  flex: 1;
 }
 
 .headerRightColumn {
-  flex: 1 50%;
+  flex: 1;
+  flex-basis: 0;
 }
 
 .headerColumnContainer {
@@ -31,20 +32,22 @@
 
 @media (max-width: 1150px) {
 
-  .headerLeftColumn {
-    flex: 1 40%;
-  }
-
   .headerRightColumn {
-    flex: 1 60%;
+    flex-basis: 10%;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
 
-  .header {
-    padding-left: 30px;
-    padding-right: 30px;
+  .headerRightColumn {
+    flex-basis: 15%;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .headerRightColumn {
+    flex-basis: 30%;
   }
 }
 
