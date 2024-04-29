@@ -8,6 +8,25 @@
   border-style: solid;
 }
 
+.footerLink {
+  color: #EF4934;
+}
+
+.footerLink:hover {
+  color: #D43824;
+}
+
+.footerSocialIcons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.footerSocialIconLink:hover svg path {
+  fill: #D43824;
+}
+
 @media (max-width: 768px) {
 
   .footer {

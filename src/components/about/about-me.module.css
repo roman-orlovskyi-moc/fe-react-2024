@@ -55,10 +55,6 @@
       "text";
   }
 
-  .aboutMeColumn {
-    flex: auto;
-  }
-
   .aboutMeHeadline {
     font-size: 26px;
     margin-bottom: 20px;
