@@ -8,9 +8,12 @@
   align-items: center;
 }
 
-.headerColumn {
-  flex: 1;
-  flex-shrink: 0;
+.headerLeftColumn {
+  flex: 1 50%;
+}
+
+.headerRightColumn {
+  flex: 1 50%;
 }
 
 .headerColumnContainer {
@@ -24,6 +27,17 @@
 
 .header a {
   font-weight: 500;
+}
+
+@media (max-width: 1150px) {
+
+  .headerLeftColumn {
+    flex: 1 40%;
+  }
+
+  .headerRightColumn {
+    flex: 1 60%;
+  }
 }
 
 @media (max-width: 768px) {

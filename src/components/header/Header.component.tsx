@@ -10,18 +10,18 @@ import styles from './header.module.css';
 export const HeaderComponent = () => (
     <header className={styles.header}>
         <div className={`contentWrapper ${styles.headerColumnWrapper}`}>
-            <div className={styles.headerColumn}>
+            <div className={styles.headerLeftColumn}>
                 <div className={styles.headerColumnContainer}>
                     <HeaderLogoComponent />
                     <HeaderModeSwitcherComponent />
                 </div>
             </div>
-            <div className={styles.headerColumn}>
+            <div className={styles.headerRightColumn}>
                 <div className={styles.headerColumnWrapper}>
-                    <div className={styles.headerColumn}>
+                    <div className={styles.headerLeftColumn}>
                         <HeaderNavigationComponent />
                     </div>
-                    <div className={styles.headerColumn}>
+                    <div className={styles.headerRightColumn}>
                         <div className={`${styles.headerColumnContainer} ${styles.headerColumnRight}`}>
                             <HeaderCartComponent />
                             <HeaderAccountComponent />

@@ -55,8 +55,17 @@ body {
   background: #D43824;
 }
 
-main {
-  padding: 60px 0 120px;
+.mainContentWrapper {
+  padding-top: 60px;
+  padding-bottom: 120px;
+}
+
+@media (max-width: 1294px) {
+
+  .contentWrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -69,7 +78,7 @@ main {
     width: 100%;
   }
 
-  main {
+  .mainContentWrapper {
     padding: 10px 30px 30px;
   }
 }

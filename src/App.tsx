@@ -11,7 +11,7 @@ function App() {
     return (
         <>
             <HeaderComponent />
-            <main className="contentWrapper">
+            <main className="mainContentWrapper contentWrapper">
                 <AboutMeComponent fullName={FULL_NAME} nikName={NIK_NAME} />
             </main>
             <FooterComponent fullName={FULL_NAME} />
