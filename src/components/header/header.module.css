@@ -3,6 +3,10 @@
   padding: 17px 0;
 }
 
+.headerLogo {
+  margin-right: 50px;
+}
+
 .headerColumnWrapper {
   display: flex;
   align-items: center;

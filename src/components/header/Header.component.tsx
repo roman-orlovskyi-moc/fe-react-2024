@@ -1,6 +1,7 @@
+import { LogoIconComponent } from '../icon/LogoIcon.component.tsx';
+
 import { HeaderAccountComponent } from './HeaderAccount.component.tsx';
 import { HeaderCartComponent } from './HeaderCart.component.tsx';
-import { HeaderLogoComponent } from './HeaderLogo.component.tsx';
 import { HeaderMobileMenuComponent } from './HeaderMobileMenu.component.tsx';
 import { HeaderModeSwitcherComponent } from './HeaderModeSwitcher.component.tsx';
 import { HeaderNavigationComponent } from './HeaderNavigation.component.tsx';
@@ -12,7 +13,11 @@ export const HeaderComponent = () => (
         <div className={`contentWrapper ${styles.headerColumnWrapper}`}>
             <div className={styles.headerLeftColumn}>
                 <div className={styles.headerColumnContainer}>
-                    <HeaderLogoComponent />
+                    <div className={styles.headerLogo}>
+                        <a href="/">
+                            <LogoIconComponent />
+                        </a>
+                    </div>
                     <HeaderModeSwitcherComponent />
                 </div>
             </div>
