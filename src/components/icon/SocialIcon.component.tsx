@@ -10,7 +10,11 @@ export enum SocialIconName {
     LINKEDIN = 'linkedin',
 }
 
-const SocialIcon: Record<SocialIconName, React.FC<{ title?: string }>> = {
+interface IconProps {
+    title?: string;
+}
+
+const SocialIcon: Record<SocialIconName, React.FC<IconProps>> = {
     [SocialIconName.FACEBOOK]: FacebookIconSVG,
     [SocialIconName.INSTAGRAM]: InstagramIconSVG,
     [SocialIconName.LINKEDIN]: LinkedinIconSVG,
