@@ -6,7 +6,11 @@
   padding: 0;
 }
 
-.headerNav a:hover {
+.headerNavLink {
+  font-weight: 500;
+}
+
+.headerNavLink:hover {
   font-weight: 700;
 }
 
@@ -14,5 +18,27 @@
 
   .headerNav {
     display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .headerNavLink {
+    color: #FFF;
+  }
+
+  .headerNavLink:hover {
+    color: #FFF;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  .headerNavLink {
+    color: #FFF;
+  }
+
+  .headerNavLink:hover {
+    color: #FFF;
   }
 }

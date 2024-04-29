@@ -3,10 +3,14 @@ import styles from './header-navigation.module.css';
 export const HeaderNavigationComponent = () => (
     <ul className={styles.headerNav}>
         <li>
-            <a href="/about">About</a>
+            <a className={styles.headerNavLink} href="/about">
+                About
+            </a>
         </li>
         <li>
-            <a href="/products">Products</a>
+            <a className={styles.headerNavLink} href="/products">
+                Products
+            </a>
         </li>
     </ul>
 );

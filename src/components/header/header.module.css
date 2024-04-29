@@ -26,10 +26,6 @@
   justify-content: flex-end;
 }
 
-.header a {
-  font-weight: 500;
-}
-
 @media (max-width: 1150px) {
 
   .headerRightColumn {
@@ -57,14 +53,6 @@
     color: #FFF;
     background-color: #111;
   }
-
-  .header a {
-    color: #FFF;
-  }
-
-  .header a:hover {
-    color: #FFF;
-  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -72,13 +60,5 @@
   .header {
     color: #FFF;
     background-color: #111;
-  }
-
-  .header a {
-    color: #FFF;
-  }
-
-  .header a:hover {
-    color: #FFF;
   }
 }
