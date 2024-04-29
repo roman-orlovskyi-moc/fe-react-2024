@@ -1,0 +1,71 @@
+.aboutMe {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 100px;
+  grid-template-areas: "heading heading"
+    "text image";
+}
+
+.aboutMeHeadline {
+  grid-area: heading;
+  font-size: 28px;
+  margin: 0 0 40px;
+}
+
+.aboutMeTextContainer {
+  grid-area: text;
+}
+
+.aboutMeParagraph {
+  margin-bottom: 20px;
+}
+
+.aboutMeImage {
+  grid-area: image;
+  max-width: 500px;
+  border-radius: 40px;
+}
+
+.aboutMeLink {
+  text-decoration: underline;
+}
+
+@media (max-width: 1150px) {
+
+  .aboutMe {
+    column-gap: 50px;
+  }
+
+  .aboutMeImage {
+    max-width: 350px;
+  }
+
+  .aboutMeImage {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .aboutMe {
+    column-gap: 0;
+    grid-template-columns: 2fr;
+    grid-template-areas: "image"
+      "heading"
+      "text";
+  }
+
+  .aboutMeHeadline {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .aboutMeTextContainer {
+    padding-right: 0;
+  }
+
+  .aboutMeImage {
+    border-radius: 30px;
+    margin-bottom: 30px;
+  }
+}

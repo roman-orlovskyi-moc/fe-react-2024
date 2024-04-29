@@ -1,10 +1,16 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat.ttf");
+  font-weight: 100 900;
+  font-stretch: 25% 100%;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, .87);
-  background-color: #242424;
+  color-scheme: dark light;
+  padding: 0 0 40px;
   font-synthesis: none;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
@@ -13,59 +19,89 @@
 
 a {
   font-weight: 500;
-  color: #646CFF;
   text-decoration: inherit;
 }
 
-a:hover {
-  color: #535BF2;
+p {
+  margin: 0;
 }
 
 body {
+  font-weight: 400;
   margin: 0;
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.pageWrapper {
+  width: 100%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: .6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1A1A1A;
-  cursor: pointer;
-  transition: border-color .25s;
+.contentWrapper {
+  max-width: 1174px;
+  margin: 0 auto;
 }
 
-button:hover {
-  border-color: #646CFF;
+.mainContentWrapper {
+  padding-top: 60px;
+  padding-bottom: 120px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@media (max-width: 1294px) {
+
+  .contentWrapper {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 950px) {
+
+  .mainContentWrapper {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  :root {
+    padding: 0 0 30px;
+  }
+
+  .mainContentWrapper {
+    padding: 10px 30px 30px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    color: #FFF;
+    background-color: #111;
+  }
+
+  a {
+    color: #FFF;
+  }
+
+  a:hover {
+    color: #FFF;
+  }
 }
 
 @media (prefers-color-scheme: light) {
 
   :root {
-    color: #213547;
+    color: #111;
     background-color: #FFF;
   }
 
-  a:hover {
-    color: #747BFF;
+  a {
+    color: #111;
   }
 
-  button {
-    background-color: #F9F9F9;
+  a:hover {
+    color: #111;
   }
 }
