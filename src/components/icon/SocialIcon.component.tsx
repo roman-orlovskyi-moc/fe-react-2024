@@ -1,8 +1,8 @@
 import React from 'react';
 
-import FacebookIconSVG from '@/assets/icons/socials/facebook.svg?react';
-import InstagramIconSVG from '@/assets/icons/socials/instagram.svg?react';
-import LinkedinIconSVG from '@/assets/icons/socials/linkedin.svg?react';
+import { FacebookIconComponent } from '../icon/FacebookIcon.component.tsx';
+import { InstagramIconComponent } from '../icon/InstagramIcon.component.tsx';
+import { LinkedinIconComponent } from '../icon/LinkedinIcon.component.tsx';
 
 export enum SocialIconName {
     FACEBOOK = 'facebook',
@@ -15,9 +15,9 @@ interface IconProps {
 }
 
 const SocialIcon: Record<SocialIconName, React.FC<IconProps>> = {
-    [SocialIconName.FACEBOOK]: FacebookIconSVG,
-    [SocialIconName.INSTAGRAM]: InstagramIconSVG,
-    [SocialIconName.LINKEDIN]: LinkedinIconSVG,
+    [SocialIconName.FACEBOOK]: FacebookIconComponent,
+    [SocialIconName.INSTAGRAM]: InstagramIconComponent,
+    [SocialIconName.LINKEDIN]: LinkedinIconComponent,
 };
 
 function renderIcon(iconName: SocialIconName, title?: string) {
