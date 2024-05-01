@@ -1,11 +1,32 @@
+:root.dark {
+  --footer-divider-border-color: #333;
+}
+
+:root.light {
+  --footer-divider-border-color: #CCC;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --footer-divider-border-color: #333;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --footer-divider-border-color: #CCC;
+  }
+}
+
 .footer {
   text-align: center;
 }
 
 .footerDivider {
   margin: 0 13px 40px;
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid var(--footer-divider-border-color);
 }
 
 .footerLink {
@@ -36,19 +57,5 @@
   .footerDivider {
     width: 100%;
     margin: 0 0 30px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .footerDivider {
-    border-color: #333;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  .footerDivider {
-    border-color: #CCC;
   }
 }

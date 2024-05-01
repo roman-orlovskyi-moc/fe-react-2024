@@ -1,6 +1,8 @@
 .header {
   width: 100%;
   padding: 17px 0;
+  color: #FFF;
+  background-color: #111;
 }
 
 .headerLogo {
@@ -48,21 +50,5 @@
 
   .headerRightColumn {
     flex-basis: 30%;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .header {
-    color: #FFF;
-    background-color: #111;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  .header {
-    color: #FFF;
-    background-color: #111;
   }
 }

@@ -7,6 +7,8 @@
 
 :root {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
+  color: var(--page-color);
+  background-color: var(--page-background-color);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark light;
@@ -17,9 +19,48 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root.dark {
+  --page-background-color: #111;
+  --page-color: #FFF;
+  --link-color: #FFF;
+  --link-hover-color: #FFF;
+}
+
+:root.light {
+  --page-background-color: #FFF;
+  --page-color: #111;
+  --link-color: #111;
+  --link-hover-color: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --page-background-color: #111;
+    --page-color: #FFF;
+    --link-color: #FFF;
+    --link-hover-color: #FFF;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --page-background-color: #FFF;
+    --page-color: #111;
+    --link-color: #111;
+    --link-hover-color: #111;
+  }
+}
+
 a {
+  color: var(--link-color);
   font-weight: 500;
   text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--link-hover-color);
 }
 
 p {
@@ -71,37 +112,5 @@ body {
 
   .mainContentWrapper {
     padding: 10px 30px 30px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    color: #FFF;
-    background-color: #111;
-  }
-
-  a {
-    color: #FFF;
-  }
-
-  a:hover {
-    color: #FFF;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    color: #111;
-    background-color: #FFF;
-  }
-
-  a {
-    color: #111;
-  }
-
-  a:hover {
-    color: #111;
   }
 }
