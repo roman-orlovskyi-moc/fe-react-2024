@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { LogoIconComponent } from '../icon/LogoIcon.component.tsx';
 
 import { HeaderAccountComponent } from './HeaderAccount.component.tsx';
@@ -8,7 +10,12 @@ import { HeaderNavigationComponent } from './HeaderNavigation.component.tsx';
 
 import styles from './header.module.css';
 
-export const HeaderComponent = () => (
+interface HeaderProps {
+    shouldShowAboutPage: boolean;
+    toggleShowAboutPageState: (isShowAboutPage: boolean) => void;
+}
+
+export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, toggleShowAboutPageState }) => (
     <header className={styles.header}>
         <div className={`contentWrapper ${styles.headerColumnWrapper}`}>
             <div className={styles.headerLeftColumn}>
@@ -24,7 +31,10 @@ export const HeaderComponent = () => (
             <div className={styles.headerRightColumn}>
                 <div className={styles.headerColumnWrapper}>
                     <div className={styles.headerLeftColumn}>
-                        <HeaderNavigationComponent />
+                        <HeaderNavigationComponent
+                            shouldShowAboutPage={shouldShowAboutPage}
+                            toggleShowAboutPageState={toggleShowAboutPageState}
+                        />
                     </div>
                     <div className={styles.headerRightColumn}>
                         <div className={`${styles.headerColumnContainer} ${styles.headerColumnRight}`}>

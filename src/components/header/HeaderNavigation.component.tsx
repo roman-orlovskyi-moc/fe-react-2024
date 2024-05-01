@@ -1,16 +1,36 @@
+import React from 'react';
+
 import styles from './header-navigation.module.css';
 
-export const HeaderNavigationComponent = () => (
-    <ul className={styles.headerNav}>
-        <li>
-            <a className={styles.headerNavLink} href="/about">
-                About
-            </a>
-        </li>
-        <li>
-            <a className={styles.headerNavLink} href="/products">
-                Products
-            </a>
-        </li>
-    </ul>
-);
+interface HeaderNavigationProps {
+    shouldShowAboutPage: boolean;
+    toggleShowAboutPageState: (isShowAboutPage: boolean) => void;
+}
+
+export const HeaderNavigationComponent: React.FC<HeaderNavigationProps> = ({ shouldShowAboutPage, toggleShowAboutPageState }) => {
+    const showAboutPage = () => {
+        toggleShowAboutPageState(true);
+    };
+
+    const showProductsPage = () => {
+        toggleShowAboutPageState(false);
+    };
+
+    return (
+        <ul className={styles.headerNav}>
+            <li>
+                <a className={`${styles.headerNavLink} ${shouldShowAboutPage ? styles.headerNavLinkActive : ''}`} onClick={showAboutPage}>
+                    About
+                </a>
+            </li>
+            <li>
+                <a
+                    className={`${styles.headerNavLink} ${shouldShowAboutPage ? '' : styles.headerNavLinkActive}`}
+                    onClick={showProductsPage}
+                >
+                    Products
+                </a>
+            </li>
+        </ul>
+    );
+};

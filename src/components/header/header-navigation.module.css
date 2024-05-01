@@ -8,9 +8,10 @@
 
 .headerNavLink {
   font-weight: 500;
+  cursor: pointer;
 }
 
-.headerNavLink:hover {
+.headerNavLinkActive {
   font-weight: 700;
 }
 
