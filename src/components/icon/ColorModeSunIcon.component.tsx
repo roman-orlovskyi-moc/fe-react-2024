@@ -3,14 +3,21 @@ import React from 'react';
 import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
 
 export const ColorModeSunIconComponent: React.FC<IconProps> = ({ className, title }) => (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" className={className}>
+    <svg width="30" height="34" viewBox="0 0 30 34" fill="none" className={className}>
         <title>{title}</title>
-        <path
-            d="M11 3V1M11 19V21M5.41421 5.41421L4 4M16.728 16.728L18.1422 18.1422M3 11H1M19 11H21M16.7285 5.41421L18.1427 4M5.4147 16.728L4.00049 18.1422M11 16C8.23858 16 6 13.7614 6 11C6 8.23858 8.23858 6 11 6C13.7614 6 16 8.23858 16 11C16 13.7614 13.7614 16 11 16Z"
-            stroke="#fff"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        />
+        <g clipPath="url(#clip0_2078_2371)">
+            <path
+                d="M15.0001 10.3333V8.66663M15.0001 23.6666V25.3333M10.3453 12.3451L9.16675 11.1666M19.7734 21.7733L20.952 22.9518M8.33341 17H6.66675M21.6667 17H23.3334M19.7738 12.3451L20.9524 11.1666M10.3457 21.7733L9.16716 22.9518M15.0001 21.1666C12.6989 21.1666 10.8334 19.3011 10.8334 17C10.8334 14.6988 12.6989 12.8333 15.0001 12.8333C17.3013 12.8333 19.1667 14.6988 19.1667 17C19.1667 19.3011 17.3013 21.1666 15.0001 21.1666Z"
+                stroke="#fff"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </g>
+        <defs>
+            <clipPath id="clip0_2078_2371">
+                <rect width="20" height="20" fill="white" transform="translate(5 7)" />
+            </clipPath>
+        </defs>
     </svg>
 );

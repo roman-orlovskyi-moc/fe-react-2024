@@ -3,10 +3,10 @@ import React from 'react';
 import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
 
 export const ColorModeMoonIconComponent: React.FC<IconProps> = ({ className, title }) => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
         <title>{title}</title>
         <path
-            d="M7.5 5.00008C7.5 9.14222 10.8579 12.5001 15 12.5001C15.7577 12.5001 16.4892 12.388 17.1787 12.179C16.2453 15.2586 13.3844 17.5 10 17.5C5.85786 17.5 2.5 14.1423 2.5 10.0002C2.5 6.61577 4.74173 3.75494 7.82134 2.82153C7.61236 3.51101 7.5 4.24237 7.5 5.00008Z"
+            d="M12.5 12.0001C12.5 16.1422 15.8579 19.5001 20 19.5001C20.7577 19.5001 21.4892 19.388 22.1787 19.179C21.2453 22.2586 18.3844 24.5 15 24.5C10.8579 24.5 7.5 21.1423 7.5 17.0002C7.5 13.6158 9.74173 10.7549 12.8213 9.82153C12.6124 10.511 12.5 11.2424 12.5 12.0001Z"
             stroke="#fff"
             strokeWidth="1.5"
             strokeLinecap="round"
