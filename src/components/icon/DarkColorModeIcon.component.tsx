@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
 
-export const ColorModeMoonIconComponent: React.FC<IconProps> = ({ className, title }) => (
+export const DarkColorModeIconComponent: React.FC<IconProps> = ({ className, title }) => (
     <svg width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
         <title>{title}</title>
         <path

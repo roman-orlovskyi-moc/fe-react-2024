@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
 
-export const ColorModeSunIconComponent: React.FC<IconProps> = ({ className, title }) => (
+export const LightColorModeIconComponent: React.FC<IconProps> = ({ className, title }) => (
     <svg width="30" height="34" viewBox="0 0 30 34" fill="none" className={className}>
         <title>{title}</title>
         <g clipPath="url(#clip0_2078_2371)">
