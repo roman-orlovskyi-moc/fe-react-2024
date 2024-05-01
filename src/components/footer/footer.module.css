@@ -1,8 +1,8 @@
-:root.dark {
+:global :root.dark {
   --footer-divider-border-color: #333;
 }
 
-:root.light {
+:global :root.light {
   --footer-divider-border-color: #CCC;
 }
 
