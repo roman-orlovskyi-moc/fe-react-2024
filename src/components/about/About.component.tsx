@@ -2,14 +2,14 @@ import React from 'react';
 
 import image from '@/assets/img/aboutme.png';
 
-import styles from './about-me.module.css';
+import styles from './about.module.css';
 
 interface AboutMeProps {
     fullName: string;
     nikName: string;
 }
 
-export const AboutMeComponent: React.FC<AboutMeProps> = ({ fullName, nikName }) => (
+export const AboutComponent: React.FC<AboutMeProps> = ({ fullName, nikName }) => (
     <div className={styles.aboutMe}>
         <h1 className={styles.aboutMeHeadline}>About me</h1>
         <div className={styles.aboutMeTextContainer}>

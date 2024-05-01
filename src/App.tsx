@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { AboutMeComponent } from './components/about/AboutMe.component.tsx';
+import { AboutComponent } from './components/about/About.component.tsx';
 import { FooterComponent } from './components/footer/Footer.component.tsx';
 import { HeaderComponent } from './components/header/Header.component.tsx';
 import { ProductsListComponent } from './components/products-list/ProductsList.component.tsx';
@@ -21,7 +21,7 @@ function App() {
         <>
             <HeaderComponent shouldShowAboutPage={shouldShowAboutPage} toggleShowAboutPageState={toggleShowAboutPage} />
             <main className="mainContentWrapper contentWrapper">
-                {shouldShowAboutPage && <AboutMeComponent fullName={FULL_NAME} nikName={NIK_NAME} />}
+                {shouldShowAboutPage && <AboutComponent fullName={FULL_NAME} nikName={NIK_NAME} />}
                 {!shouldShowAboutPage && <ProductsListComponent />}
             </main>
             <FooterComponent fullName={FULL_NAME} />
