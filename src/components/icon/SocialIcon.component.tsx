@@ -1,5 +1,7 @@
 import React from 'react';
 
+import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
+
 import { FacebookIconComponent } from '../icon/FacebookIcon.component.tsx';
 import { InstagramIconComponent } from '../icon/InstagramIcon.component.tsx';
 import { LinkedinIconComponent } from '../icon/LinkedinIcon.component.tsx';
@@ -8,10 +10,6 @@ export enum SocialIconName {
     FACEBOOK = 'facebook',
     INSTAGRAM = 'instagram',
     LINKEDIN = 'linkedin',
-}
-
-interface IconProps {
-    title?: string;
 }
 
 const SocialIcon: Record<SocialIconName, React.FC<IconProps>> = {
