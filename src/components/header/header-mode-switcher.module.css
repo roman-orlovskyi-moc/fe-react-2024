@@ -1,3 +1,7 @@
+.headerModeInactiveIcon path {
+  stroke: #656565;
+}
+
 @media (max-width: 768px) {
 
   .headerModeSwitcher {
