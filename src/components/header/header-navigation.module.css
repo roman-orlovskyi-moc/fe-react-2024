@@ -7,9 +7,17 @@
 }
 
 .headerNavLink {
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 500;
   cursor: pointer;
   color: #FFF;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
 }
 
 .headerNavLink:hover {

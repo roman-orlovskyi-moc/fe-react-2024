@@ -19,17 +19,20 @@ export const HeaderNavigationComponent: React.FC<HeaderNavigationProps> = ({ sho
     return (
         <ul className={styles.headerNav}>
             <li>
-                <a className={`${styles.headerNavLink} ${shouldShowAboutPage ? styles.headerNavLinkActive : ''}`} onClick={showAboutPage}>
+                <button
+                    className={`${styles.headerNavLink} ${shouldShowAboutPage ? styles.headerNavLinkActive : ''}`}
+                    onClick={showAboutPage}
+                >
                     About
-                </a>
+                </button>
             </li>
             <li>
-                <a
+                <button
                     className={`${styles.headerNavLink} ${shouldShowAboutPage ? '' : styles.headerNavLinkActive}`}
                     onClick={showProductsPage}
                 >
                     Products
-                </a>
+                </button>
             </li>
         </ul>
     );
