@@ -1,3 +1,21 @@
-.productCard {
+.productsList {
   display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.productListItem {
+  display: flex;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+
+  .productsList {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
 }
