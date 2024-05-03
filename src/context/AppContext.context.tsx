@@ -3,14 +3,20 @@ import React, { createContext, useEffect, useState } from 'react';
 import type { CartItemProps } from '@/interfaces/CartItemProps.interface.tsx';
 import type { CartProps } from '@/interfaces/CartProps.interface.tsx';
 
+type ColorScheme = 'dark' | 'light';
+
 interface AppContextProps {
+    themeMode: ColorScheme;
+    setThemeMode: (mode: ColorScheme) => void;
     cart: CartProps;
     addToCart: (item: CartItemProps) => void;
 }
 
 export const AppContext = createContext<AppContextProps>({
+    themeMode: 'dark',
+    setThemeMode: (mode: ColorScheme) => {},
     cart: { items: [] },
-    addToCart: (item) => {},
+    addToCart: (item: CartItemProps) => {},
 });
 
 interface AppContextProviderProps {
@@ -18,6 +24,30 @@ interface AppContextProviderProps {
 }
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
+    const browserThemeMode: ColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+    const [themeMode, setThemeMode] = useState<ColorScheme>(() => {
+        const savedScheme = localStorage.getItem('themeMode');
+        const validColorSchemes: ColorScheme[] = ['dark', 'light'];
+
+        return savedScheme && validColorSchemes.includes(savedScheme as ColorScheme) ? (savedScheme as ColorScheme) : browserThemeMode;
+    });
+
+    useEffect(() => {
+        const removeThemeClasses = ['dark', 'light'];
+
+        if (browserThemeMode === themeMode) {
+            localStorage.removeItem('themeMode');
+            document.documentElement.classList.remove(...removeThemeClasses);
+        } else {
+            localStorage.setItem('themeMode', themeMode);
+            document.documentElement.classList.remove(...removeThemeClasses);
+            document.documentElement.classList.add(themeMode);
+        }
+
+        setThemeMode(themeMode);
+    }, [browserThemeMode, themeMode]);
+
     const [cart, setCart] = useState<CartProps>(() => {
         const savedCartData = localStorage.getItem('cart');
 
@@ -42,5 +72,5 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
         }
     };
 
-    return <AppContext.Provider value={{ cart, addToCart }}>{children}</AppContext.Provider>;
+    return <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart }}>{children}</AppContext.Provider>;
 };
