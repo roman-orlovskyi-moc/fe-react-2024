@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { CartContext } from '@/context/CartContext.context.tsx';
 
-import { CartIconComponent } from '../icon/CartIcon.component.tsx';
+import { CartIconCounterComponent } from '../common/CartIconCounter.component.tsx';
 
 import styles from './header-cart.module.css';
 
@@ -12,8 +12,7 @@ export const HeaderCartComponent = () => {
 
     return (
         <a href="/cart" className={styles.headerCart}>
-            <CartIconComponent />
-            <div className={styles.headerCartCounter}>{cartItemsCount}</div>
+            <CartIconCounterComponent counter={cartItemsCount} />
         </a>
     );
 };
