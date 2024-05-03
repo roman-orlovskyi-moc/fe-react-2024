@@ -8,15 +8,17 @@ import styles from './cart-icon-counter.module.css';
 
 interface CartIconCounterProps {
     counter: number;
+    wrapperClassName?: string;
 }
 
 type CartIconCounterComponentProps = CartIconCounterProps & IconProps;
 
-export const CartIconCounterComponent: React.FC<CartIconCounterComponentProps> = ({ counter, className, title }) => {
+export const CartIconCounterComponent: React.FC<CartIconCounterComponentProps> = ({ counter, wrapperClassName, className, title }) => {
+    const wrapperClass = wrapperClassName ? `${wrapperClassName} ${styles.cartIconCounterWrapper}` : styles.cartIconCounterWrapper;
     const iconClassName = className ? `${className} ${styles.cartIcon}` : styles.cartIcon;
 
     return (
-        <div className={styles.cartIconCounterWrapper}>
+        <div className={wrapperClass}>
             <CartIconComponent className={iconClassName} title={title} />
             <span className={styles.cartIconCounter}>{counter}</span>
         </div>

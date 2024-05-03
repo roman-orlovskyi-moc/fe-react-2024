@@ -3,6 +3,10 @@
   margin-right: 25px;
 }
 
+.headerCartCounter {
+  display: flex;
+}
+
 @media (max-width: 768px) {
 
   .headerCart {
