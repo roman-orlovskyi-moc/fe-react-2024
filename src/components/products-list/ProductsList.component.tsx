@@ -17,7 +17,7 @@ export const ProductsListComponent = () => {
                 <div>
                     <ul className={styles.productsList}>
                         {productsData.products.map((productData) => (
-                            <li key={productData.id}>
+                            <li className={styles.productListItem} key={productData.id}>
                                 <ProductCardComponent {...productData} />
                             </li>
                         ))}
