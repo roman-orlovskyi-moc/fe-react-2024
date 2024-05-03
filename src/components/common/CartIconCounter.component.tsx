@@ -1,5 +1,7 @@
 import React from 'react';
 
+import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
+
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
 
 import styles from './cart-icon-counter.module.css';
@@ -8,9 +10,11 @@ interface CartIconCounterProps {
     counter: number;
 }
 
-export const CartIconCounterComponent: React.FC<CartIconCounterProps> = ({ counter }) => (
+type CartIconCounterComponentProps = CartIconCounterProps & IconProps;
+
+export const CartIconCounterComponent: React.FC<CartIconCounterComponentProps> = ({ counter, className, title }) => (
     <>
-        <CartIconComponent />
+        <CartIconComponent className={className} title={title} />
         <div className={styles.cartIconCounter}>{counter}</div>
     </>
 );
