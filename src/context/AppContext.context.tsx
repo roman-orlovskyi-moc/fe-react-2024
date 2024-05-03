@@ -37,21 +37,28 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
         const removeThemeClasses = ['dark', 'light'];
 
         if (browserThemeMode === themeMode) {
-            localStorage.removeItem('themeMode');
             document.documentElement.classList.remove(...removeThemeClasses);
+            localStorage.removeItem('themeMode');
         } else {
-            localStorage.setItem('themeMode', themeMode);
             document.documentElement.classList.remove(...removeThemeClasses);
             document.documentElement.classList.add(themeMode);
+            localStorage.setItem('themeMode', themeMode);
         }
-
-        setThemeMode(themeMode);
     }, [browserThemeMode, themeMode]);
+
+    function isCartItemProps(object: any): object is CartItemProps {
+        return object && 'id' in object && 'title' in object && 'image' in object && 'price' in object && 'quantity' in object;
+    }
+
+    function isCartProps(object: any): object is CartProps {
+        return object && Array.isArray(object.items) && object.items.every((element: any) => isCartItemProps(element));
+    }
 
     const [cart, setCart] = useState<CartProps>(() => {
         const savedCartData = localStorage.getItem('cart');
+        const parsedCartData = savedCartData ? JSON.parse(savedCartData) : null;
 
-        return savedCartData ? (JSON.parse(savedCartData) as CartProps) : { items: [] };
+        return isCartProps(parsedCartData) ? (parsedCartData as CartProps) : { items: [] };
     });
 
     useEffect(() => {
@@ -59,17 +66,19 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     }, [cart]);
 
     const addToCart = (item: CartItemProps) => {
-        const itemIndex = cart.items.findIndex((cartItem) => cartItem.id === item.id);
+        setCart((currentCart) => {
+            const itemIndex = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
 
-        if (itemIndex === -1) {
-            setCart({ items: [...cart.items, item] });
-        } else {
-            const newCartItems = cart.items.map((cartItem) =>
-                cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + item.quantity } : cartItem,
-            );
+            if (itemIndex === -1) {
+                return { items: [...currentCart.items, item] };
+            } else {
+                const newCartItems = currentCart.items.map((cartItem) =>
+                    cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + item.quantity } : cartItem,
+                );
 
-            setCart({ items: newCartItems });
-        }
+                return { items: newCartItems };
+            }
+        });
     };
 
     return <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart }}>{children}</AppContext.Provider>;
