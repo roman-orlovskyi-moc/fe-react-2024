@@ -3,21 +3,21 @@ import React, { createContext, useEffect, useState } from 'react';
 import type { CartItemProps } from '@/interfaces/CartItemProps.interface.tsx';
 import type { CartProps } from '@/interfaces/CartProps.interface.tsx';
 
-interface CartContextProps {
+interface AppContextProps {
     cart: CartProps;
     addToCart: (item: CartItemProps) => void;
 }
 
-export const CartContext = createContext<CartContextProps>({
+export const AppContext = createContext<AppContextProps>({
     cart: { items: [] },
     addToCart: (item) => {},
 });
 
-interface CartProviderProps {
+interface AppContextProviderProps {
     children: React.ReactNode;
 }
 
-export const CartContextProvider: React.FC<CartProviderProps> = ({ children }) => {
+export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
     const [cart, setCart] = useState<CartProps>(() => {
         const savedCartData = localStorage.getItem('cart');
 
@@ -42,5 +42,5 @@ export const CartContextProvider: React.FC<CartProviderProps> = ({ children }) =
         }
     };
 
-    return <CartContext.Provider value={{ cart, addToCart }}>{children}</CartContext.Provider>;
+    return <AppContext.Provider value={{ cart, addToCart }}>{children}</AppContext.Provider>;
 };

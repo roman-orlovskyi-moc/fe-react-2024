@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { CartContextProvider } from '@/context/CartContext.context.tsx';
+import { AppContextProvider } from '@/context/AppContext.context.tsx';
 
 import { AboutComponent } from './components/about/About.component.tsx';
 import { FooterComponent } from './components/footer/Footer.component.tsx';
@@ -20,14 +20,14 @@ function App() {
     };
 
     return (
-        <CartContextProvider>
+        <AppContextProvider>
             <HeaderComponent shouldShowAboutPage={shouldShowAboutPage} toggleShowAboutPageState={toggleShowAboutPage} />
             <main className="mainContentWrapper contentWrapper">
                 {shouldShowAboutPage && <AboutComponent fullName={FULL_NAME} nikName={NIK_NAME} />}
                 {!shouldShowAboutPage && <ProductsListComponent />}
             </main>
             <FooterComponent fullName={FULL_NAME} />
-        </CartContextProvider>
+        </AppContextProvider>
     );
 }
 

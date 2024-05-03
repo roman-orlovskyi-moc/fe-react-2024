@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { CartContext } from '@/context/CartContext.context.tsx';
+import { AppContext } from '@/context/AppContext.context.tsx';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
 import { CartIconCounterComponent } from '../common/CartIconCounter.component.tsx';
@@ -9,12 +9,12 @@ import { CartIconComponent } from '../icon/CartIcon.component.tsx';
 import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
-    const cartContext = useContext(CartContext);
-    const productCartItem = cartContext.cart.items.find((item) => item.id === productData.id);
+    const appContext = useContext(AppContext);
+    const productCartItem = appContext.cart.items.find((item) => item.id === productData.id);
     const productCartItemCount = productCartItem ? productCartItem.quantity : 0;
 
     const addToCart = () => {
-        cartContext.addToCart({
+        appContext.addToCart({
             id: productData.id,
             image: productData.images[0],
             title: productData.title,
