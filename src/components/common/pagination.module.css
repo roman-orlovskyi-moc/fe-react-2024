@@ -1,0 +1,120 @@
+:global :root.dark {
+  --pagination-button-border-color: #656565;
+  --pagination-button-hover-background-color: #656565;
+  --pagination-disabled-button-hover-background-color: transparent;
+  --pagination-disabled-button-border-color: #656565;
+  --pagination-arrow-button-hover-background-color: #CCC;
+  --pagination-arrow-icon-color: #FFF;
+  --pagination-arrow-icon-hover-color: #111;
+  --pagination-arrow-icon-disabled-color: #656565;
+}
+
+:global :root.light {
+  --pagination-button-border-color: #F1F1F1;
+  --pagination-button-hover-background-color: #F1F1F1;
+  --pagination-disabled-button-hover-background-color: #F1F1F1;
+  --pagination-disabled-button-border-color: #F1F1F1;
+  --pagination-arrow-button-hover-background-color: #F1F1F1;
+  --pagination-arrow-icon-color: #111;
+  --pagination-arrow-icon-hover-color: #111;
+  --pagination-arrow-icon-disabled-color: #CCC;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --pagination-button-border-color: #656565;
+    --pagination-button-hover-background-color: #656565;
+    --pagination-disabled-button-hover-background-color: transparent;
+    --pagination-disabled-button-border-color: #656565;
+    --pagination-arrow-button-hover-background-color: #CCC;
+    --pagination-arrow-icon-color: #FFF;
+    --pagination-arrow-icon-hover-color: #111;
+    --pagination-arrow-icon-disabled-color: #656565;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --pagination-button-border-color: #F1F1F1;
+    --pagination-button-hover-background-color: #F1F1F1;
+    --pagination-disabled-button-hover-background-color: #F1F1F1;
+    --pagination-disabled-button-border-color: #F1F1F1;
+    --pagination-arrow-button-hover-background-color: #F1F1F1;
+    --pagination-arrow-icon-color: #111;
+    --pagination-arrow-icon-hover-color: #111;
+    --pagination-arrow-icon-disabled-color: #CCC;
+  }
+}
+
+.paginationList {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+}
+
+.paginationButton {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: inherit;
+  width: 30px;
+  height: 30px;
+  background: none;
+  padding: 0;
+  border: 1px solid var(--pagination-button-border-color);
+  border-radius: 8px;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
+}
+
+.paginationButton:hover {
+  background-color: var(--pagination-button-hover-background-color);
+}
+
+.paginationButton:disabled {
+  cursor: not-allowed;
+}
+
+.paginationButton:disabled:hover {
+  background-color: var(--pagination-disabled-button-hover-background-color);
+  border-color: var(--pagination-disabled-button-border-color);
+}
+
+.paginationButtonActive {
+  background-color: #EF4934;
+  border-color: #EF4934;
+}
+
+.paginationButtonActive:hover {
+  background-color: #EF4934;
+}
+
+.paginationArrowButton:hover {
+  background-color: var(--pagination-arrow-button-hover-background-color);
+  border-color: var(--pagination-arrow-button-hover-background-color);
+}
+
+.paginationArrowIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.paginationArrowIcon path {
+  stroke: var(--pagination-arrow-icon-color);
+}
+
+.paginationButton:hover .paginationArrowIcon path {
+  stroke: var(--pagination-arrow-icon-hover-color);
+}
+
+.paginationButton:disabled .paginationArrowIcon path {
+  stroke: var(--pagination-arrow-icon-disabled-color);
+}
