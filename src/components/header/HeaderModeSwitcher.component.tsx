@@ -7,18 +7,26 @@ import { LightColorModeIconComponent } from '../icon/LightColorModeIcon.componen
 import styles from './header-mode-switcher.module.css';
 
 export const HeaderModeSwitcherComponent = () => {
-    type ColorScheme = 'dark' | 'light';
+    const browserColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+    type ColorScheme = 'dark' | 'light' | null;
 
     const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
-        const savedScheme = localStorage.getItem('colorScheme') as ColorScheme;
+        const savedScheme = localStorage.getItem('colorScheme');
+        const validColorSchemes: ColorScheme[] = ['dark', 'light'];
 
-        return savedScheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        return savedScheme && validColorSchemes.includes(savedScheme as ColorScheme) ? (savedScheme as ColorScheme) : null;
     });
 
     useEffect(() => {
-        localStorage.setItem('colorScheme', colorScheme);
-        document.documentElement.classList.remove('dark', 'light');
-        document.documentElement.classList.add(colorScheme);
+        if (colorScheme && colorScheme !== browserColorScheme) {
+            localStorage.setItem('colorScheme', colorScheme);
+            document.documentElement.classList.remove('dark', 'light');
+            document.documentElement.classList.add(colorScheme);
+        } else {
+            localStorage.removeItem('colorScheme');
+            document.documentElement.classList.remove('dark', 'light');
+        }
     }, [colorScheme]);
 
     const setDarkColorScheme = () => {
@@ -29,14 +37,16 @@ export const HeaderModeSwitcherComponent = () => {
         setColorScheme('light');
     };
 
+    const currentColorScheme = colorScheme || browserColorScheme;
+
     return (
         <div className={styles.headerModeSwitcher}>
             <button className={styles.headerModeSwitcherButton} onClick={setLightColorScheme} title="Switch to light mode">
-                <LightColorModeIconComponent className={colorScheme === 'dark' ? styles.headerModeInactiveIcon : ''} />
+                <LightColorModeIconComponent className={currentColorScheme === 'dark' ? styles.headerModeInactiveIcon : ''} />
             </button>
             <ColorModeDividerIconComponent />
             <button className={styles.headerModeSwitcherButton} onClick={setDarkColorScheme} title="Switch to dark mode">
-                <DarkColorModeIconComponent className={colorScheme === 'dark' ? '' : styles.headerModeInactiveIcon} />
+                <DarkColorModeIconComponent className={currentColorScheme === 'dark' ? '' : styles.headerModeInactiveIcon} />
             </button>
         </div>
     );
