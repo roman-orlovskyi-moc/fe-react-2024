@@ -1,7 +1,37 @@
+:global :root.dark {
+  --product-card-border-color: #333;
+  --product-card-hover-background-color: #333;
+  --product-card-add-to-cart-icon-color: #FFF;
+}
+
+:global :root.light {
+  --product-card-border-color: #CCC;
+  --product-card-hover-background-color: #F1F1F1;
+  --product-card-add-to-cart-icon-color: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --product-card-border-color: #333;
+    --product-card-hover-background-color: #333;
+    --product-card-add-to-cart-icon-color: #FFF;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --product-card-border-color: #CCC;
+    --product-card-hover-background-color: #F1F1F1;
+    --product-card-add-to-cart-icon-color: #111;
+  }
+}
+
 .productCard {
   display: flex;
   flex-direction: column;
-  border: 1px solid #333;
+  border: 1px solid var(--product-card-border-color);
   border-radius: 20px;
   width: 243px;
   padding: 20px 15px;
@@ -9,7 +39,7 @@
 }
 
 .productCard:hover {
-  background-color: #333;
+  background-color: var(--product-card-hover-background-color);
 }
 
 .productCardImage {
@@ -48,6 +78,10 @@
   padding-block: 0;
   padding-inline: 0;
   outline: none;
+}
+
+.productCardAddToCartButton svg path {
+  stroke: var(--product-card-add-to-cart-icon-color);
 }
 
 @media (max-width: 768px) {
