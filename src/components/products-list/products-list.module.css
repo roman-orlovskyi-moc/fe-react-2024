@@ -1,14 +1,10 @@
 .productsList {
   display: flex;
   justify-content: center;
-  margin: 0;
+  margin: 0 0 60px;
   padding: 0;
   flex-wrap: wrap;
   gap: 25px;
-}
-
-.productListItem {
-  display: flex;
   list-style: none;
 }
 
@@ -17,5 +13,6 @@
   .productsList {
     padding-left: 25px;
     padding-right: 25px;
+    margin-bottom: 30px;
   }
 }

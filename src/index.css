@@ -86,7 +86,7 @@ body {
 
 .mainContentWrapper {
   padding-top: 60px;
-  padding-bottom: 120px;
+  padding-bottom: 60px;
 }
 
 @media (max-width: 1294px) {
@@ -94,13 +94,6 @@ body {
   .contentWrapper {
     padding-left: 30px;
     padding-right: 30px;
-  }
-}
-
-@media (max-width: 950px) {
-
-  .mainContentWrapper {
-    padding-bottom: 60px;
   }
 }
 
