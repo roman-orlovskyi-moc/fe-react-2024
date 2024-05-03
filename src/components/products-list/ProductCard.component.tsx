@@ -16,6 +16,7 @@ export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
     const addToCart = () => {
         cartContext.addToCart({
             id: productData.id,
+            image: productData.images[0],
             title: productData.title,
             price: productData.price,
             quantity: 1,
