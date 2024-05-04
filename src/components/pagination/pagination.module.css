@@ -7,6 +7,11 @@
   --pagination-arrow-icon-color: #FFF;
   --pagination-arrow-icon-hover-color: #111;
   --pagination-arrow-icon-disabled-color: #656565;
+  --pagination-active-button-font-weight: 500;
+  --pagination-mobile-button-background-color: #FFF;
+  --pagination-mobile-button-border-color: #F1F1F1;
+  --pagination-mobile-button-text-color: #111;
+  --pagination-mobile-arrow-icon-color: #111;
 }
 
 :global :root.light {
@@ -18,6 +23,10 @@
   --pagination-arrow-icon-color: #111;
   --pagination-arrow-icon-hover-color: #111;
   --pagination-arrow-icon-disabled-color: #CCC;
+  --pagination-active-button-font-weight: 700;
+  --pagination-mobile-button-background-color: transparent;
+  --pagination-mobile-button-text-color: inherit;
+  --pagination-mobile-arrow-icon-color: #111;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +40,11 @@
     --pagination-arrow-icon-color: #FFF;
     --pagination-arrow-icon-hover-color: #111;
     --pagination-arrow-icon-disabled-color: #656565;
+    --pagination-active-button-font-weight: 500;
+    --pagination-mobile-button-background-color: #FFF;
+    --pagination-mobile-button-border-color: #F1F1F1;
+    --pagination-mobile-button-text-color: #111;
+    --pagination-mobile-arrow-icon-color: #111;
   }
 }
 
@@ -45,6 +59,10 @@
     --pagination-arrow-icon-color: #111;
     --pagination-arrow-icon-hover-color: #111;
     --pagination-arrow-icon-disabled-color: #CCC;
+    --pagination-active-button-font-weight: 700;
+    --pagination-mobile-button-background-color: transparent;
+    --pagination-mobile-button-text-color: inherit;
+    --pagination-mobile-arrow-icon-color: #111;
   }
 }
 
@@ -88,9 +106,11 @@
   border-color: var(--pagination-disabled-button-border-color);
 }
 
-.paginationButtonActive {
+.paginationButton.paginationButtonActive {
   background-color: #EF4934;
   border-color: #EF4934;
+  color: #FFF;
+  font-weight: var(--pagination-active-button-font-weight);
 }
 
 .paginationButtonActive:hover {
@@ -117,4 +137,29 @@
 
 .paginationButton:disabled .paginationArrowIcon path {
   stroke: var(--pagination-arrow-icon-disabled-color);
+}
+
+@media (max-width: 768px) {
+
+  .paginationButton {
+    background-color: var(--pagination-mobile-button-background-color);
+    border-color: var(--pagination-mobile-button-border-color);
+    color: var(--pagination-mobile-button-text-color);
+  }
+
+  .paginationButton:hover {
+    background-color: var(--pagination-mobile-button-border-color);
+  }
+
+  .paginationButton:disabled:hover {
+    background-color: var(--pagination-mobile-button-border-color);
+  }
+
+  .paginationButton.paginationButtonActive {
+    font-weight: 700;
+  }
+
+  .paginationArrowIcon path {
+    stroke: var(--pagination-mobile-arrow-icon-color);
+  }
 }
