@@ -13,7 +13,7 @@ export const HeaderCartComponent = () => {
 
     return (
         <a href="/cart" className={styles.headerCart}>
-            <CartIconCounterComponent counter={cartItemsCount} wrapperClassName={styles.headerCartCounter} />
+            <CartIconCounterComponent count={cartItemsCount} wrapperClassName={styles.headerCartCounter} />
         </a>
     );
 };
