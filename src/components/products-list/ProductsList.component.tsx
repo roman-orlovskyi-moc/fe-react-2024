@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { PaginationComponent } from '@/components/common/Pagination.component.tsx';
+import { PaginationComponent } from '@/components/pagination/Pagination.component.tsx';
 
 import { ProductCardComponent } from './ProductCard.component.tsx';
 import { ProductsDataProviderComponent } from './ProductsDataProvider.component.tsx';
