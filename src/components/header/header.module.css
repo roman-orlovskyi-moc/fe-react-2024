@@ -5,7 +5,8 @@
   background-color: #111;
 }
 
-.headerLogo {
+.headerLogoLink {
+  display: flex;
   margin-right: 50px;
 }
 

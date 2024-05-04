@@ -20,11 +20,9 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, to
         <div className={`contentWrapper ${styles.headerColumnWrapper}`}>
             <div className={styles.headerLeftColumn}>
                 <div className={styles.headerColumnContainer}>
-                    <div className={styles.headerLogo}>
-                        <a href="/">
-                            <LogoIconComponent />
-                        </a>
-                    </div>
+                    <a className={styles.headerLogoLink} href="/">
+                        <LogoIconComponent />
+                    </a>
                     <HeaderModeSwitcherComponent />
                 </div>
             </div>

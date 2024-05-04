@@ -1,4 +1,9 @@
+.headerModeSwitcher {
+  display: flex;
+}
+
 .headerModeSwitcherButton {
+  display: flex;
   cursor: pointer;
   background: none;
   padding: 0;
