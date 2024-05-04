@@ -9,21 +9,21 @@
   gap: 5px;
   border-radius: 40px;
   padding: 5px 10px;
-  background: #EF4934;
-  color: #FFF;
+  background: var(--main-red-color);
+  color: var(--main-white-color);
 }
 
 .headerButton:hover {
-  background: #D43824;
-  color: #FFF;
+  background: var(--main-red-hover-color);
+  color: var(--main-white-color);
 }
 
 .headerButton.loginButton {
-  background: #333;
+  background: var(--secondary-grey-color);
 }
 
 .headerButton.loginButton:hover {
-  background: #585858;
+  background: var(--third-grey-color);
 }
 
 @media (max-width: 768px) {

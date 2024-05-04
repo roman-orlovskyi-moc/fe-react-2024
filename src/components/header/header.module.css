@@ -1,8 +1,8 @@
 .header {
   width: 100%;
   padding: 17px 0;
-  color: #FFF;
-  background-color: #111;
+  color: var(--main-white-color);
+  background-color: var(--main-grey-color);
 }
 
 .headerLogoLink {

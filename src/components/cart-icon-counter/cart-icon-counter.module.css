@@ -11,8 +11,8 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  background: #EF4934;
-  color: #111;
+  background: var(--main-red-color);
+  color: var(--main-grey-color);
   font-size: 11px;
   padding: 0;
   border-radius: 50%;

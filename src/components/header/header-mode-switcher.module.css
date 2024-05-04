@@ -15,7 +15,11 @@
 }
 
 .headerModeInactiveIcon path {
-  stroke: #656565;
+  stroke: var(--sixth-grey-color);
+}
+
+.headerModeInactiveIcon:hover path {
+  stroke: var(--main-white-color);
 }
 
 @media (max-width: 768px) {

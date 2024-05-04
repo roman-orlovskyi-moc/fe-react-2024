@@ -1,22 +1,22 @@
 :global :root.dark {
-  --footer-divider-border-color: #333;
+  --footer-divider-border-color: var(--secondary-grey-color);
 }
 
 :global :root.light {
-  --footer-divider-border-color: #CCC;
+  --footer-divider-border-color: var(--fourth-grey-color);
 }
 
 @media (prefers-color-scheme: dark) {
 
   :root {
-    --footer-divider-border-color: #333;
+    --footer-divider-border-color: var(--secondary-grey-color);
   }
 }
 
 @media (prefers-color-scheme: light) {
 
   :root {
-    --footer-divider-border-color: #CCC;
+    --footer-divider-border-color: var(--fourth-grey-color);
   }
 }
 
@@ -30,11 +30,11 @@
 }
 
 .footerLink {
-  color: #EF4934;
+  color: var(--main-red-color);
 }
 
 .footerLink:hover {
-  color: #D43824;
+  color: var(--main-red-hover-color);
 }
 
 .footerSocialIcons {
@@ -45,7 +45,7 @@
 }
 
 .footerSocialIconLink:hover svg path {
-  fill: #D43824;
+  fill: var(--main-red-hover-color);
 }
 
 @media (max-width: 768px) {

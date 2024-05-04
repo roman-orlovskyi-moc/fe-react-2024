@@ -1,68 +1,68 @@
 :global :root.dark {
-  --pagination-button-border-color: #656565;
-  --pagination-button-hover-background-color: #656565;
+  --pagination-button-border-color: var(--sixth-grey-color);
+  --pagination-button-hover-background-color: var(--sixth-grey-color);
   --pagination-disabled-button-hover-background-color: transparent;
-  --pagination-disabled-button-border-color: #656565;
-  --pagination-arrow-button-hover-background-color: #CCC;
-  --pagination-arrow-icon-color: #FFF;
-  --pagination-arrow-icon-hover-color: #111;
-  --pagination-arrow-icon-disabled-color: #656565;
+  --pagination-disabled-button-border-color: var(--sixth-grey-color);
+  --pagination-arrow-button-hover-background-color: var(--fourth-grey-color);
+  --pagination-arrow-icon-color: var(--main-white-color);
+  --pagination-arrow-icon-hover-color: var(--main-grey-color);
+  --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
   --pagination-active-button-font-weight: 500;
-  --pagination-mobile-button-background-color: #FFF;
-  --pagination-mobile-button-border-color: #F1F1F1;
-  --pagination-mobile-button-text-color: #111;
-  --pagination-mobile-arrow-icon-color: #111;
+  --pagination-mobile-button-background-color: var(--main-white-color);
+  --pagination-mobile-button-border-color: var(--fifth-grey-color);
+  --pagination-mobile-button-text-color: var(--main-grey-color);
+  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
 }
 
 :global :root.light {
-  --pagination-button-border-color: #F1F1F1;
-  --pagination-button-hover-background-color: #F1F1F1;
-  --pagination-disabled-button-hover-background-color: #F1F1F1;
-  --pagination-disabled-button-border-color: #F1F1F1;
-  --pagination-arrow-button-hover-background-color: #F1F1F1;
-  --pagination-arrow-icon-color: #111;
-  --pagination-arrow-icon-hover-color: #111;
-  --pagination-arrow-icon-disabled-color: #CCC;
+  --pagination-button-border-color: var(--fifth-grey-color);
+  --pagination-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-disabled-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-disabled-button-border-color: var(--fifth-grey-color);
+  --pagination-arrow-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-arrow-icon-color: var(--main-grey-color);
+  --pagination-arrow-icon-hover-color: var(--main-grey-color);
+  --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
   --pagination-active-button-font-weight: 700;
   --pagination-mobile-button-background-color: transparent;
   --pagination-mobile-button-text-color: inherit;
-  --pagination-mobile-arrow-icon-color: #111;
+  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
 }
 
 @media (prefers-color-scheme: dark) {
 
   :root {
-    --pagination-button-border-color: #656565;
-    --pagination-button-hover-background-color: #656565;
+    --pagination-button-border-color: var(--sixth-grey-color);
+    --pagination-button-hover-background-color: var(--sixth-grey-color);
     --pagination-disabled-button-hover-background-color: transparent;
-    --pagination-disabled-button-border-color: #656565;
-    --pagination-arrow-button-hover-background-color: #CCC;
-    --pagination-arrow-icon-color: #FFF;
-    --pagination-arrow-icon-hover-color: #111;
-    --pagination-arrow-icon-disabled-color: #656565;
+    --pagination-disabled-button-border-color: var(--sixth-grey-color);
+    --pagination-arrow-button-hover-background-color: var(--fourth-grey-color);
+    --pagination-arrow-icon-color: var(--main-white-color);
+    --pagination-arrow-icon-hover-color: var(--main-grey-color);
+    --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
     --pagination-active-button-font-weight: 500;
-    --pagination-mobile-button-background-color: #FFF;
-    --pagination-mobile-button-border-color: #F1F1F1;
-    --pagination-mobile-button-text-color: #111;
-    --pagination-mobile-arrow-icon-color: #111;
+    --pagination-mobile-button-background-color: var(--main-white-color);
+    --pagination-mobile-button-border-color: var(--fifth-grey-color);
+    --pagination-mobile-button-text-color: var(--main-grey-color);
+    --pagination-mobile-arrow-icon-color: var(--main-grey-color);
   }
 }
 
 @media (prefers-color-scheme: light) {
 
   :root {
-    --pagination-button-border-color: #F1F1F1;
-    --pagination-button-hover-background-color: #F1F1F1;
-    --pagination-disabled-button-hover-background-color: #F1F1F1;
-    --pagination-disabled-button-border-color: #F1F1F1;
-    --pagination-arrow-button-hover-background-color: #F1F1F1;
-    --pagination-arrow-icon-color: #111;
-    --pagination-arrow-icon-hover-color: #111;
-    --pagination-arrow-icon-disabled-color: #CCC;
+    --pagination-button-border-color: var(--fifth-grey-color);
+    --pagination-button-hover-background-color: var(--fifth-grey-color);
+    --pagination-disabled-button-hover-background-color: var(--fifth-grey-color);
+    --pagination-disabled-button-border-color: var(--fifth-grey-color);
+    --pagination-arrow-button-hover-background-color: var(--fifth-grey-color);
+    --pagination-arrow-icon-color: var(--main-grey-color);
+    --pagination-arrow-icon-hover-color: var(--main-grey-color);
+    --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
     --pagination-active-button-font-weight: 700;
     --pagination-mobile-button-background-color: transparent;
     --pagination-mobile-button-text-color: inherit;
-    --pagination-mobile-arrow-icon-color: #111;
+    --pagination-mobile-arrow-icon-color: var(--main-grey-color);
   }
 }
 
@@ -107,14 +107,14 @@
 }
 
 .paginationButton.paginationButtonActive {
-  background-color: #EF4934;
-  border-color: #EF4934;
-  color: #FFF;
+  background-color: var(--main-red-color);
+  border-color: var(--main-red-color);
+  color: var(--main-white-color);
   font-weight: var(--pagination-active-button-font-weight);
 }
 
 .paginationButtonActive:hover {
-  background-color: #EF4934;
+  background-color: var(--main-red-color);
 }
 
 .paginationArrowButton:hover {

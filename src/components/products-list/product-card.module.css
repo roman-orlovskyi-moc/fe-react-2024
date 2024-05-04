@@ -1,30 +1,30 @@
 :global :root.dark {
-  --product-card-border-color: #333;
-  --product-card-hover-background-color: #333;
-  --product-card-add-to-cart-icon-color: #FFF;
+  --product-card-border-color: var(--secondary-grey-color);
+  --product-card-hover-background-color: var(--secondary-grey-color);
+  --product-card-add-to-cart-icon-color: var(--main-white-color);
 }
 
 :global :root.light {
-  --product-card-border-color: #CCC;
-  --product-card-hover-background-color: #F1F1F1;
-  --product-card-add-to-cart-icon-color: #111;
+  --product-card-border-color: var(--fourth-grey-color);
+  --product-card-hover-background-color: var(--fifth-grey-color);
+  --product-card-add-to-cart-icon-color: var(--main-grey-color);
 }
 
 @media (prefers-color-scheme: dark) {
 
   :root {
-    --product-card-border-color: #333;
-    --product-card-hover-background-color: #333;
-    --product-card-add-to-cart-icon-color: #FFF;
+    --product-card-border-color: var(--secondary-grey-color);
+    --product-card-hover-background-color: var(--secondary-grey-color);
+    --product-card-add-to-cart-icon-color: var(--main-white-color);
   }
 }
 
 @media (prefers-color-scheme: light) {
 
   :root {
-    --product-card-border-color: #CCC;
-    --product-card-hover-background-color: #F1F1F1;
-    --product-card-add-to-cart-icon-color: #111;
+    --product-card-border-color: var(--fourth-grey-color);
+    --product-card-hover-background-color: var(--fifth-grey-color);
+    --product-card-add-to-cart-icon-color: var(--main-grey-color);
   }
 }
 
