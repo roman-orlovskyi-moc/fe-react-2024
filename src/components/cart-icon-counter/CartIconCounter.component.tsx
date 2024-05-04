@@ -14,8 +14,8 @@ interface CartIconCounterProps {
 type CartIconCounterComponentProps = CartIconCounterProps & IconProps;
 
 export const CartIconCounterComponent: React.FC<CartIconCounterComponentProps> = ({ counter, wrapperClassName, className, title }) => {
-    const wrapperClass = wrapperClassName ? `${wrapperClassName} ${styles.cartIconCounterWrapper}` : styles.cartIconCounterWrapper;
-    const iconClassName = className ? `${className} ${styles.cartIcon}` : styles.cartIcon;
+    const wrapperClass: string = wrapperClassName ? `${wrapperClassName} ${styles.cartIconCounterWrapper}` : styles.cartIconCounterWrapper;
+    const iconClassName: string = className ? `${className} ${styles.cartIcon}` : styles.cartIcon;
 
     return (
         <div className={wrapperClass}>

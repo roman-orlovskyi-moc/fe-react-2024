@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
+import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
+import type { CartItemProps } from '@/interfaces/CartItemProps.interface.tsx';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
@@ -9,9 +11,9 @@ import { CartIconComponent } from '../icon/CartIcon.component.tsx';
 import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
-    const appContext = useContext(AppContext);
-    const productCartItem = appContext.cart.items.find((item) => item.id === productData.id);
-    const productCartItemCount = productCartItem ? productCartItem.quantity : 0;
+    const appContext: AppContextProps = useContext(AppContext);
+    const productCartItem: CartItemProps | undefined = appContext.cart.items.find((item) => item.id === productData.id);
+    const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
     const addToCart = () => {
         appContext.addToCart({

@@ -1,16 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 
+import type { AppContextProps, ColorScheme } from '@/interfaces/AppContextProps.interface.tsx';
 import type { CartItemProps } from '@/interfaces/CartItemProps.interface.tsx';
 import type { CartProps } from '@/interfaces/CartProps.interface.tsx';
-
-type ColorScheme = 'dark' | 'light';
-
-interface AppContextProps {
-    themeMode: ColorScheme;
-    setThemeMode: (mode: ColorScheme) => void;
-    cart: CartProps;
-    addToCart: (item: CartItemProps) => void;
-}
 
 export const AppContext = createContext<AppContextProps>({
     themeMode: 'dark',

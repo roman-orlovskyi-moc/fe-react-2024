@@ -13,8 +13,8 @@ interface PaginationProps {
 }
 
 export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, total, setCurrentPage }) => {
-    const totalPages = Math.ceil(total / limit);
-    const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+    const totalPages: number = Math.ceil(total / limit);
+    const pages: number[] = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     const setPreviousPage = (pageNumber: number) => setCurrentPage(pageNumber <= 1 ? 1 : pageNumber - 1);
     const setNextPage = (pageNumber: number) => setCurrentPage(pageNumber >= totalPages ? totalPages : pageNumber + 1);

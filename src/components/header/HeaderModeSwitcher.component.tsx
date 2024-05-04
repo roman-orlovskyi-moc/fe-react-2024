@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
+import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
 
 import { ColorModeDividerIconComponent } from '../icon/ColorModeDividerIcon.component.tsx';
 import { DarkColorModeIconComponent } from '../icon/DarkColorModeIcon.component.tsx';
@@ -9,7 +10,7 @@ import { LightColorModeIconComponent } from '../icon/LightColorModeIcon.componen
 import styles from './header-mode-switcher.module.css';
 
 export const HeaderModeSwitcherComponent = () => {
-    const appContext = useContext(AppContext);
+    const appContext: AppContextProps = useContext(AppContext);
 
     const setDarkColorScheme = () => {
         appContext.setThemeMode('dark');
