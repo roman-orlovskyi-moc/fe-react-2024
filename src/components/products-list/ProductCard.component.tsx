@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '@/context/AppContext.context.tsx';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
-import { CartIconCounterComponent } from '../common/CartIconCounter.component.tsx';
+import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
 
 import styles from './product-card.module.css';

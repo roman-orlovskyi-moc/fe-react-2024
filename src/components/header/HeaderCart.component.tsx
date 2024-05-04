@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
 
-import { CartIconCounterComponent } from '../common/CartIconCounter.component.tsx';
+import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 
 import styles from './header-cart.module.css';
 
