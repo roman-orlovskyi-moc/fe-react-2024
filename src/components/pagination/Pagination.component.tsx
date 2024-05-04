@@ -25,7 +25,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                 <li>
                     <button
                         className={`${styles.paginationButton} ${styles.paginationArrowButton}`}
-                        onClick={setPreviousPage.bind(null, page)}
+                        onClick={() => setPreviousPage(page)}
                         disabled={page === 1}
                     >
                         <PaginationPreviousButtonIconComponent className={styles.paginationArrowIcon} title="Previous page" />
@@ -35,7 +35,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                     <li key={pageNumber}>
                         <button
                             className={`${styles.paginationButton} ${pageNumber === page ? styles.paginationButtonActive : ''}`}
-                            onClick={setCurrentPage.bind(null, pageNumber)}
+                            onClick={() => setCurrentPage(pageNumber)}
                         >
                             {pageNumber}
                         </button>
@@ -44,7 +44,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                 <li>
                     <button
                         className={`${styles.paginationButton} ${styles.paginationArrowButton}`}
-                        onClick={setNextPage.bind(null, page)}
+                        onClick={() => setNextPage(page)}
                         disabled={page === totalPages}
                     >
                         <PaginationNextButtonIconComponent className={styles.paginationArrowIcon} title="Next page" />
