@@ -1,0 +1,165 @@
+:global :root.dark {
+  --pagination-button-border-color: var(--sixth-grey-color);
+  --pagination-button-hover-background-color: var(--sixth-grey-color);
+  --pagination-disabled-button-hover-background-color: transparent;
+  --pagination-disabled-button-border-color: var(--sixth-grey-color);
+  --pagination-arrow-button-hover-background-color: var(--fourth-grey-color);
+  --pagination-arrow-icon-color: var(--main-white-color);
+  --pagination-arrow-icon-hover-color: var(--main-grey-color);
+  --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
+  --pagination-active-button-font-weight: 500;
+  --pagination-mobile-button-background-color: var(--main-white-color);
+  --pagination-mobile-button-border-color: var(--fifth-grey-color);
+  --pagination-mobile-button-text-color: var(--main-grey-color);
+  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
+}
+
+:global :root.light {
+  --pagination-button-border-color: var(--fifth-grey-color);
+  --pagination-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-disabled-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-disabled-button-border-color: var(--fifth-grey-color);
+  --pagination-arrow-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-arrow-icon-color: var(--main-grey-color);
+  --pagination-arrow-icon-hover-color: var(--main-grey-color);
+  --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
+  --pagination-active-button-font-weight: 700;
+  --pagination-mobile-button-background-color: transparent;
+  --pagination-mobile-button-text-color: inherit;
+  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --pagination-button-border-color: var(--sixth-grey-color);
+    --pagination-button-hover-background-color: var(--sixth-grey-color);
+    --pagination-disabled-button-hover-background-color: transparent;
+    --pagination-disabled-button-border-color: var(--sixth-grey-color);
+    --pagination-arrow-button-hover-background-color: var(--fourth-grey-color);
+    --pagination-arrow-icon-color: var(--main-white-color);
+    --pagination-arrow-icon-hover-color: var(--main-grey-color);
+    --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
+    --pagination-active-button-font-weight: 500;
+    --pagination-mobile-button-background-color: var(--main-white-color);
+    --pagination-mobile-button-border-color: var(--fifth-grey-color);
+    --pagination-mobile-button-text-color: var(--main-grey-color);
+    --pagination-mobile-arrow-icon-color: var(--main-grey-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --pagination-button-border-color: var(--fifth-grey-color);
+    --pagination-button-hover-background-color: var(--fifth-grey-color);
+    --pagination-disabled-button-hover-background-color: var(--fifth-grey-color);
+    --pagination-disabled-button-border-color: var(--fifth-grey-color);
+    --pagination-arrow-button-hover-background-color: var(--fifth-grey-color);
+    --pagination-arrow-icon-color: var(--main-grey-color);
+    --pagination-arrow-icon-hover-color: var(--main-grey-color);
+    --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
+    --pagination-active-button-font-weight: 700;
+    --pagination-mobile-button-background-color: transparent;
+    --pagination-mobile-button-text-color: inherit;
+    --pagination-mobile-arrow-icon-color: var(--main-grey-color);
+  }
+}
+
+.paginationList {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+}
+
+.paginationButton {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: inherit;
+  width: 30px;
+  height: 30px;
+  background: none;
+  padding: 0;
+  border: 1px solid var(--pagination-button-border-color);
+  border-radius: 8px;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
+}
+
+.paginationButton:hover {
+  background-color: var(--pagination-button-hover-background-color);
+}
+
+.paginationButton:disabled {
+  cursor: not-allowed;
+}
+
+.paginationButton:disabled:hover {
+  background-color: var(--pagination-disabled-button-hover-background-color);
+  border-color: var(--pagination-disabled-button-border-color);
+}
+
+.paginationButton.paginationButtonActive {
+  background-color: var(--main-red-color);
+  border-color: var(--main-red-color);
+  color: var(--main-white-color);
+  font-weight: var(--pagination-active-button-font-weight);
+}
+
+.paginationButtonActive:hover {
+  background-color: var(--main-red-color);
+}
+
+.paginationArrowButton:hover {
+  background-color: var(--pagination-arrow-button-hover-background-color);
+  border-color: var(--pagination-arrow-button-hover-background-color);
+}
+
+.paginationArrowIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.paginationArrowIcon path {
+  stroke: var(--pagination-arrow-icon-color);
+}
+
+.paginationButton:hover .paginationArrowIcon path {
+  stroke: var(--pagination-arrow-icon-hover-color);
+}
+
+.paginationButton:disabled .paginationArrowIcon path {
+  stroke: var(--pagination-arrow-icon-disabled-color);
+}
+
+@media (max-width: 768px) {
+
+  .paginationButton {
+    background-color: var(--pagination-mobile-button-background-color);
+    border-color: var(--pagination-mobile-button-border-color);
+    color: var(--pagination-mobile-button-text-color);
+  }
+
+  .paginationButton:hover {
+    background-color: var(--pagination-mobile-button-border-color);
+  }
+
+  .paginationButton:disabled:hover {
+    background-color: var(--pagination-mobile-button-border-color);
+  }
+
+  .paginationButton.paginationButtonActive {
+    font-weight: 700;
+  }
+
+  .paginationArrowIcon path {
+    stroke: var(--pagination-mobile-arrow-icon-color);
+  }
+}

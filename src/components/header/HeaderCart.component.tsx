@@ -1,10 +1,19 @@
-import { CartIconComponent } from '../icon/CartIcon.component.tsx';
+import { useContext } from 'react';
+
+import { AppContext } from '@/context/AppContext.context.tsx';
+import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
+
+import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 
 import styles from './header-cart.module.css';
 
-export const HeaderCartComponent = () => (
-    <a href="/cart" className={styles.headerCart}>
-        <CartIconComponent />
-        <div className={styles.headerCartCounter}>0</div>
-    </a>
-);
+export const HeaderCartComponent = () => {
+    const appContext: AppContextProps = useContext(AppContext);
+    const cartItemsCount: number = appContext.cart.items.reduce((sum, item) => sum + item.quantity, 0);
+
+    return (
+        <a href="/cart" className={styles.headerCart}>
+            <CartIconCounterComponent count={cartItemsCount} wrapperClassName={styles.headerCartCounter} />
+        </a>
+    );
+};

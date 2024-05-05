@@ -1,9 +1,12 @@
 .header {
   width: 100%;
   padding: 17px 0;
+  color: var(--main-white-color);
+  background-color: var(--main-grey-color);
 }
 
-.headerLogo {
+.headerLogoLink {
+  display: flex;
   margin-right: 50px;
 }
 
@@ -48,21 +51,5 @@
 
   .headerRightColumn {
     flex-basis: 30%;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .header {
-    color: #FFF;
-    background-color: #111;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  .header {
-    color: #FFF;
-    background-color: #111;
   }
 }

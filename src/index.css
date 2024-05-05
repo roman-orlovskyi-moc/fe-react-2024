@@ -7,6 +7,8 @@
 
 :root {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
+  color: var(--page-text-color);
+  background-color: var(--page-background-color);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark light;
@@ -15,11 +17,60 @@
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --main-red-color: #EF4934;
+  --main-red-hover-color: #D43824;
+  --main-white-color: #FFF;
+  --main-grey-color: #111;
+  --secondary-grey-color: #333;
+  --third-grey-color: #585858;
+  --fourth-grey-color: #CCC;
+  --fifth-grey-color: #F1F1F1;
+  --sixth-grey-color: #656565;
+}
+
+:root.dark {
+  --page-background-color: var(--main-grey-color);
+  --page-text-color: var(--main-white-color);
+  --link-color: var(--main-white-color);
+  --link-hover-color: var(--main-white-color);
+}
+
+:root.light {
+  --page-background-color: var(--main-white-color);
+  --page-text-color: var(--main-grey-color);
+  --link-color: var(--main-grey-color);
+  --link-hover-color: var(--main-grey-color);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --page-background-color: var(--main-grey-color);
+    --page-text-color: var(--main-white-color);
+    --link-color: var(--main-white-color);
+    --link-hover-color: var(--main-white-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --page-background-color: var(--main-white-color);
+    --page-text-color: var(--main-grey-color);
+    --link-color: var(--main-grey-color);
+    --link-hover-color: var(--main-grey-color);
+  }
 }
 
 a {
+  color: var(--link-color);
   font-weight: 500;
   text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--link-hover-color);
 }
 
 p {
@@ -39,13 +90,13 @@ body {
 }
 
 .contentWrapper {
-  max-width: 1174px;
+  max-width: 1175px;
   margin: 0 auto;
 }
 
 .mainContentWrapper {
   padding-top: 60px;
-  padding-bottom: 120px;
+  padding-bottom: 60px;
 }
 
 @media (max-width: 1294px) {
@@ -53,13 +104,6 @@ body {
   .contentWrapper {
     padding-left: 30px;
     padding-right: 30px;
-  }
-}
-
-@media (max-width: 950px) {
-
-  .mainContentWrapper {
-    padding-bottom: 60px;
   }
 }
 
@@ -71,37 +115,5 @@ body {
 
   .mainContentWrapper {
     padding: 10px 30px 30px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    color: #FFF;
-    background-color: #111;
-  }
-
-  a {
-    color: #FFF;
-  }
-
-  a:hover {
-    color: #FFF;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    color: #111;
-    background-color: #FFF;
-  }
-
-  a {
-    color: #111;
-  }
-
-  a:hover {
-    color: #111;
   }
 }

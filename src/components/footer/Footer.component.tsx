@@ -17,19 +17,19 @@ export const FooterComponent: React.FC<FooterProps> = ({ fullName }) => (
                 <SocialIconComponent
                     iconName={SocialIconName.FACEBOOK}
                     url="https://facebook.com"
-                    title="Facebook logo"
+                    title="Facebook"
                     className={styles.footerSocialIconLink}
                 />
                 <SocialIconComponent
                     iconName={SocialIconName.LINKEDIN}
                     url="https://linkedin.com"
-                    title="Linkedin logo"
+                    title="Linkedin"
                     className={styles.footerSocialIconLink}
                 />
                 <SocialIconComponent
                     iconName={SocialIconName.INSTAGRAM}
                     url="https://instagram.com"
-                    title="Instagram logo"
+                    title="Instagram"
                     className={styles.footerSocialIconLink}
                 />
             </div>

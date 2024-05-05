@@ -1,3 +1,27 @@
+.headerModeSwitcher {
+  display: flex;
+}
+
+.headerModeSwitcherButton {
+  display: flex;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
+}
+
+.headerModeInactiveIcon path {
+  stroke: var(--sixth-grey-color);
+}
+
+.headerModeInactiveIcon:hover path {
+  stroke: var(--main-white-color);
+}
+
 @media (max-width: 768px) {
 
   .headerModeSwitcher {

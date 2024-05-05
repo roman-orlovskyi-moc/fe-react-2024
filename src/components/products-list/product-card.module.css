@@ -1,0 +1,102 @@
+:global :root.dark {
+  --product-card-border-color: var(--secondary-grey-color);
+  --product-card-hover-background-color: var(--secondary-grey-color);
+  --product-card-add-to-cart-icon-color: var(--main-white-color);
+}
+
+:global :root.light {
+  --product-card-border-color: var(--fourth-grey-color);
+  --product-card-hover-background-color: var(--fifth-grey-color);
+  --product-card-add-to-cart-icon-color: var(--main-grey-color);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --product-card-border-color: var(--secondary-grey-color);
+    --product-card-hover-background-color: var(--secondary-grey-color);
+    --product-card-add-to-cart-icon-color: var(--main-white-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --product-card-border-color: var(--fourth-grey-color);
+    --product-card-hover-background-color: var(--fifth-grey-color);
+    --product-card-add-to-cart-icon-color: var(--main-grey-color);
+  }
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--product-card-border-color);
+  border-radius: 20px;
+  width: 243px;
+  padding: 20px 15px;
+  height: 302px;
+}
+
+.productCard:hover {
+  background-color: var(--product-card-hover-background-color);
+}
+
+.productCardImage {
+  width: 201px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.productCardTitle {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.addToCartWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.productCardPrice {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.productCardAddToCartButton {
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
+}
+
+.productCardAddToCartButton svg path {
+  stroke: var(--product-card-add-to-cart-icon-color);
+}
+
+@media (max-width: 768px) {
+
+  .productCard {
+    width: 100%;
+    height: auto;
+  }
+
+  .productCardImage {
+    width: 80%;
+    margin: 0 auto 15px;
+  }
+
+  .productCardTitle {
+    margin-bottom: 15px;
+  }
+}

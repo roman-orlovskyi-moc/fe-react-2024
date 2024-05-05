@@ -1,0 +1,24 @@
+.cartIconCounterWrapper {
+  position: relative;
+}
+
+.cartIcon:hover path {
+  stroke-width: 2;
+}
+
+.cartIconCounter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background: var(--main-red-color);
+  color: var(--main-grey-color);
+  font-size: 11px;
+  padding: 0;
+  border-radius: 50%;
+  min-width: 17px;
+  text-align: center;
+  top: -5px;
+  right: -8px;
+  min-height: 17px;
+}
