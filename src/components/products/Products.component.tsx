@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
-import { ProductsDataProviderComponent } from '../products-list/ProductsDataProvider.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
+
+import { ProductsDataProviderComponent } from './ProductsDataProvider.component.tsx';
 
 export const ProductsComponent = () => {
     const PRODUCTS_LIMIT: number = 8;
