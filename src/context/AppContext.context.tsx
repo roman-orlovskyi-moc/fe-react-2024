@@ -19,14 +19,14 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     const browserThemeMode: ColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
     const [themeMode, setThemeMode] = useState<ColorScheme>(() => {
-        const savedScheme = localStorage.getItem('themeMode');
+        const savedScheme: string | null = localStorage.getItem('themeMode');
         const validColorSchemes: ColorScheme[] = ['dark', 'light'];
 
         return savedScheme && validColorSchemes.includes(savedScheme as ColorScheme) ? (savedScheme as ColorScheme) : browserThemeMode;
     });
 
     useEffect(() => {
-        const removeThemeClasses = ['dark', 'light'];
+        const removeThemeClasses: string[] = ['dark', 'light'];
 
         if (browserThemeMode === themeMode) {
             document.documentElement.classList.remove(...removeThemeClasses);
@@ -47,7 +47,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     }
 
     const [cart, setCart] = useState<CartProps>(() => {
-        const savedCartData = localStorage.getItem('cart');
+        const savedCartData: string | null = localStorage.getItem('cart');
         const parsedCartData = savedCartData ? JSON.parse(savedCartData) : null;
 
         return isCartProps(parsedCartData) ? (parsedCartData as CartProps) : { items: [] };
@@ -59,7 +59,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
 
     const addToCart = (item: CartItemProps) => {
         setCart((currentCart) => {
-            const itemIndex = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
+            const itemIndex: number = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
 
             if (itemIndex === -1) {
                 return { items: [...currentCart.items, item] };
