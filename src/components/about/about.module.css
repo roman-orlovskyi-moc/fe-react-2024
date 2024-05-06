@@ -25,6 +25,7 @@
   grid-area: image;
   max-width: 500px;
   border-radius: 40px;
+  justify-self: end;
 }
 
 .aboutMeLink {
@@ -69,5 +70,6 @@
   .aboutMeImage {
     border-radius: 30px;
     margin-bottom: 30px;
+    justify-self: center;
   }
 }
