@@ -12,7 +12,7 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark light;
-  padding: 0 0 40px;
+  padding: 0;
   font-synthesis: none;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
@@ -109,11 +109,20 @@ body {
 
 @media (max-width: 768px) {
 
-  :root {
-    padding: 0 0 30px;
-  }
-
   .mainContentWrapper {
     padding: 10px 30px 30px;
+  }
+
+  .mobileMenuOpened .mainContentWrapper {
+    display: none;
+  }
+
+  .mobileMenuOpened.pageWrapper {
+    height: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 }
