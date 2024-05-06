@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  grid-area: user-nav;
+  justify-content: space-between;
 }
 
 .headerButton {
@@ -30,5 +32,10 @@
 
   .headerAccount {
     display: none;
+  }
+
+  :global(.mobileMenuOpened) .headerAccount {
+    display: flex;
+    justify-self: center;
   }
 }
