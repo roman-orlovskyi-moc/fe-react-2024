@@ -3,6 +3,7 @@ import React from 'react';
 import { SocialIconComponent } from '../icon/SocialIcon.component';
 import { SocialIconName } from '../icon/SocialIcon.component';
 
+import appStyles from '../../App.module.css';
 import styles from './footer.module.css';
 
 interface FooterProps {
@@ -10,7 +11,7 @@ interface FooterProps {
 }
 
 export const FooterComponent: React.FC<FooterProps> = ({ fullName }) => (
-    <footer className={`contentWrapper ${styles.footer}`}>
+    <footer className={`${appStyles.contentWrapper} ${styles.footer}`}>
         <div className={styles.footerDivider}></div>
         <div className={styles.footerSocialIcons}>
             <SocialIconComponent

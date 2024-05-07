@@ -12,6 +12,7 @@ import { MobileMenuIconComponent } from '../icon/MobileMenuIcon.component.tsx';
 
 import { HeaderAccountComponent } from './HeaderAccount.component.tsx';
 
+import appStyles from '../../App.module.css';
 import styles from './header.module.css';
 
 interface HeaderProps {
@@ -41,7 +42,7 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, to
 
     return (
         <header className={styles.header}>
-            <div className={`contentWrapper ${styles.headerColumnWrapper}`}>
+            <div className={`${appStyles.contentWrapper} ${styles.headerColumnWrapper}`}>
                 <a className={styles.headerLogoLink} href="/">
                     <LogoIconComponent />
                 </a>

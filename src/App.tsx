@@ -7,7 +7,7 @@ import { FooterComponent } from './components/footer/Footer.component.tsx';
 import { HeaderComponent } from './components/header/Header.component.tsx';
 import { ProductsComponent } from './components/products/Products.component.tsx';
 
-import './App.css';
+import styles from './App.module.css';
 
 function App() {
     const FULL_NAME: string = `Roman Orlovskyi`;
@@ -21,11 +21,13 @@ function App() {
 
     return (
         <AppContextProvider>
-            <HeaderComponent shouldShowAboutPage={shouldShowAboutPage} toggleShowAboutPageState={toggleShowAboutPage} />
-            <main className="mainContentWrapper contentWrapper">
-                {shouldShowAboutPage ? <AboutComponent fullName={FULL_NAME} nikName={NIK_NAME} /> : <ProductsComponent />}
-            </main>
-            <FooterComponent fullName={FULL_NAME} />
+            <div className={styles.pageWrapper}>
+                <HeaderComponent shouldShowAboutPage={shouldShowAboutPage} toggleShowAboutPageState={toggleShowAboutPage} />
+                <main className={`${styles.mainContentWrapper} ${styles.contentWrapper}`}>
+                    {shouldShowAboutPage ? <AboutComponent fullName={FULL_NAME} nikName={NIK_NAME} /> : <ProductsComponent />}
+                </main>
+                <FooterComponent fullName={FULL_NAME} />
+            </div>
         </AppContextProvider>
     );
 }
