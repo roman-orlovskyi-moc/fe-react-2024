@@ -147,10 +147,6 @@
     color: var(--pagination-mobile-button-text-color);
   }
 
-  .paginationButton:hover {
-    background-color: var(--pagination-mobile-button-border-color);
-  }
-
   .paginationButton:disabled:hover {
     background-color: var(--pagination-mobile-button-border-color);
   }
