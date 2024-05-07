@@ -9,6 +9,8 @@ export const AppContext = createContext<AppContextProps>({
     setThemeMode: (mode: ColorScheme) => {},
     cart: { items: [] },
     addToCart: (item: CartItemProps) => {},
+    route: '#about',
+    setRoutePath: (route: string) => {},
 });
 
 interface AppContextProviderProps {
@@ -73,5 +75,12 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
         });
     };
 
-    return <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart }}>{children}</AppContext.Provider>;
+    const [route, setRoute] = useState<string>(window.location.hash);
+
+    const setRoutePath = (routePath: string) => {
+        setRoute(routePath);
+        window.location.hash = routePath;
+    };
+
+    return <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart, route, setRoutePath }}>{children}</AppContext.Provider>;
 };

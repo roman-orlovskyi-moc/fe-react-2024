@@ -8,4 +8,6 @@ export interface AppContextProps {
     setThemeMode: (mode: ColorScheme) => void;
     cart: CartProps;
     addToCart: (item: CartItemProps) => void;
+    route: string;
+    setRoutePath: (route: string) => void;
 }

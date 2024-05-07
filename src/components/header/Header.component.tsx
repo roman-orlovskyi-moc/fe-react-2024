@@ -16,12 +16,10 @@ import appStyles from '../../App.module.css';
 import styles from './header.module.css';
 
 interface HeaderProps {
-    shouldShowAboutPage: boolean;
-    toggleShowAboutPageState: (isShowAboutPage: boolean) => void;
     toggleMobileMenuOpen: () => void;
 }
 
-export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, toggleShowAboutPageState, toggleMobileMenuOpen }) => {
+export const HeaderComponent: React.FC<HeaderProps> = ({ toggleMobileMenuOpen }) => {
     const appContext: AppContextProps = useContext(AppContext);
     const cartItemsCount: number = appContext.cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -34,12 +32,15 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, to
     };
 
     const showAboutPage = () => {
-        toggleShowAboutPageState(true);
+        appContext.setRoutePath('#about');
     };
 
     const showProductsPage = () => {
-        toggleShowAboutPageState(false);
+        appContext.setRoutePath('#products');
     };
+
+    const aboutPageActiveClass: string = appContext.route === '#about' ? styles.headerNavLinkActive : '';
+    const productsPageActiveClass: string = appContext.route === '#products' ? styles.headerNavLinkActive : '';
 
     return (
         <header className={styles.header}>
@@ -58,18 +59,12 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, to
                 </div>
                 <ul className={styles.headerNav}>
                     <li>
-                        <button
-                            className={`${styles.headerNavLink} ${shouldShowAboutPage ? styles.headerNavLinkActive : ''}`}
-                            onClick={showAboutPage}
-                        >
+                        <button className={`${styles.headerNavLink} ${aboutPageActiveClass}`} onClick={showAboutPage}>
                             About
                         </button>
                     </li>
                     <li>
-                        <button
-                            className={`${styles.headerNavLink} ${shouldShowAboutPage ? '' : styles.headerNavLinkActive}`}
-                            onClick={showProductsPage}
-                        >
+                        <button className={`${styles.headerNavLink} ${productsPageActiveClass}`} onClick={showProductsPage}>
                             Products
                         </button>
                     </li>
