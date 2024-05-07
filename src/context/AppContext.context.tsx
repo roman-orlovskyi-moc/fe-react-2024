@@ -75,7 +75,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
         });
     };
 
-    const [route, setRoute] = useState<string>(window.location.hash);
+    const [route, setRoute] = useState<string>(window.location.hash || '#about');
 
     const setRoutePath = (routePath: string) => {
         setRoute(routePath);
