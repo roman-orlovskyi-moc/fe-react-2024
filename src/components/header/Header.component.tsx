@@ -18,9 +18,10 @@ import styles from './header.module.css';
 interface HeaderProps {
     shouldShowAboutPage: boolean;
     toggleShowAboutPageState: (isShowAboutPage: boolean) => void;
+    toggleMobileMenuOpen: () => void;
 }
 
-export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, toggleShowAboutPageState }) => {
+export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, toggleShowAboutPageState, toggleMobileMenuOpen }) => {
     const appContext: AppContextProps = useContext(AppContext);
     const cartItemsCount: number = appContext.cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -77,7 +78,9 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ shouldShowAboutPage, to
                     <CartIconCounterComponent count={cartItemsCount} wrapperClassName={styles.headerCartCounter} />
                 </a>
                 <HeaderAccountComponent />
-                <MobileMenuIconComponent className={styles.headerMobileMenu} />
+                <button className={styles.headerMobileMenuButton} onClick={toggleMobileMenuOpen}>
+                    <MobileMenuIconComponent />
+                </button>
             </div>
         </header>
     );

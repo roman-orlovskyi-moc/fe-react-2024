@@ -82,9 +82,17 @@
   display: flex;
 }
 
-.headerMobileMenu {
+.headerMobileMenuButton {
   display: none;
   grid-area: mobile-menu;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
 }
 
 @media (max-width: 768px) {
@@ -136,7 +144,7 @@
     margin-right: 15px;
   }
 
-  .headerMobileMenu {
+  .headerMobileMenuButton {
     display: flex;
   }
 }

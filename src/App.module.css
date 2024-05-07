@@ -26,11 +26,11 @@
     padding: 10px 30px 30px;
   }
 
-  .mobileMenuOpened .mainContentWrapper {
+  :global(.mobileMenuOpened) .mainContentWrapper {
     display: none;
   }
 
-  .mobileMenuOpened.pageWrapper {
+  :global(.mobileMenuOpened).pageWrapper {
     height: 100%;
     position: fixed;
     display: flex;

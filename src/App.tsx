@@ -1,11 +1,10 @@
 import { useState } from 'react';
 
-import { AppContextProvider } from '@/context/AppContext.context.tsx';
-
 import { AboutComponent } from './components/about/About.component.tsx';
 import { FooterComponent } from './components/footer/Footer.component.tsx';
 import { HeaderComponent } from './components/header/Header.component.tsx';
 import { ProductsComponent } from './components/products/Products.component.tsx';
+import { AppContextProvider } from './context/AppContext.context.tsx';
 
 import styles from './App.module.css';
 
@@ -19,10 +18,20 @@ function App() {
         setShouldShowAboutPage(isShowAboutPage);
     };
 
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+    const toggleMobileMenuOpen = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
     return (
         <AppContextProvider>
-            <div className={styles.pageWrapper}>
-                <HeaderComponent shouldShowAboutPage={shouldShowAboutPage} toggleShowAboutPageState={toggleShowAboutPage} />
+            <div className={`${styles.pageWrapper} ${isMobileMenuOpen ? 'mobileMenuOpened' : ''}`}>
+                <HeaderComponent
+                    shouldShowAboutPage={shouldShowAboutPage}
+                    toggleShowAboutPageState={toggleShowAboutPage}
+                    toggleMobileMenuOpen={toggleMobileMenuOpen}
+                />
                 <main className={`${styles.mainContentWrapper} ${styles.contentWrapper}`}>
                     {shouldShowAboutPage ? <AboutComponent fullName={FULL_NAME} nikName={NIK_NAME} /> : <ProductsComponent />}
                 </main>
