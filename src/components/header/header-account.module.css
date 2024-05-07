@@ -37,5 +37,21 @@
   :global(.mobileMenuOpened) .headerAccount {
     display: flex;
     justify-self: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  :global(.mobileMenuOpened) .headerButton {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  :global(.mobileMenuOpened) .headerButton:hover {
+    background: none;
+  }
+
+  :global(.mobileMenuOpened) .headerButtonIcon {
+    display: none;
   }
 }

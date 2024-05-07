@@ -8,7 +8,7 @@
 .headerColumnWrapper {
   display: grid;
   align-items: center;
-  grid-template-columns: [logo] 96px [mode-switcher] 1fr [nav] 322px [cart-icon] 45px [user-nav] 220px;
+  grid-template-columns: [logo] 96px [mode-switcher] 80px [empty] 1fr [nav] 1fr [cart-icon] 45px [user-nav] 220px;
 }
 
 .headerLogoLink {
@@ -46,7 +46,7 @@
   list-style: none;
   display: flex;
   gap: 20px;
-  padding: 0;
+  padding: 0 20px 0 0;
   grid-area: nav;
 }
 
@@ -87,31 +87,11 @@
   grid-area: mobile-menu;
 }
 
-@media (max-width: 1150px) {
-
-  .headerRightColumn {
-    flex-basis: 10%;
-  }
-}
-
-@media (max-width: 1000px) {
-
-  .headerRightColumn {
-    flex-basis: 15%;
-  }
-}
-
-@media (max-width: 900px) {
-
-  .headerRightColumn {
-    flex-basis: 30%;
-  }
-}
-
 @media (max-width: 768px) {
 
   .header {
     height: 100%;
+    font-size: 20px;
   }
 
   .headerColumnWrapper {
@@ -139,6 +119,7 @@
 
   :global(.mobileMenuOpened) .headerNav {
     display: flex;
+    padding-right: 0;
   }
 
   .headerModeSwitcher {
