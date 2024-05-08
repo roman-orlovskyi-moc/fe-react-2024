@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
-import productsJSONData from '../../assets/data/products.json';
+import productsJSONData from '../assets/data/products.json';
 
 interface ProductsDataProps {
     products: ProductProps[];
