@@ -27,6 +27,7 @@
   --fourth-grey-color: #CCC;
   --fifth-grey-color: #F1F1F1;
   --sixth-grey-color: #656565;
+  --seventh-grey-color: #E1E1E1;
 }
 
 :root.dark {
