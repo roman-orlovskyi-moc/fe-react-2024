@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
-import { ProductCardComponent } from './ProductCard.component.tsx';
+import { ProductCardComponent } from '../product-card/ProductCard.component.tsx';
 
 import styles from './products-list.module.css';
 
