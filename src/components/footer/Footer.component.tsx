@@ -1,9 +1,10 @@
 import React from 'react';
 
+import appStyles from '@/App.module.css';
+
 import { SocialIconComponent } from '../icon/SocialIcon.component';
 import { SocialIconName } from '../icon/SocialIcon.component';
 
-import appStyles from '../../App.module.css';
 import styles from './footer.module.css';
 
 interface FooterProps {

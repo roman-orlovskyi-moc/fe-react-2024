@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
 import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
 
@@ -12,7 +13,6 @@ import { MobileMenuIconComponent } from '../icon/MobileMenuIcon.component.tsx';
 
 import { HeaderAccountComponent } from './HeaderAccount.component.tsx';
 
-import appStyles from '../../App.module.css';
 import styles from './header.module.css';
 
 interface HeaderProps {
