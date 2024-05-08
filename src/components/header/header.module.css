@@ -8,7 +8,7 @@
 .headerColumnWrapper {
   display: grid;
   align-items: center;
-  grid-template-columns: [logo] 96px [mode-switcher] 80px [empty] 1fr [nav] 1fr [cart-icon] 45px [user-nav] 220px;
+  grid-template-columns: [logo] 96px [mode-switcher] 1fr [nav] 320px [cart-icon] 45px [user-nav] 220px;
 }
 
 .headerLogoLink {
@@ -67,6 +67,7 @@
 
 .headerNavLink:hover {
   color: var(--main-white-color);
+  font-weight: 700;
 }
 
 .headerNavLinkActive {
@@ -93,6 +94,13 @@
   padding-block: 0;
   padding-inline: 0;
   outline: none;
+}
+
+@media (max-width: 1024px) {
+
+  .headerColumnWrapper {
+    grid-template-columns: [logo] 96px [mode-switcher] 1fr [nav] 1fr [cart-icon] 45px [user-nav] 220px;
+  }
 }
 
 @media (max-width: 768px) {
