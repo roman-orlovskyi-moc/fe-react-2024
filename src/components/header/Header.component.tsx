@@ -49,7 +49,8 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
     };
 
     const aboutPageActiveClass: string = appContext.route === '#about' ? styles.headerNavLinkActive : '';
-    const productsPageActiveClass: string = appContext.route === '#products' ? styles.headerNavLinkActive : '';
+    const productsPageActiveClass: string =
+        appContext.route === '#products' || appContext.route.startsWith('#product/') ? styles.headerNavLinkActive : '';
 
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>

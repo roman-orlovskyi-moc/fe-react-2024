@@ -5,6 +5,7 @@ import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx
 
 import { AboutComponent } from '../about/About.component.tsx';
 import { PageNotFoundComponent } from '../page-not-found/PageNotFound.component.tsx';
+import { ProductComponent } from '../product/Product.component.tsx';
 import { ProductsComponent } from '../products/Products.component.tsx';
 
 interface MainContentProps {
@@ -15,10 +16,16 @@ interface MainContentProps {
 export const MainContentComponent: React.FC<MainContentProps> = ({ fullName, nikName }) => {
     const appContext: AppContextProps = useContext(AppContext);
 
-    if (appContext.route === '#products') {
-        return <ProductsComponent />;
-    } else if (appContext.route === '#about') {
+    const productPageRegExp: RegExp = /^#product\/\d+$/;
+
+    if (appContext.route === '#about') {
         return <AboutComponent fullName={fullName} nikName={nikName} />;
+    } else if (appContext.route === '#products') {
+        return <ProductsComponent />;
+    } else if (productPageRegExp.test(appContext.route)) {
+        const productId: number = Number(appContext.route.split('/').pop());
+
+        return <ProductComponent id={productId} />;
     } else {
         return <PageNotFoundComponent />;
     }

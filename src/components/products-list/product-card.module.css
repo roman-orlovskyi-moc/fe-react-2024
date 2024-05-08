@@ -46,6 +46,7 @@
   width: 201px;
   border-radius: 20px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .productCardTitle {
@@ -54,6 +55,7 @@
   font-size: 18px;
   line-height: 1.2;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .addToCartWrapper {

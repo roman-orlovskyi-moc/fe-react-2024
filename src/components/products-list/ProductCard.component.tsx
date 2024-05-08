@@ -14,6 +14,10 @@ export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
     const productCartItem: CartItemProps | undefined = appContext.cart.items.find((item) => item.id === productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
+    const showProductPage = () => {
+        appContext.setRoutePath(`#product/${productData.id}`);
+    };
+
     const addToCart = () => {
         appContext.addToCart({
             id: productData.id,
@@ -28,8 +32,10 @@ export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
 
     return (
         <div className={styles.productCard}>
-            <img className={styles.productCardImage} src={productData.images[0]} alt={productData.title} />
-            <h3 className={styles.productCardTitle}>{productData.title}</h3>
+            <img className={styles.productCardImage} src={productData.images[0]} alt={productData.title} onClick={showProductPage} />
+            <h3 className={styles.productCardTitle} onClick={showProductPage}>
+                {productData.title}
+            </h3>
             <div className={styles.addToCartWrapper}>
                 <div className={styles.productCardPrice}>{formattedPrice(productData.price)} ₴</div>
                 <button className={styles.productCardAddToCartButton} type="button" onClick={addToCart}>
