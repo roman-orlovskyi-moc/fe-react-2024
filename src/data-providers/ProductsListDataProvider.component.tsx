@@ -16,14 +16,17 @@ interface ProductsDataProviderProps {
     children: (productsData: ProductsDataProps) => React.ReactNode;
 }
 
-export const ProductsDataProviderComponent: React.FC<ProductsDataProviderProps> = ({ page, limit, children }) => {
+export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderProps> = ({ page, limit, children }) => {
     const [productsData, setProductsData] = useState<ProductsDataProps>({ productsCount: 0, products: [] });
 
     useEffect(() => {
         const start = (page - 1) * limit;
         const end = start + limit;
 
-        setProductsData({ productsCount: productsJSONData.length, products: productsJSONData.slice(start, end) });
+        setProductsData({
+            productsCount: productsJSONData.length,
+            products: productsJSONData.slice(start, end) as ProductProps[],
+        });
     }, [page, limit]);
 
     return children(productsData);
