@@ -16,11 +16,11 @@ interface MainContentProps {
 export const MainContentComponent: React.FC<MainContentProps> = ({ fullName, nikName }) => {
     const appContext: AppContextProps = useContext(AppContext);
 
-    const productPageRegExp: RegExp = /^#product\/\d+$/;
+    const productPageRegExp: RegExp = /^#\/product\/\d+$/;
 
-    if (appContext.route === '#about') {
+    if (appContext.route === '#/about') {
         return <AboutComponent fullName={fullName} nikName={nikName} />;
-    } else if (appContext.route === '#products') {
+    } else if (appContext.route === '#/products') {
         return <ProductsComponent />;
     } else if (productPageRegExp.test(appContext.route)) {
         const productId: number = Number(appContext.route.split('/').pop());

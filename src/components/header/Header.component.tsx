@@ -41,16 +41,16 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
     };
 
     const showAboutPage = () => {
-        appContext.setRoutePath('#about');
+        appContext.setRoutePath('#/about');
     };
 
     const showProductsPage = () => {
-        appContext.setRoutePath('#products');
+        appContext.setRoutePath('#/products');
     };
 
-    const aboutPageActiveClass: string = appContext.route === '#about' ? styles.headerNavLinkActive : '';
+    const aboutPageActiveClass: string = appContext.route === '#/about' ? styles.headerNavLinkActive : '';
     const productsPageActiveClass: string =
-        appContext.route === '#products' || appContext.route.startsWith('#product/') ? styles.headerNavLinkActive : '';
+        appContext.route === '#/products' || appContext.route.startsWith('#/product/') ? styles.headerNavLinkActive : '';
 
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>
