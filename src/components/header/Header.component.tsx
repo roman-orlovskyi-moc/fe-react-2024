@@ -16,12 +16,21 @@ import appStyles from '../../App.module.css';
 import styles from './header.module.css';
 
 interface HeaderProps {
+    isMobileMenuOpen: boolean;
     toggleMobileMenuOpen: () => void;
 }
 
-export const HeaderComponent: React.FC<HeaderProps> = ({ toggleMobileMenuOpen }) => {
+export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
     const appContext: AppContextProps = useContext(AppContext);
     const cartItemsCount: number = appContext.cart.items.reduce((sum, item) => sum + item.quantity, 0);
+
+    const handleMobileMenuClose = (event: React.MouseEvent) => {
+        const target = event.target as HTMLElement;
+
+        if (isMobileMenuOpen && target && ['A', 'svg', 'SVG', 'BUTTON'].includes(target.tagName)) {
+            toggleMobileMenuOpen();
+        }
+    };
 
     const setDarkColorScheme = () => {
         appContext.setThemeMode('dark');
@@ -43,7 +52,7 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ toggleMobileMenuOpen })
     const productsPageActiveClass: string = appContext.route === '#products' ? styles.headerNavLinkActive : '';
 
     return (
-        <header className={styles.header}>
+        <header className={styles.header} onClick={handleMobileMenuClose}>
             <div className={`${appStyles.contentWrapper} ${styles.headerColumnWrapper}`}>
                 <a className={styles.headerLogoLink} href="/">
                     <LogoIconComponent />

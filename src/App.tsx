@@ -20,7 +20,7 @@ function App() {
     return (
         <AppContextProvider>
             <div className={`${styles.pageWrapper} ${isMobileMenuOpen ? 'mobileMenuOpened' : ''}`}>
-                <HeaderComponent toggleMobileMenuOpen={toggleMobileMenuOpen} />
+                <HeaderComponent isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenuOpen={toggleMobileMenuOpen} />
                 <main className={`${styles.mainContentWrapper} ${styles.contentWrapper}`}>
                     <MainContentComponent fullName={FULL_NAME} nikName={NIK_NAME} />
                 </main>
