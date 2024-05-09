@@ -18,12 +18,12 @@ export const MainContentComponent: React.FC<MainContentProps> = ({ fullName, nik
 
     const productPageRegExp: RegExp = /^\/product\/\d+$/;
 
-    if (appContext.route === '/about') {
+    if (appContext.route.path === '/about') {
         return <AboutComponent fullName={fullName} nikName={nikName} />;
-    } else if (appContext.route === '/products') {
+    } else if (appContext.route.path === '/products') {
         return <ProductsComponent />;
-    } else if (productPageRegExp.test(appContext.route)) {
-        const productId: number = Number(appContext.route.split('/').pop());
+    } else if (productPageRegExp.test(appContext.route.path)) {
+        const productId: number = Number(appContext.route.path.split('/').pop());
 
         return <ProductComponent id={productId} />;
     } else {

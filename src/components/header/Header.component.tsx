@@ -48,9 +48,9 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
         appContext.setRoutePath('/products');
     };
 
-    const aboutPageActiveClass: string = appContext.route === '/about' ? styles.headerNavLinkActive : '';
+    const aboutPageActiveClass: string = appContext.route.path === '/about' ? styles.headerNavLinkActive : '';
     const productsPageActiveClass: string =
-        appContext.route === '/products' || appContext.route.startsWith('/product/') ? styles.headerNavLinkActive : '';
+        appContext.route.path === '/products' || appContext.route.path.startsWith('/product/') ? styles.headerNavLinkActive : '';
 
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>

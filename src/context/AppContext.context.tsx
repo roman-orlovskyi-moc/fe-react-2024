@@ -3,14 +3,18 @@ import React, { createContext, useEffect, useState } from 'react';
 import type { AppContextProps, ColorScheme } from '@/interfaces/AppContextProps.interface.tsx';
 import type { CartItemProps } from '@/interfaces/CartItemProps.interface.tsx';
 import type { CartProps } from '@/interfaces/CartProps.interface.tsx';
+import type { RouteParameters, RouteProps } from '@/interfaces/RouteProps.interface.tsx';
+
+import { buildRoutePath, parseRoute } from '../helpers/routeHelper.ts';
 
 export const AppContext = createContext<AppContextProps>({
     themeMode: 'dark',
     setThemeMode: (mode: ColorScheme) => {},
     cart: { items: [] },
     addToCart: (item: CartItemProps) => {},
-    route: '/about',
+    route: { path: '/about', parameters: {} },
     setRoutePath: (route: string) => {},
+    setRoutePathParameters: (parameters: RouteParameters) => {},
 });
 
 interface AppContextProviderProps {
@@ -60,7 +64,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     }, [cart]);
 
     const addToCart = (item: CartItemProps) => {
-        setCart((currentCart) => {
+        setCart((currentCart: CartProps) => {
             const itemIndex: number = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
 
             if (itemIndex === -1) {
@@ -75,12 +79,24 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
         });
     };
 
-    const [route, setRoute] = useState<string>(window.location.hash || '/about');
+    const [route, setRoute] = useState<RouteProps>(parseRoute(window.location.hash || '/about'));
 
-    const setRoutePath = (routePath: string) => {
-        setRoute(routePath);
-        window.location.hash = `#${routePath}`;
+    const setRoutePath = (path: string, parameters?: RouteParameters) => {
+        setRoute({ path, parameters: parameters || {} });
+        setLocationHash(path, parameters);
     };
 
-    return <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart, route, setRoutePath }}>{children}</AppContext.Provider>;
+    const setRoutePathParameters = (parameters: RouteParameters) => {
+        setRoutePath(route.path, { ...route.parameters, ...parameters });
+    };
+
+    const setLocationHash = (path: string, parameters?: RouteParameters) => {
+        window.location.hash = buildRoutePath(path, parameters);
+    };
+
+    return (
+        <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart, route, setRoutePath, setRoutePathParameters }}>
+            {children}
+        </AppContext.Provider>
+    );
 };
