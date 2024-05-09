@@ -15,7 +15,7 @@ export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
     const showProductPage = () => {
-        appContext.setRoutePath(`#/product/${productData.id}`);
+        appContext.setRoutePath(`/product/${productData.id}`);
     };
 
     const addToCart = () => {
