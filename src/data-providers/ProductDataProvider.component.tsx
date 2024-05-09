@@ -1,5 +1,4 @@
 import type React from 'react';
-import { useEffect, useState } from 'react';
 
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
@@ -15,13 +14,7 @@ interface ProductDataProviderProps {
 }
 
 export const ProductDataProviderComponent: React.FC<ProductDataProviderProps> = ({ id, children }) => {
-    const [productData, setProductData] = useState<ProductDataProps>({ product: null });
+    const product = productsJSONData.find((iterableProduct: ProductProps) => iterableProduct.id === id) as ProductProps;
 
-    useEffect(() => {
-        const product = productsJSONData.find((iterableProduct: ProductProps) => iterableProduct.id === id) as ProductProps;
-
-        setProductData({ product });
-    }, [id]);
-
-    return children(productData);
+    return children({ product });
 };

@@ -1,5 +1,4 @@
 import type React from 'react';
-import { useEffect, useState } from 'react';
 
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
@@ -17,17 +16,13 @@ interface ProductsDataProviderProps {
 }
 
 export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderProps> = ({ page, limit, children }) => {
-    const [productsData, setProductsData] = useState<ProductsDataProps>({ productsCount: 0, products: [] });
+    const start = (page - 1) * limit;
+    const end = start + limit;
 
-    useEffect(() => {
-        const start = (page - 1) * limit;
-        const end = start + limit;
-
-        setProductsData({
-            productsCount: productsJSONData.length,
-            products: productsJSONData.slice(start, end) as ProductProps[],
-        });
-    }, [page, limit]);
+    const productsData = {
+        productsCount: productsJSONData.length,
+        products: productsJSONData.slice(start, end) as ProductProps[],
+    };
 
     return children(productsData);
 };
