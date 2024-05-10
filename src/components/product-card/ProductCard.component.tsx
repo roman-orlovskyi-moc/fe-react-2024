@@ -19,13 +19,7 @@ export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
     };
 
     const addToCart = () => {
-        appContext.addToCart({
-            id: productData.id,
-            image: productData.images[0],
-            title: productData.title,
-            price: productData.price,
-            quantity: 1,
-        });
+        appContext.addToCart({ id: productData.id, quantity: 1 });
     };
 
     const formattedPrice = (price: number) => price.toLocaleString('uk-UA');

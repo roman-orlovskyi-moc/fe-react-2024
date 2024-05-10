@@ -46,7 +46,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     }, [browserThemeMode, themeMode]);
 
     function isCartItemProps(object: any): object is CartItemProps {
-        return object && 'id' in object && 'title' in object && 'image' in object && 'price' in object && 'quantity' in object;
+        return object && 'id' in object && 'quantity' in object;
     }
 
     function isCartProps(object: any): object is CartProps {
