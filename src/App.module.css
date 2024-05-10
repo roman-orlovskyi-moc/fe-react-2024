@@ -1,3 +1,33 @@
+:global :root.dark {
+  --button-border-color: var(--sixth-grey-color);
+  --button-background-color: var(--main-grey-color);
+  --button-text-color: var(--main-white-color);
+}
+
+:global :root.light {
+  --button-border-color: var(--seventh-grey-color);
+  --button-background-color: var(--main-white-color);
+  --button-text-color: var(--secondary-grey-color);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --button-border-color: var(--sixth-grey-color);
+    --button-background-color: var(--main-grey-color);
+    --button-text-color: var(--main-white-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --button-border-color: var(--seventh-grey-color);
+    --button-background-color: var(--main-white-color);
+    --button-text-color: var(--secondary-grey-color);
+  }
+}
+
 .pageWrapper {
   width: 100%;
 }
@@ -10,6 +40,23 @@
 .mainContentWrapper {
   padding-top: 60px;
   padding-bottom: 60px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--button-background-color);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--button-text-color);
+  padding: 10px 20px;
+  border: 1px solid var(--button-border-color);
+  border-radius: 40px;
+  margin: 0;
+  outline: none;
 }
 
 @media (max-width: 1294px) {
@@ -37,5 +84,9 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .button {
+    font-size: 16px;
   }
 }

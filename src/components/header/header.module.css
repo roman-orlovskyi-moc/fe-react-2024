@@ -145,7 +145,7 @@
   :global(.mobileMenuOpened) .headerModeSwitcher {
     display: flex;
     justify-self: center;
-    align-self: start;
+    align-self: flex-start;
   }
 
   .headerCart {

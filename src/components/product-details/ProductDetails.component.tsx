@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 
+import appStyles from '@/App.module.css';
 import { CartIconComponent } from '@/components/icon/CartIcon.component.tsx';
+import { PreviousButtonIconComponent } from '@/components/icon/PreviousButtonIcon.component.tsx';
 import { AppContext } from '@/context/AppContext.context.tsx';
 import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
@@ -22,25 +24,24 @@ export const ProductDetailsComponent: React.FC<ProductProps> = (productData) => 
 
     return (
         <div className={styles.productDetails}>
-            <div className={styles.productDetailsLeftColumn}>
+            <div className={styles.productDetailsColumn}>
                 <img className={styles.productDetailsImage} src={productData.images[0]} alt={productData.title} />
             </div>
-            <div className={styles.productDetailsRightColumn}>
-                <button className={styles.productDetailsButton} onClick={returnToProducts}>
-                    Back
-                </button>
-                <h2 className={styles.productDetailsTitle}>{productData.title}</h2>
-                <button className={styles.productDetailsButton}>{productData.category.name}</button>
-                <div className={styles.productDetailsDescription}>{productData.description}</div>
-                <div className={styles.productDetailsPrice}>{formattedPrice(productData.price)} ₴</div>
-                <button
-                    className={`${styles.productDetailsButton} ${styles.productDetailsAddToCartButton}`}
-                    type="button"
-                    onClick={addToCart}
-                >
-                    <CartIconComponent title="Add to cart" />
-                    Add to cart
-                </button>
+            <div className={styles.productDetailsColumn}>
+                <div className={styles.productDetailsContent}>
+                    <button className={`${appStyles.button} ${styles.productDetailsBackButton}`} onClick={returnToProducts}>
+                        <PreviousButtonIconComponent className={styles.productDetailsBackButtonIcon} />
+                        Back
+                    </button>
+                    <h2 className={styles.productDetailsTitle}>{productData.title}</h2>
+                    <button className={`${appStyles.button} ${styles.productDetailsCategoryButton}`}>{productData.category.name}</button>
+                    <div className={styles.productDetailsDescription}>{productData.description}</div>
+                    <div className={styles.productDetailsPrice}>{formattedPrice(productData.price)} ₴</div>
+                    <button className={`${appStyles.button} ${styles.productDetailsAddToCartButton}`} type="button" onClick={addToCart}>
+                        <CartIconComponent title="Add to cart" />
+                        Add to cart
+                    </button>
+                </div>
             </div>
         </div>
     );
