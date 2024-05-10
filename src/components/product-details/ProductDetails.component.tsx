@@ -11,7 +11,7 @@ export const ProductDetailsComponent: React.FC<ProductProps> = (productData) => 
     const appContext: AppContextProps = useContext(AppContext);
 
     const returnToProducts = () => {
-        appContext.setRoutePath('/products');
+        appContext.backToPreviousRoute('/products');
     };
 
     const addToCart = () => {

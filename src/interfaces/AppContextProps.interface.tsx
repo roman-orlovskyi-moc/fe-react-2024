@@ -10,6 +10,7 @@ export interface AppContextProps {
     cart: CartProps;
     addToCart: (item: CartItemProps) => void;
     route: RouteProps;
-    setRoutePath: (route: string) => void;
+    setRoutePath: (route: string, parameters?: RouteParameters) => void;
     setRoutePathParameters: (parameters: RouteParameters) => void;
+    backToPreviousRoute: (alternativePath?: string, alternativeParameters?: RouteParameters) => void;
 }

@@ -13,8 +13,9 @@ export const AppContext = createContext<AppContextProps>({
     cart: { items: [] },
     addToCart: (item: CartItemProps) => {},
     route: { path: '/about', parameters: {} },
-    setRoutePath: (route: string) => {},
+    setRoutePath: (route: string, parameters?: RouteParameters) => {},
     setRoutePathParameters: (parameters: RouteParameters) => {},
+    backToPreviousRoute: (alternativePath?: string, alternativeParameters?: RouteParameters) => {},
 });
 
 interface AppContextProviderProps {
@@ -80,8 +81,10 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     };
 
     const [route, setRoute] = useState<RouteProps>(parseRoute(window.location.hash || '/about'));
+    const [previousRoute, setPreviousRoute] = useState<RouteProps | null>(null);
 
     const setRoutePath = (path: string, parameters?: RouteParameters) => {
+        setPreviousRoute(route);
         setRoute({ path, parameters: parameters || {} });
         setLocationHash(path, parameters);
     };
@@ -90,12 +93,22 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
         setRoutePath(route.path, { ...route.parameters, ...parameters });
     };
 
+    const backToPreviousRoute = (alternativePath?: string, alternativeParameters?: RouteParameters) => {
+        if (previousRoute) {
+            setRoutePath(previousRoute.path, previousRoute.parameters);
+        } else {
+            setRoutePath(alternativePath || '/about', alternativeParameters);
+        }
+    };
+
     const setLocationHash = (path: string, parameters?: RouteParameters) => {
         window.location.hash = buildRoutePath(path, parameters);
     };
 
     return (
-        <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart, route, setRoutePath, setRoutePathParameters }}>
+        <AppContext.Provider
+            value={{ themeMode, setThemeMode, cart, addToCart, route, setRoutePath, setRoutePathParameters, backToPreviousRoute }}
+        >
             {children}
         </AppContext.Provider>
     );
