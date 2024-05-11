@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
@@ -18,6 +18,12 @@ export const ProductsComponent = () => {
 
         return routeParametersPage && !Number.isNaN(routeParametersPage) ? routeParametersPage : 1;
     });
+
+    useEffect(() => {
+        if (appContext.route.parameters && !appContext.route.parameters.page && currentPage > 1) {
+            setCurrentPage(1);
+        }
+    }, [appContext.route.parameters]);
 
     const setCurrentPageWithRoute = (page: number) => {
         setCurrentPage(page);
