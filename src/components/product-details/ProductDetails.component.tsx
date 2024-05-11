@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
-import { CartIconComponent } from '@/components/icon/CartIcon.component.tsx';
-import { PreviousButtonIconComponent } from '@/components/icon/PreviousButtonIcon.component.tsx';
 import { AppContext } from '@/context/AppContext.context.tsx';
 import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
+
+import { CartIconComponent } from '../icon/CartIcon.component.tsx';
+import { PreviousButtonIconComponent } from '../icon/PreviousButtonIcon.component.tsx';
+import { ProductImageCarouselComponent } from '../product-image-carousel/ProductImageCarousel.component.tsx';
 
 import styles from './product-details.module.css';
 
@@ -25,7 +27,7 @@ export const ProductDetailsComponent: React.FC<ProductProps> = (productData) => 
     return (
         <div className={styles.productDetails}>
             <div className={styles.productDetailsColumn}>
-                <img className={styles.productDetailsImage} src={productData.images[0]} alt={productData.title} />
+                <ProductImageCarouselComponent images={productData.images} alt={productData.title} />
             </div>
             <div className={styles.productDetailsColumn}>
                 <div className={styles.productDetailsContent}>

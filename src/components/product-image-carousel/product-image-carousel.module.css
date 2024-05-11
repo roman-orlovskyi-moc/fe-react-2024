@@ -1,0 +1,84 @@
+.imageCarousel {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: [thumbnails] 75px [image] 1fr;
+  grid-template-areas: "thumbnails image";
+  gap: 10px;
+  width: 100%;
+}
+
+.imageCarouselMainImage {
+  grid-area: image;
+  width: 100%;
+  display: flex;
+  border-radius: 20px;
+}
+
+.imageCarouselThumbnails {
+  grid-area: thumbnails;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.imageCarouselThumbnailImage {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.imageCarouselThumbnailActiveImage {
+  opacity: .7;
+}
+
+.imageCarouselPreviousButton {
+  display: none;
+  grid-area: previous;
+  cursor: pointer;
+}
+
+.imageCarouselNextButton {
+  display: none;
+  grid-area: next;
+  cursor: pointer;
+}
+
+@media (max-width: 950px) {
+
+  .imageCarousel {
+    grid-template-columns: [image] 1fr;
+    grid-template-rows: 1fr 50px;
+    grid-template-areas: "image"
+      "thumbnails";
+  }
+
+  .imageCarouselThumbnails {
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .imageCarouselThumbnailImage {
+    height: 100%;
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .imageCarousel {
+    grid-template-columns: [previous] 30px [image] 1fr [next]30px;
+    grid-template-rows: 1fr 50px;
+    grid-template-areas: "previous image next"
+      "thumbnails thumbnails thumbnails";
+  }
+
+  .imageCarouselPreviousButton {
+    display: flex;
+  }
+
+  .imageCarouselNextButton {
+    display: flex;
+  }
+}
