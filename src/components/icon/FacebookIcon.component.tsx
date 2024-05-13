@@ -4,7 +4,7 @@ import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
 
 export const FacebookIconComponent: React.FC<IconProps> = ({ className, title }) => (
     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" className={className}>
-        <title>{title}</title>
+        {title ? <title>{title}</title> : ''}
         <path
             fillRule="evenodd"
             clipRule="evenodd"
