@@ -1,65 +1,106 @@
-.imageCarousel {
+:global :root.dark {
+  --product-image-carousel-move-button-border-color: var(--sixth-grey-color);
+  --product-image-carousel-move-button-icon-color: var(--main-white-color);
+}
+
+:global :root.light {
+  --product-image-carousel-move-button-border-color: var(--fifth-grey-color);
+  --product-image-carousel-move-button-icon-color: var(--main-grey-color);
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --product-image-carousel-move-button-border-color: var(--sixth-grey-color);
+    --product-image-carousel-move-button-icon-color: var(--main-white-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+    --product-image-carousel-move-button-border-color: var(--fifth-grey-color);
+    --product-image-carousel-move-button-icon-color: var(--main-grey-color);
+  }
+}
+
+.productImageCarousel {
   display: grid;
   justify-content: center;
   align-items: center;
   grid-template-columns: [thumbnails] 75px [image] 1fr;
   grid-template-areas: "thumbnails image";
-  gap: 10px;
+  gap: 15px;
   width: 100%;
 }
 
-.imageCarouselMainImage {
+.productImageCarouselMainImage {
   grid-area: image;
   width: 100%;
   display: flex;
   border-radius: 20px;
 }
 
-.imageCarouselThumbnails {
+.productImageCarouselThumbnails {
   grid-area: thumbnails;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
 }
 
-.imageCarouselThumbnailImage {
+.productImageCarouselThumbnailImage {
   width: 100%;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.imageCarouselThumbnailActiveImage {
-  opacity: .7;
+.productImageCarouselMoveButton {
+  display: none;
+  width: 31px;
+  height: 31px;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  border: 1px solid var(--product-image-carousel-move-button-border-color);
+  border-radius: 8px;
+  margin: 0;
+  outline: none;
 }
 
-.imageCarouselPreviousButton {
-  display: none;
+.productImageCarouselMoveButtonIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.productImageCarouselMoveButtonIcon path {
+  stroke: var(--product-image-carousel-move-button-icon-color);
+}
+
+.productImageCarouselPreviousButton {
   grid-area: previous;
-  cursor: pointer;
 }
 
-.imageCarouselNextButton {
-  display: none;
+.productImageCarouselNextButton {
   grid-area: next;
-  cursor: pointer;
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1050px) {
 
-  .imageCarousel {
+  .productImageCarousel {
     grid-template-columns: [image] 1fr;
     grid-template-rows: 1fr 50px;
     grid-template-areas: "image"
       "thumbnails";
   }
 
-  .imageCarouselThumbnails {
+  .productImageCarouselThumbnails {
     flex-direction: row;
     justify-content: center;
     height: 100%;
+    gap: 20px;
   }
 
-  .imageCarouselThumbnailImage {
+  .productImageCarouselThumbnailImage {
     height: 100%;
     width: auto;
   }
@@ -67,18 +108,17 @@
 
 @media (max-width: 768px) {
 
-  .imageCarousel {
-    grid-template-columns: [previous] 30px [image] 1fr [next]30px;
+  .productImageCarousel {
+    grid-template-columns: [previous] 32px [image] 1fr [next] 32px;
     grid-template-rows: 1fr 50px;
     grid-template-areas: "previous image next"
       "thumbnails thumbnails thumbnails";
+    row-gap: 20px;
   }
 
-  .imageCarouselPreviousButton {
+  .productImageCarouselMoveButton {
     display: flex;
-  }
-
-  .imageCarouselNextButton {
-    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

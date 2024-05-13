@@ -1,16 +1,27 @@
 :global :root.dark {
   --product-details-container-border-color: var(--secondary-grey-color);
+  --product-details-category-button-text-color: var(--main-white-color);
+  --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
+  --product-details-mobile-category-button-background-color: var(--main-white-color);
+  --product-details-mobile-category-button-text-color: var(--sixth-grey-color);
 }
 
 :global :root.light {
   --product-details-container-border-color: var(--fourth-grey-color);
+  --product-details-category-button-text-color: var(--sixth-grey-color);
+  --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
+  --product-details-mobile-category-button-background-color: var(--main-white-color);
+  --product-details-mobile-category-button-text-color: var(--sixth-grey-color);
 }
 
 @media (prefers-color-scheme: dark) {
 
   :root {
     --product-details-container-border-color: var(--secondary-grey-color);
-    --product-details-back-button-border-color: var(--secondary-grey-color);
+    --product-details-category-button-text-color: var(--main-white-color);
+    --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
+    --product-details-mobile-category-button-background-color: var(--main-white-color);
+    --product-details-mobile-category-button-text-color: var(--sixth-grey-color);
   }
 }
 
@@ -18,13 +29,17 @@
 
   :root {
     --product-details-container-border-color: var(--fourth-grey-color);
+    --product-details-category-button-text-color: var(--sixth-grey-color);
+    --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
+    --product-details-mobile-category-button-background-color: var(--main-white-color);
+    --product-details-mobile-category-button-text-color: var(--sixth-grey-color);
   }
 }
 
 .productDetails {
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 75px;
   border: 1px solid var(--product-details-container-border-color);
   border-radius: 40px;
   padding: 33px 73px;
@@ -84,6 +99,7 @@
 .productDetailsCategoryButton {
   grid-area: category-button;
   margin-bottom: 10px;
+  color: var(--product-details-category-button-text-color);
 }
 
 .productDetailsAddToCartButton {
@@ -143,5 +159,8 @@
 
   .productDetailsCategoryButton {
     margin-bottom: 20px;
+    color: var(--product-details-mobile-category-button-text-color);
+    background: var(--product-details-mobile-category-button-background-color);
+    border-color: var(--product-details-mobile-category-button-border-color);
   }
 }

@@ -22,18 +22,21 @@ export const ProductImageCarouselComponent: React.FC<ImageCarouselProps> = ({ im
     };
 
     return (
-        <div className={styles.imageCarousel}>
-            <button className={styles.imageCarouselPreviousButton} onClick={showPreviousImage}>
-                <PreviousButtonIconComponent />
+        <div className={styles.productImageCarousel}>
+            <button
+                className={`${styles.productImageCarouselMoveButton} ${styles.productImageCarouselPreviousButton}`}
+                onClick={showPreviousImage}
+            >
+                <PreviousButtonIconComponent className={styles.productImageCarouselMoveButtonIcon} />
             </button>
-            <img className={styles.imageCarouselMainImage} src={images[currentImageIndex]} alt={alt} />
-            <button className={styles.imageCarouselNextButton} onClick={showNextImage}>
-                <NextButtonIconComponent />
+            <img className={styles.productImageCarouselMainImage} src={images[currentImageIndex]} alt={alt} />
+            <button className={`${styles.productImageCarouselMoveButton} ${styles.productImageCarouselNextButton}`} onClick={showNextImage}>
+                <NextButtonIconComponent className={styles.productImageCarouselMoveButtonIcon} />
             </button>
-            <div className={styles.imageCarouselThumbnails}>
+            <div className={styles.productImageCarouselThumbnails}>
                 {images.map((image, index) => (
                     <img
-                        className={`${styles.imageCarouselThumbnailImage} ${currentImageIndex === index ? styles.imageCarouselThumbnailActiveImage : ''}`}
+                        className={styles.productImageCarouselThumbnailImage}
                         key={index}
                         src={image}
                         alt={`${alt} thumbnail`}
