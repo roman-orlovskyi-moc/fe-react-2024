@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
-import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
@@ -12,14 +11,14 @@ import { ProductImageCarouselComponent } from '../product-image-carousel/Product
 import styles from './product-details.module.css';
 
 export const ProductDetailsComponent: React.FC<ProductProps> = (productData) => {
-    const appContext: AppContextProps = useContext(AppContext);
+    const { addToCart, backToPreviousRoute } = useContext(AppContext);
 
     const returnToProducts = () => {
-        appContext.backToPreviousRoute('/products');
+        backToPreviousRoute('/products');
     };
 
-    const addToCart = () => {
-        appContext.addToCart({ id: productData.id, quantity: 1 });
+    const addProductToCart = () => {
+        addToCart({ id: productData.id, quantity: 1 });
     };
 
     const formattedPrice = (price: number) => price.toLocaleString('uk-UA');
@@ -39,7 +38,11 @@ export const ProductDetailsComponent: React.FC<ProductProps> = (productData) => 
                     <button className={`${appStyles.button} ${styles.productDetailsCategoryButton}`}>{productData.category.name}</button>
                     <div className={styles.productDetailsDescription}>{productData.description}</div>
                     <div className={styles.productDetailsPrice}>{formattedPrice(productData.price)} ₴</div>
-                    <button className={`${appStyles.button} ${styles.productDetailsAddToCartButton}`} type="button" onClick={addToCart}>
+                    <button
+                        className={`${appStyles.button} ${styles.productDetailsAddToCartButton}`}
+                        type="button"
+                        onClick={addProductToCart}
+                    >
                         <CartIconComponent title="Add to cart" />
                         Add to cart
                     </button>

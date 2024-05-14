@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
-import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
 
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
@@ -10,24 +9,24 @@ import { ProductsListComponent } from '../products-list/ProductsList.component.t
 export const ProductsComponent = () => {
     const PRODUCTS_LIMIT: number = 8;
 
-    const appContext: AppContextProps = useContext(AppContext);
+    const { route, setRoutePathParameters } = useContext(AppContext);
 
     const [currentPage, setCurrentPage] = useState<number>(() => {
         const routeParametersPage: number | null =
-            appContext.route.parameters && appContext.route.parameters.page ? Number.parseInt(appContext.route.parameters.page, 10) : null;
+            route.parameters && route.parameters.page ? Number.parseInt(route.parameters.page, 10) : null;
 
         return routeParametersPage && !Number.isNaN(routeParametersPage) ? routeParametersPage : 1;
     });
 
     useEffect(() => {
-        if (appContext.route.parameters && !appContext.route.parameters.page && currentPage > 1) {
+        if (route.parameters && !route.parameters.page && currentPage > 1) {
             setCurrentPage(1);
         }
-    }, [appContext.route.parameters]);
+    }, [route.parameters]);
 
     const setCurrentPageWithRoute = (page: number) => {
         setCurrentPage(page);
-        appContext.setRoutePathParameters({ page: page.toString() });
+        setRoutePathParameters({ page: page.toString() });
     };
 
     return (

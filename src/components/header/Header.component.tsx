@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
-import type { AppContextProps } from '@/interfaces/AppContextProps.interface.tsx';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { ColorModeDividerIconComponent } from '../icon/ColorModeDividerIcon.component.tsx';
@@ -21,8 +20,8 @@ interface HeaderProps {
 }
 
 export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
-    const appContext: AppContextProps = useContext(AppContext);
-    const cartItemsCount: number = appContext.cart.items.reduce((sum, item) => sum + item.quantity, 0);
+    const { cart, themeMode, setThemeMode, route, setRoutePath } = useContext(AppContext);
+    const cartItemsCount: number = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {
         const target = event.target as HTMLElement;
@@ -33,24 +32,24 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
     };
 
     const setDarkColorScheme = () => {
-        appContext.setThemeMode('dark');
+        setThemeMode('dark');
     };
 
     const setLightColorScheme = () => {
-        appContext.setThemeMode('light');
+        setThemeMode('light');
     };
 
     const showAboutPage = () => {
-        appContext.setRoutePath('/about');
+        setRoutePath('/about');
     };
 
     const showProductsPage = () => {
-        appContext.setRoutePath('/products');
+        setRoutePath('/products');
     };
 
-    const aboutPageActiveClass: string = appContext.route.path === '/about' ? styles.headerNavLinkActive : '';
+    const aboutPageActiveClass: string = route.path === '/about' ? styles.headerNavLinkActive : '';
     const productsPageActiveClass: string =
-        appContext.route.path === '/products' || appContext.route.path.startsWith('/product/') ? styles.headerNavLinkActive : '';
+        route.path === '/products' || route.path.startsWith('/product/') ? styles.headerNavLinkActive : '';
 
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>
@@ -60,11 +59,11 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
                 </a>
                 <div className={styles.headerModeSwitcher}>
                     <button className={styles.headerModeSwitcherButton} onClick={setLightColorScheme} title="Switch to light mode">
-                        <LightColorModeIconComponent className={appContext.themeMode === 'dark' ? styles.headerModeInactiveIcon : ''} />
+                        <LightColorModeIconComponent className={themeMode === 'dark' ? styles.headerModeInactiveIcon : ''} />
                     </button>
                     <ColorModeDividerIconComponent />
                     <button className={styles.headerModeSwitcherButton} onClick={setDarkColorScheme} title="Switch to dark mode">
-                        <DarkColorModeIconComponent className={appContext.themeMode === 'dark' ? '' : styles.headerModeInactiveIcon} />
+                        <DarkColorModeIconComponent className={themeMode === 'dark' ? '' : styles.headerModeInactiveIcon} />
                     </button>
                 </div>
                 <ul className={styles.headerNav}>
