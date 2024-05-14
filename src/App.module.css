@@ -10,24 +10,6 @@
   --button-text-color: var(--secondary-grey-color);
 }
 
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --button-border-color: var(--sixth-grey-color);
-    --button-background-color: var(--main-grey-color);
-    --button-text-color: var(--main-white-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    --button-border-color: var(--seventh-grey-color);
-    --button-background-color: var(--main-white-color);
-    --button-text-color: var(--secondary-grey-color);
-  }
-}
-
 .pageWrapper {
   width: 100%;
 }

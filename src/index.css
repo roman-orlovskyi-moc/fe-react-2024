@@ -44,26 +44,6 @@
   --link-hover-color: var(--main-grey-color);
 }
 
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --page-background-color: var(--main-grey-color);
-    --page-text-color: var(--main-white-color);
-    --link-color: var(--main-white-color);
-    --link-hover-color: var(--main-white-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    --page-background-color: var(--main-white-color);
-    --page-text-color: var(--main-grey-color);
-    --link-color: var(--main-grey-color);
-    --link-hover-color: var(--main-grey-color);
-  }
-}
-
 a {
   color: var(--link-color);
   font-weight: 500;

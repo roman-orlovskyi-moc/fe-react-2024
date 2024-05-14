@@ -23,11 +23,10 @@ interface AppContextProviderProps {
 }
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
-    const browserThemeMode: ColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
     const [themeMode, setThemeMode] = useState<ColorScheme>(() => {
         const savedScheme: string | null = localStorage.getItem('themeMode');
         const validColorSchemes: ColorScheme[] = ['dark', 'light'];
+        const browserThemeMode: ColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
         return savedScheme && validColorSchemes.includes(savedScheme as ColorScheme) ? (savedScheme as ColorScheme) : browserThemeMode;
     });
@@ -35,15 +34,10 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     useEffect(() => {
         const removeThemeClasses: string[] = ['dark', 'light'];
 
-        if (browserThemeMode === themeMode) {
-            document.documentElement.classList.remove(...removeThemeClasses);
-            localStorage.removeItem('themeMode');
-        } else {
-            document.documentElement.classList.remove(...removeThemeClasses);
-            document.documentElement.classList.add(themeMode);
-            localStorage.setItem('themeMode', themeMode);
-        }
-    }, [browserThemeMode, themeMode]);
+        document.documentElement.classList.remove(...removeThemeClasses);
+        document.documentElement.classList.add(themeMode);
+        localStorage.setItem('themeMode', themeMode);
+    }, [themeMode]);
 
     function isCartItemProps(object: any): object is CartItemProps {
         return object && 'id' in object && 'quantity' in object;

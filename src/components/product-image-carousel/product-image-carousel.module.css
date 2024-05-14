@@ -8,22 +8,6 @@
   --product-image-carousel-move-button-icon-color: var(--main-grey-color);
 }
 
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --product-image-carousel-move-button-border-color: var(--sixth-grey-color);
-    --product-image-carousel-move-button-icon-color: var(--main-white-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    --product-image-carousel-move-button-border-color: var(--fifth-grey-color);
-    --product-image-carousel-move-button-icon-color: var(--main-grey-color);
-  }
-}
-
 .productImageCarousel {
   display: grid;
   justify-content: center;

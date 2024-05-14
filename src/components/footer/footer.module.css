@@ -6,20 +6,6 @@
   --footer-divider-border-color: var(--fourth-grey-color);
 }
 
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --footer-divider-border-color: var(--secondary-grey-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    --footer-divider-border-color: var(--fourth-grey-color);
-  }
-}
-
 .footer {
   text-align: center;
   padding-bottom: 40px;
