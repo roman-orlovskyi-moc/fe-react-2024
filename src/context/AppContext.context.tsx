@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import type { AppContextProps, ColorScheme } from '@/interfaces/AppContextProps.interface.tsx';
-import type { CartItemProps } from '@/interfaces/CartItemProps.interface.tsx';
-import type { CartProps } from '@/interfaces/CartProps.interface.tsx';
-import type { RouteParameters, RouteProps } from '@/interfaces/RouteProps.interface.tsx';
-
 import { buildRoutePath, parseRoute } from '../helpers/routeHelper.ts';
+import type { AppContextProps, ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
+import type { CartItemProps } from '../interfaces/CartItemProps.interface.tsx';
+import type { CartProps } from '../interfaces/CartProps.interface.tsx';
+import type { RouteProps } from '../interfaces/RouteProps.interface.tsx';
+import type { RouteParameters } from '../types/RouteProps.type.tsx';
 
 export const AppContext = createContext<AppContextProps>({
     themeMode: 'dark',
@@ -84,7 +84,15 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     };
 
     const setRoutePathParameters = (parameters: RouteParameters) => {
-        setRoutePath(route.path, { ...route.parameters, ...parameters });
+        const filteredParameters: RouteParameters = { ...route.parameters, ...parameters };
+
+        Object.keys(filteredParameters).forEach((key: string) => {
+            if (!filteredParameters[key]) {
+                delete filteredParameters[key];
+            }
+        });
+
+        setRoutePath(route.path, filteredParameters);
     };
 
     const backToPreviousRoute = (alternativePath?: string, alternativeParameters?: RouteParameters) => {

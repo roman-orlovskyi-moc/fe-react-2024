@@ -1,6 +1,8 @@
+import type { RouteParameters } from '../types/RouteProps.type.tsx';
+
 import type { CartItemProps } from './CartItemProps.interface.tsx';
 import type { CartProps } from './CartProps.interface.tsx';
-import type { RouteParameters, RouteProps } from './RouteProps.interface.tsx';
+import type { RouteProps } from './RouteProps.interface.tsx';
 
 export type ColorScheme = 'dark' | 'light';
 

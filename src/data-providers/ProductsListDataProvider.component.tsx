@@ -3,66 +3,47 @@ import type React from 'react';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
 import productsJSONData from '../assets/data/products.json';
+import { filterProductsByCategory, filterProductsByTitle, sliceProducts, sortProducts } from '../helpers/productsListDataProviderHelper.ts';
 
 interface ProductsDataProps {
     products: ProductProps[];
     productsCount: number;
 }
 
-interface ProductsDataProviderFilterProps {
-    title?: string;
-    categoryId?: number;
-}
-
-type SortDirection = 'asc' | 'desc';
-
-interface ProductsDataProviderSortProps {
-    price?: SortDirection;
-    creationAt?: SortDirection;
-}
-
 interface ProductsDataProviderProps {
     page: number;
     limit: number;
-    filter?: ProductsDataProviderFilterProps;
-    sort?: ProductsDataProviderSortProps;
+    search?: string;
+    categoryIds?: number[];
+    sort?: string;
     children: (productsData: ProductsDataProps) => React.ReactNode;
 }
 
-export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderProps> = ({ page, limit, filter, sort, children }) => {
+export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderProps> = ({
+    page,
+    limit,
+    search,
+    categoryIds,
+    sort,
+    children,
+}) => {
     let filteredProducts = productsJSONData;
 
-    if (filter?.title) {
-        const filterTitle = filter.title.toLowerCase();
-
-        filteredProducts = filteredProducts.filter((product) => product.title.toLowerCase().includes(filterTitle));
+    if (search) {
+        filteredProducts = filterProductsByTitle(filteredProducts, search);
     }
 
-    if (filter?.categoryId) {
-        filteredProducts = filteredProducts.filter((product) => product.category.id === filter.categoryId);
+    if (categoryIds && categoryIds.length > 0) {
+        filteredProducts = filterProductsByCategory(filteredProducts, categoryIds);
     }
 
-    if (sort?.price) {
-        filteredProducts = filteredProducts.sort((firstProduct, secondProduct) =>
-            sort.price === 'asc' ? firstProduct.price - secondProduct.price : secondProduct.price - firstProduct.price,
-        );
+    if (sort) {
+        filteredProducts = sortProducts(filteredProducts, sort);
     }
-
-    if (sort?.creationAt) {
-        filteredProducts = filteredProducts.sort((firstProduct, secondProduct) => {
-            const firstDate = new Date(firstProduct.creationAt).getTime();
-            const secondDate = new Date(secondProduct.creationAt).getTime();
-
-            return sort.creationAt === 'asc' ? firstDate - secondDate : secondDate - firstDate;
-        });
-    }
-
-    const start: number = (page - 1) * limit;
-    const end: number = start + limit;
 
     const productsData = {
         productsCount: filteredProducts.length,
-        products: filteredProducts.slice(start, end) as ProductProps[],
+        products: sliceProducts(filteredProducts, page, limit) as ProductProps[],
     };
 
     return children(productsData);

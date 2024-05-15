@@ -1,9 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
+import {
+    parseRouteParametersCategories,
+    parseRouteParametersPage,
+    parseRouteParametersSearch,
+    parseRouteParametersSort,
+} from '@/helpers/productsHelper.ts';
+import type { RouteParameters } from '@/types/RouteProps.type.tsx';
 
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
+import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
 
 export const ProductsComponent = () => {
@@ -11,31 +19,57 @@ export const ProductsComponent = () => {
 
     const { route, setRoutePathParameters } = useContext(AppContext);
 
-    const [currentPage, setCurrentPage] = useState<number>(() => {
-        const routeParametersPage: number | null =
-            route.parameters && route.parameters.page ? Number.parseInt(route.parameters.page, 10) : null;
+    const [productsFilter, setProductsFilter] = useState(() => {
+        const routeParameters: RouteParameters = route.parameters || {};
+        const page: number = parseRouteParametersPage(routeParameters.page);
+        const search: string = parseRouteParametersSearch(routeParameters.search);
+        const categoryIds: number[] = parseRouteParametersCategories(routeParameters.categories);
+        const sort: string = parseRouteParametersSort(routeParameters.sort);
 
-        return routeParametersPage && !Number.isNaN(routeParametersPage) ? routeParametersPage : 1;
+        return { page, search, categoryIds, sort };
     });
 
-    useEffect(() => {
-        if (route.parameters && !route.parameters.page && currentPage > 1) {
-            setCurrentPage(1);
-        }
-    }, [route.parameters]);
-
     const setCurrentPageWithRoute = (page: number) => {
-        setCurrentPage(page);
+        setProductsFilter({ ...productsFilter, page });
         setRoutePathParameters({ page: page.toString() });
     };
 
+    const setSearchWithRoute = (search: string) => {
+        setProductsFilter({ ...productsFilter, page: 1, search });
+        setRoutePathParameters({ page: '1', search });
+    };
+
+    const setCategoriesWithRoute = (categoryIds: number[]) => {
+        setProductsFilter({ ...productsFilter, page: 1, categoryIds });
+        setRoutePathParameters({ page: '1', categories: categoryIds.join(',') });
+    };
+
+    const setSortWithRoute = (sort: string) => {
+        setProductsFilter({ ...productsFilter, page: 1, sort });
+        setRoutePathParameters({ page: '1', sort });
+    };
+
     return (
-        <ProductsListDataProviderComponent page={currentPage} limit={PRODUCTS_LIMIT}>
+        <ProductsListDataProviderComponent
+            page={productsFilter.page}
+            limit={PRODUCTS_LIMIT}
+            search={productsFilter.search}
+            categoryIds={productsFilter.categoryIds}
+            sort={productsFilter.sort}
+        >
             {({ products, productsCount }) => (
                 <>
+                    <ProductsFilterBarComponent
+                        search={productsFilter.search}
+                        categoryIds={productsFilter.categoryIds}
+                        sort={productsFilter.sort}
+                        setProductsSearch={setSearchWithRoute}
+                        setProductsCategories={setCategoriesWithRoute}
+                        setProductsSort={setSortWithRoute}
+                    />
                     <ProductsListComponent products={products} />
                     <PaginationComponent
-                        page={currentPage}
+                        page={productsFilter.page}
                         limit={PRODUCTS_LIMIT}
                         total={productsCount}
                         setCurrentPage={setCurrentPageWithRoute}

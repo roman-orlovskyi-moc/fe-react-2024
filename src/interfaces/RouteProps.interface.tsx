@@ -1,4 +1,4 @@
-export type RouteParameters = Record<string | symbol, string>;
+import type { RouteParameters } from '../types/RouteProps.type.tsx';
 
 export interface RouteProps {
     path: string;
