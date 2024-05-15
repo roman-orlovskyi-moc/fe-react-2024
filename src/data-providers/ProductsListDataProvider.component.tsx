@@ -57,8 +57,8 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
         });
     }
 
-    const start = (page - 1) * limit;
-    const end = start + limit;
+    const start: number = (page - 1) * limit;
+    const end: number = start + limit;
 
     const productsData = {
         productsCount: filteredProducts.length,
