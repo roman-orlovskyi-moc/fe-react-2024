@@ -4,13 +4,12 @@ import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
+import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
 import { ColorModeDividerIconComponent } from '../icon/ColorModeDividerIcon.component.tsx';
 import { DarkColorModeIconComponent } from '../icon/DarkColorModeIcon.component.tsx';
 import { LightColorModeIconComponent } from '../icon/LightColorModeIcon.component.tsx';
 import { LogoIconComponent } from '../icon/LogoIcon.component.tsx';
 import { MobileMenuIconComponent } from '../icon/MobileMenuIcon.component.tsx';
-
-import { HeaderAccountComponent } from './HeaderAccount.component.tsx';
 
 import styles from './header.module.css';
 
