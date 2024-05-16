@@ -89,3 +89,20 @@
   grid-template-columns: 1fr 196px;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+
+  .productsFilterBar {
+    grid-template-columns: 1fr;
+  }
+
+  .productsFilterCategoryWrapper {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .productsFilterSortWrapper {
+    grid-template-columns: 60px 1fr;
+    gap: 10px;
+  }
+}
