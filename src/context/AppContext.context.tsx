@@ -1,5 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
 
+import {
+    parseColorScheme,
+    parseStoredCartData,
+    prepareRoutePathParameters,
+    prepareUpdatedCartData,
+    setStoredCartData,
+    setStoredColorScheme,
+    updateRootColorSchemeClass,
+} from '../helpers/appContextHelper.ts';
 import { buildRoutePath, parseRoute } from '../helpers/routeHelper.ts';
 import type { AppContextProps, ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
 import type { CartItemProps } from '../interfaces/CartItemProps.interface.tsx';
@@ -23,56 +32,20 @@ interface AppContextProviderProps {
 }
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
-    const [themeMode, setThemeMode] = useState<ColorScheme>(() => {
-        const savedScheme: string | null = localStorage.getItem('themeMode');
-        const validColorSchemes: ColorScheme[] = ['dark', 'light'];
-        const browserThemeMode: ColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-        return savedScheme && validColorSchemes.includes(savedScheme as ColorScheme) ? (savedScheme as ColorScheme) : browserThemeMode;
-    });
+    const [themeMode, setThemeMode] = useState<ColorScheme>(() => parseColorScheme());
 
     useEffect(() => {
-        const removeThemeClasses: string[] = ['dark', 'light'];
-
-        document.documentElement.classList.remove(...removeThemeClasses);
-        document.documentElement.classList.add(themeMode);
-        localStorage.setItem('themeMode', themeMode);
+        updateRootColorSchemeClass(themeMode);
+        setStoredColorScheme(themeMode);
     }, [themeMode]);
 
-    function isCartItemProps(object: any): object is CartItemProps {
-        return object && 'id' in object && 'quantity' in object;
-    }
-
-    function isCartProps(object: any): object is CartProps {
-        return object && Array.isArray(object.items) && object.items.every((element: any) => isCartItemProps(element));
-    }
-
-    const [cart, setCart] = useState<CartProps>(() => {
-        const savedCartData: string | null = localStorage.getItem('cart');
-        const parsedCartData = savedCartData ? JSON.parse(savedCartData) : null;
-
-        return isCartProps(parsedCartData) ? (parsedCartData as CartProps) : { items: [] };
-    });
+    const [cart, setCart] = useState<CartProps>(() => parseStoredCartData());
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
+        setStoredCartData(cart);
     }, [cart]);
 
-    const addToCart = (item: CartItemProps) => {
-        setCart((currentCart: CartProps) => {
-            const itemIndex: number = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
-
-            if (itemIndex === -1) {
-                return { items: [...currentCart.items, item] };
-            } else {
-                const newCartItems = currentCart.items.map((cartItem) =>
-                    cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + item.quantity } : cartItem,
-                );
-
-                return { items: newCartItems };
-            }
-        });
-    };
+    const addToCart = (item: CartItemProps) => setCart((currentCart: CartProps) => prepareUpdatedCartData(currentCart, item));
 
     const [route, setRoute] = useState<RouteProps>(parseRoute(window.location.hash || '/about'));
     const [previousRoute, setPreviousRoute] = useState<RouteProps | null>(null);
@@ -84,15 +57,7 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
     };
 
     const setRoutePathParameters = (parameters: RouteParameters) => {
-        const filteredParameters: RouteParameters = { ...route.parameters, ...parameters };
-
-        Object.keys(filteredParameters).forEach((key: string) => {
-            if (!filteredParameters[key]) {
-                delete filteredParameters[key];
-            }
-        });
-
-        setRoutePath(route.path, filteredParameters);
+        setRoutePath(route.path, prepareRoutePathParameters(route.parameters || {}, parameters));
     };
 
     const backToPreviousRoute = (alternativePath?: string, alternativeParameters?: RouteParameters) => {
