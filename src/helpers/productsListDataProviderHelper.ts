@@ -27,7 +27,7 @@ export const sortProducts = (products: ProductProps[], sort: string) => {
 
 export const sortProductsByPrice = (products: ProductProps[], sortDirection: string) =>
     products.sort((firstProduct, secondProduct) =>
-        sortDirection === 'asc' ? firstProduct.price - secondProduct.price : secondProduct.price - firstProduct.price,
+        sortDirection === 'desc' ? secondProduct.price - firstProduct.price : firstProduct.price - secondProduct.price,
     );
 
 export const sortProductsByCreationDate = (products: ProductProps[], sortDirection: string) =>
@@ -35,7 +35,7 @@ export const sortProductsByCreationDate = (products: ProductProps[], sortDirecti
         const firstDate = new Date(firstProduct.creationAt).getTime();
         const secondDate = new Date(secondProduct.creationAt).getTime();
 
-        return sortDirection === 'asc' ? firstDate - secondDate : secondDate - firstDate;
+        return sortDirection === 'desc' ? secondDate - firstDate : firstDate - secondDate;
     });
 
 export const sliceProducts = (products: ProductProps[], page: number, limit: number) => {
