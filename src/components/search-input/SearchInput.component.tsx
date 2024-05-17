@@ -24,15 +24,15 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({ search, onSea
     };
 
     return (
-        <form className={styles.productsFilterSearchForm} onSubmit={handleSearchSubmit}>
+        <form className={styles.searchForm} onSubmit={handleSearchSubmit}>
             <input
-                className={styles.productsFilterSearchInput}
+                className={styles.searchFormInput}
                 type="text"
                 placeholder="Search..."
                 value={searchTitle}
                 onChange={handleSearchChange}
             />
-            <button className={styles.productsFilterSearchButton} type="submit">
+            <button className={styles.searchFormButton} type="submit">
                 <SearchIconComponent title="Search" />
             </button>
         </form>

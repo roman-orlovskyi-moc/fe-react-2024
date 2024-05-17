@@ -8,12 +8,12 @@
   --products-filter-search-text-color: var(--secondary-grey-color);
 }
 
-.productsFilterSearchForm {
+.searchForm {
   display: flex;
   position: relative;
 }
 
-.productsFilterSearchInput {
+.searchFormInput {
   border: 1px solid var(--products-filter-search-background-color);
   background-color: var(--products-filter-search-background-color);
   border-radius: 20px;
@@ -24,12 +24,12 @@
   font-family: inherit;
 }
 
-.productsFilterSearchInput::placeholder {
+.searchFormInput::placeholder {
   color: var(--products-filter-search-text-color);
   font-size: 14px;
 }
 
-.productsFilterSearchButton {
+.searchFormButton {
   position: absolute;
   top: 0;
   right: 0;
