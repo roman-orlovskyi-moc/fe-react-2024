@@ -1,11 +1,3 @@
-:global :root.dark {
-  --products-filter-category-button-text-color: var(--main-white-color);
-}
-
-:global :root.light {
-  --products-filter-category-button-text-color: var(--sixth-grey-color);
-}
-
 .productsFilterBar {
   display: grid;
   align-items: center;
@@ -14,35 +6,6 @@
   gap: 20px;
   font-size: 14px;
   font-weight: 600;
-}
-
-.productsFilterCategoryWrapper {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-}
-
-.productsFilterCategoryCheckbox {
-  position: absolute;
-  appearance: none;
-}
-
-.productsFilterCategoryButton {
-  line-height: 1.3;
-  font-weight: 600;
-  color: var(--products-filter-category-button-text-color);
-}
-
-.productsFilterCategoryButton:hover {
-  background-color: var(--main-red-hover-color);
-  border-color: var(--main-red-hover-color);
-  color: var(--main-white-color);
-}
-
-.productsFilterCategoryCheckbox:checked + .productsFilterCategoryButton {
-  background-color: var(--main-red-color);
-  border-color: var(--main-red-color);
-  color: var(--main-white-color);
 }
 
 .productsFilterSortWrapper {
@@ -55,11 +18,6 @@
 
   .productsFilterBar {
     grid-template-columns: 1fr;
-  }
-
-  .productsFilterCategoryWrapper {
-    justify-content: center;
-    flex-wrap: wrap;
   }
 
   .productsFilterSortWrapper {
