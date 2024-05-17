@@ -2,17 +2,20 @@
   --dropdown-opened-background-color: var(--secondary-grey-color);
   --dropdown-opened-text-color: var(--main-white-color);
   --dropdown-border-color: var(--sixth-grey-color);
+  --dropdown-open-button-icon-color: var(--main-white-color);
 }
 
 :global :root.light {
   --dropdown-opened-background-color: var(--main-white-color);
   --dropdown-opened-text-color: var(--sixth-grey-color);
   --dropdown-border-color: var(--seventh-grey-color);
+  --dropdown-open-button-icon-color: var(--sixth-grey-color);
 }
 
 .dropdown {
   position: relative;
   height: 40px;
+  color: var(--dropdown-opened-text-color);
 }
 
 .dropdownItemContainer {
@@ -81,6 +84,10 @@
   width: 14px;
   height: 14px;
   transform: rotate(270deg);
+}
+
+.dropdownOpenButtonIcon path {
+  stroke: var(--dropdown-open-button-icon-color);
 }
 
 .dropdownContent .dropdownOpenButtonIcon {

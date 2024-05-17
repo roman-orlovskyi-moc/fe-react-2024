@@ -10,6 +10,8 @@
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+  flex-wrap: wrap;
+  grid-area: category-filter;
 }
 
 .categoryFilterCheckbox {
@@ -35,10 +37,9 @@
   color: var(--main-white-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1233px) {
 
   .categoryFilterWrapper {
     justify-content: center;
-    flex-wrap: wrap;
   }
 }

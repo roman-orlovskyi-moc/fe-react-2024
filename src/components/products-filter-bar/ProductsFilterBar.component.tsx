@@ -35,7 +35,7 @@ export const ProductsFilterBarComponent: React.FC<ProductsFilterBarProps> = ({
             <SearchInputComponent search={search} onSearchSubmit={setProductsSearch} />
             <CategoriesFilterComponent categoryIds={categoryIds} onCategoriesChange={setProductsCategories} />
             <div className={styles.productsFilterSortWrapper}>
-                Sort by:
+                <span className={styles.productsFilterSortLabel}>Sort by:</span>
                 <DropdownComponent
                     options={[
                         { value: 'price:desc', label: 'Price: High to Low' },

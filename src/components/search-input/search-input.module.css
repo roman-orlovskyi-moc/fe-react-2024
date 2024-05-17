@@ -11,6 +11,7 @@
 .searchForm {
   display: flex;
   position: relative;
+  grid-area: search-form;
 }
 
 .searchFormInput {

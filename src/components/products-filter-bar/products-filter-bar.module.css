@@ -2,6 +2,7 @@
   display: grid;
   align-items: center;
   grid-template-columns: 275px 1fr 260px;
+  grid-template-areas: "search-form category-filter sort-wrapper";
   margin-bottom: 50px;
   gap: 20px;
   font-size: 14px;
@@ -12,16 +13,36 @@
   display: grid;
   grid-template-columns: 1fr 196px;
   align-items: center;
+  grid-area: sort-wrapper;
+}
+
+@media (max-width: 984px) {
+
+  .productsFilterBar {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "search-form sort-wrapper"
+      "category-filter category-filter";
+  }
+
+  .productsFilterSortWrapper {
+    gap: 10px;
+  }
+
+  .productsFilterSortLabel {
+    text-align: right;
+  }
 }
 
 @media (max-width: 768px) {
 
   .productsFilterBar {
     grid-template-columns: 1fr;
+    grid-template-areas: "search-form"
+      "category-filter"
+      "sort-wrapper";
   }
 
   .productsFilterSortWrapper {
-    grid-template-columns: 60px 1fr;
-    gap: 10px;
+    grid-template-columns: max-content 1fr;
   }
 }
