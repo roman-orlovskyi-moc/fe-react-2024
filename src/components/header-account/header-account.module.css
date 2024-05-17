@@ -1,9 +1,11 @@
 :global :root.dark {
   --header-account-button-text-color: var(--main-white-color);
+  --header-account-mobile-button-text-color: var(--main-white-color);
 }
 
 :global :root.light {
-  --header-account-button-text-color: var(--main-grey-color);
+  --header-account-button-text-color: var(--main-white-color);
+  --header-account-mobile-button-text-color: var(--main-grey-color);
 }
 
 .headerAccount {
@@ -47,6 +49,14 @@
     justify-self: center;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .headerButton {
+    color: var(--header-account-mobile-button-text-color);
+  }
+
+  .headerButton:hover {
+    color: var(--header-account-mobile-button-text-color);
   }
 
   :global(.mobileMenuOpened) .headerButton {

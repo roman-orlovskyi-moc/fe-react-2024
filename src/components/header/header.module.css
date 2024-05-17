@@ -1,13 +1,15 @@
 :global :root.dark {
   --header-center-menu-background-color: var(--main-grey-color);
   --header-link-color: var(--main-white-color);
+  --header-mobile-link-color: var(--main-white-color);
   --header-mobile-mode-active-icon-color: var(--main-white-color);
   --header-mobile-mode-icon-color: var(--sixth-grey-color);
 }
 
 :global :root.light {
   --header-center-menu-background-color: var(--main-white-color);
-  --header-link-color: var(--main-grey-color);
+  --header-link-color: var(--main-white-color);
+  --header-mobile-link-color: var(--main-grey-color);
   --header-mobile-mode-active-icon-color: var(--main-grey-color);
   --header-mobile-mode-icon-color: var(--sixth-grey-color);
 }
@@ -218,5 +220,13 @@
 
   .headerMobileMenuButton {
     display: flex;
+  }
+
+  .headerNavLink {
+    color: var(--header-mobile-link-color);
+  }
+
+  .headerNavLink:hover {
+    color: var(--header-mobile-link-color);
   }
 }
