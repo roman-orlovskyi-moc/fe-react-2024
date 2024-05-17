@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import { NextButtonIconComponent } from '../icon/NextButtonIcon.component.tsx';
-import { PreviousButtonIconComponent } from '../icon/PreviousButtonIcon.component.tsx';
+import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 
 import styles from './product-image-carousel.module.css';
 
@@ -27,11 +26,13 @@ export const ProductImageCarouselComponent: React.FC<ImageCarouselProps> = ({ im
                 className={`${styles.productImageCarouselMoveButton} ${styles.productImageCarouselPreviousButton}`}
                 onClick={showPreviousImage}
             >
-                <PreviousButtonIconComponent className={styles.productImageCarouselMoveButtonIcon} />
+                <ArrowIconComponent className={styles.productImageCarouselMoveButtonIcon} />
             </button>
             <img className={styles.productImageCarouselMainImage} src={images[currentImageIndex]} alt={alt} />
             <button className={`${styles.productImageCarouselMoveButton} ${styles.productImageCarouselNextButton}`} onClick={showNextImage}>
-                <NextButtonIconComponent className={styles.productImageCarouselMoveButtonIcon} />
+                <ArrowIconComponent
+                    className={`${styles.productImageCarouselMoveButtonIcon} ${styles.productImageCarouselNextButtonIcon}`}
+                />
             </button>
             <div className={styles.productImageCarouselThumbnails}>
                 {images.map((image, index) => (

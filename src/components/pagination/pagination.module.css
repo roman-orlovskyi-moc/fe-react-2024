@@ -94,6 +94,10 @@
   stroke: var(--pagination-arrow-icon-color);
 }
 
+.paginationNextButtonIcon {
+  transform: rotate(180deg);
+}
+
 .paginationButton:hover .paginationArrowIcon path {
   stroke: var(--pagination-arrow-icon-hover-color);
 }

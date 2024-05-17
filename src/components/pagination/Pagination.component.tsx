@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { NextButtonIconComponent } from '@/components/icon/NextButtonIcon.component.tsx';
-import { PreviousButtonIconComponent } from '@/components/icon/PreviousButtonIcon.component.tsx';
+import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 
 import styles from './pagination.module.css';
 
@@ -28,7 +27,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                         onClick={() => setPreviousPage(page)}
                         disabled={page === 1}
                     >
-                        <PreviousButtonIconComponent className={styles.paginationArrowIcon} title="Previous page" />
+                        <ArrowIconComponent className={styles.paginationArrowIcon} title="Previous page" />
                     </button>
                 </li>
                 {pages.map((pageNumber) => (
@@ -47,7 +46,10 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                         onClick={() => setNextPage(page)}
                         disabled={page === totalPages}
                     >
-                        <NextButtonIconComponent className={styles.paginationArrowIcon} title="Next page" />
+                        <ArrowIconComponent
+                            className={`${styles.paginationArrowIcon} ${styles.paginationNextButtonIcon}`}
+                            title="Next page"
+                        />
                     </button>
                 </li>
             </ul>

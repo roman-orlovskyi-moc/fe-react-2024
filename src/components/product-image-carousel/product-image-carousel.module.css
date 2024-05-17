@@ -60,6 +60,10 @@
   stroke: var(--product-image-carousel-move-button-icon-color);
 }
 
+.productImageCarouselNextButtonIcon {
+  transform: rotate(180deg);
+}
+
 .productImageCarouselPreviousButton {
   grid-area: previous;
 }

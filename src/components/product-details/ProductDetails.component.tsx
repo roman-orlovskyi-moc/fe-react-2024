@@ -4,8 +4,8 @@ import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
 import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
+import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
-import { PreviousButtonIconComponent } from '../icon/PreviousButtonIcon.component.tsx';
 import { ProductImageCarouselComponent } from '../product-image-carousel/ProductImageCarousel.component.tsx';
 
 import styles from './product-details.module.css';
@@ -31,7 +31,7 @@ export const ProductDetailsComponent: React.FC<ProductProps> = (productData) => 
             <div className={styles.productDetailsColumn}>
                 <div className={styles.productDetailsContent}>
                     <button className={`${appStyles.button} ${styles.productDetailsBackButton}`} onClick={returnToProducts}>
-                        <PreviousButtonIconComponent className={styles.productDetailsBackButtonIcon} />
+                        <ArrowIconComponent className={styles.productDetailsBackButtonIcon} />
                         Back
                     </button>
                     <h2 className={styles.productDetailsTitle}>{productData.title}</h2>

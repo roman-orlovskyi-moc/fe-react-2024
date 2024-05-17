@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { PageNotFoundComponent } from '@/components/page-not-found/PageNotFound.component.tsx';
-import { ProductDetailsComponent } from '@/components/product-details/ProductDetails.component.tsx';
 import { ProductDataProviderComponent } from '@/data-providers/ProductDataProvider.component.tsx';
+
+import { PageNotFoundComponent } from '../page-not-found/PageNotFound.component.tsx';
+import { ProductDetailsComponent } from '../product-details/ProductDetails.component.tsx';
 
 interface ProductProps {
     id: number;
