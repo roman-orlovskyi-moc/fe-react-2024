@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import appStyles from '@/App.module.css';
-import { SearchIconComponent } from '@/components/icon/SearchIcon.component.tsx';
 import { CategoriesDataProviderComponent } from '@/data-providers/CategoriesDataProvider.component.tsx';
 import { transformCheckedCategories, transformCheckedCategoryIds } from '@/helpers/productsFilterBarHelper.ts';
 import type { CheckedCategoriesProps } from '@/types/CheckedCategoriesProps.type.tsx';
 
 import { DropdownComponent } from '../dropdown/Dropdown.component.tsx';
+import { SearchInputComponent } from '../search-input/SearchInput.component.tsx';
 
 import styles from './products-filter-bar.module.css';
 
@@ -27,20 +27,8 @@ export const ProductsFilterBarComponent: React.FC<ProductsFilterBarProps> = ({
     setProductsCategories,
     setProductsSort,
 }) => {
-    const [searchTitle, setSearchTitle] = useState<string>(search || '');
     const [checkedCategories, setCheckedCategories] = useState<CheckedCategoriesProps>(() => transformCheckedCategories(categoryIds || []));
     const [sortValue, setSortValue] = useState<string>(sort || '');
-
-    const handleSearchSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-        setProductsSearch(searchTitle);
-    };
-
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const target = event.target as HTMLInputElement;
-
-        setSearchTitle(target.value);
-    };
 
     const handleCategoryCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
@@ -57,18 +45,7 @@ export const ProductsFilterBarComponent: React.FC<ProductsFilterBarProps> = ({
 
     return (
         <div className={styles.productsFilterBar}>
-            <form className={styles.productsFilterSearchForm} onSubmit={handleSearchSubmit}>
-                <input
-                    className={styles.productsFilterSearchInput}
-                    type="text"
-                    placeholder="Search..."
-                    value={searchTitle}
-                    onChange={handleSearchChange}
-                />
-                <button className={styles.productsFilterSearchButton} type="submit">
-                    <SearchIconComponent title="Search" />
-                </button>
-            </form>
+            <SearchInputComponent search={search} onSearchSubmit={setProductsSearch} />
             <div className={styles.productsFilterCategoryWrapper}>
                 <CategoriesDataProviderComponent>
                     {({ categories }) => (
