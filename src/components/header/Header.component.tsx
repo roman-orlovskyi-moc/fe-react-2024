@@ -25,7 +25,7 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
     const handleMobileMenuClose = (event: React.MouseEvent) => {
         const target = event.target as HTMLElement;
 
-        if (isMobileMenuOpen && target && ['A', 'svg', 'SVG', 'BUTTON'].includes(target.tagName)) {
+        if (isMobileMenuOpen && target && ['A', 'BUTTON'].includes(target.tagName)) {
             toggleMobileMenuOpen();
         }
     };
@@ -56,31 +56,38 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
                 <a className={styles.headerLogoLink} href="/">
                     <LogoIconComponent />
                 </a>
-                <div className={styles.headerModeSwitcher}>
-                    <button className={styles.headerModeSwitcherButton} onClick={setLightColorScheme} title="Switch to light mode">
-                        <LightColorModeIconComponent className={themeMode === 'dark' ? styles.headerModeInactiveIcon : ''} />
-                    </button>
-                    <ColorModeDividerIconComponent />
-                    <button className={styles.headerModeSwitcherButton} onClick={setDarkColorScheme} title="Switch to dark mode">
-                        <DarkColorModeIconComponent className={themeMode === 'dark' ? '' : styles.headerModeInactiveIcon} />
-                    </button>
+                <div className={styles.headerMenuWrapper}>
+                    <div className={styles.headerModeSwitcher}>
+                        <button className={styles.headerModeSwitcherButton} onClick={setLightColorScheme} title="Switch to light mode">
+                            <LightColorModeIconComponent
+                                className={`${styles.headerModeIcon} ${themeMode === 'dark' ? '' : styles.headerModeActiveIcon}`}
+                            />
+                        </button>
+                        <ColorModeDividerIconComponent />
+                        <button className={styles.headerModeSwitcherButton} onClick={setDarkColorScheme} title="Switch to dark mode">
+                            <DarkColorModeIconComponent
+                                className={`${styles.headerModeIcon} ${themeMode === 'dark' ? styles.headerModeActiveIcon : ''}`}
+                            />
+                        </button>
+                    </div>
+                    <ul className={styles.headerNav}>
+                        <li>
+                            <button className={`${styles.headerNavLink} ${aboutPageActiveClass}`} onClick={showAboutPage}>
+                                About
+                            </button>
+                        </li>
+                        <li>
+                            <button className={`${styles.headerNavLink} ${productsPageActiveClass}`} onClick={showProductsPage}>
+                                Products
+                            </button>
+                        </li>
+                    </ul>
+                    <HeaderAccountComponent className={styles.headerMobileHeaderAccount} />
                 </div>
-                <ul className={styles.headerNav}>
-                    <li>
-                        <button className={`${styles.headerNavLink} ${aboutPageActiveClass}`} onClick={showAboutPage}>
-                            About
-                        </button>
-                    </li>
-                    <li>
-                        <button className={`${styles.headerNavLink} ${productsPageActiveClass}`} onClick={showProductsPage}>
-                            Products
-                        </button>
-                    </li>
-                </ul>
                 <a href="/cart" className={styles.headerCart}>
                     <CartIconCounterComponent count={cartItemsCount} wrapperClassName={styles.headerCartCounter} />
                 </a>
-                <HeaderAccountComponent />
+                <HeaderAccountComponent className={styles.headerDesktopHeaderAccount} />
                 <button className={styles.headerMobileMenuButton} onClick={toggleMobileMenuOpen}>
                     <MobileMenuIconComponent />
                 </button>
