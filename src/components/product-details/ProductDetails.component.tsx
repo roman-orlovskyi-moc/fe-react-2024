@@ -18,7 +18,7 @@ export const ProductDetailsComponent: React.FC<Product> = (productData) => {
     };
 
     const navigateToProductCategory = (categoryId: number) => {
-        setRoutePath('/products', { categories: categoryId.toString() });
+        setRoutePath('/products', { page: '1', categories: categoryId.toString() });
     };
 
     const addProductToCart = () => {
