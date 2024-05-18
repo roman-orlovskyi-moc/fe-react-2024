@@ -1,8 +1,8 @@
 import React from 'react';
 
-import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.tsx';
 
-export const DarkColorModeIconComponent: React.FC<IconProps> = ({ className, title }) => (
+export const DarkColorModeIconComponent: React.FC<Icon> = ({ className, title }) => (
     <svg width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
         {title ? <title>{title}</title> : ''}
         <path

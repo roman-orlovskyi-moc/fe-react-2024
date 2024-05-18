@@ -1,4 +1,4 @@
-export interface IconProps {
+export interface Icon {
     className?: string;
     title?: string;
 }

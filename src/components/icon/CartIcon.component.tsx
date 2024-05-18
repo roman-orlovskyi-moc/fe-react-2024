@@ -1,8 +1,8 @@
 import React from 'react';
 
-import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.tsx';
 
-export const CartIconComponent: React.FC<IconProps> = ({ className, title }) => (
+export const CartIconComponent: React.FC<Icon> = ({ className, title }) => (
     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" className={className}>
         {title ? <title>{title}</title> : ''}
         <path
