@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
 import type { CartItem } from '@/interfaces/CartItem.interface.tsx';
-import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.tsx';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 
 import styles from './product-card.module.css';
 
-export const ProductCardComponent: React.FC<ProductProps> = (productData) => {
+export const ProductCardComponent: React.FC<Product> = (productData) => {
     const { cart, addToCart, setRoutePath } = useContext(AppContext);
     const productCartItem: CartItem | undefined = cart.items.find((item) => item.id === productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;

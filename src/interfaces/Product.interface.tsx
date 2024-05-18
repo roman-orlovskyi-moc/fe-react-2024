@@ -1,6 +1,6 @@
 import type { Category } from './Category.interface.tsx';
 
-export interface ProductProps {
+export interface Product {
     id: number;
     title: string;
     price: number;

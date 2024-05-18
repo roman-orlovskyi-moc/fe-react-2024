@@ -1,12 +1,12 @@
 import type React from 'react';
 
-import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.tsx';
 
 import productsJSONData from '../assets/data/products.json';
 import { filterProductsByCategory, filterProductsByTitle, sliceProducts, sortProducts } from '../helpers/productsListDataProviderHelper.ts';
 
 interface ProductsData {
-    products: ProductProps[];
+    products: Product[];
     productsCount: number;
 }
 
@@ -43,7 +43,7 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
 
     const productsData = {
         productsCount: filteredProducts.length,
-        products: sliceProducts(filteredProducts, page, limit) as ProductProps[],
+        products: sliceProducts(filteredProducts, page, limit) as Product[],
     };
 
     return children(productsData);

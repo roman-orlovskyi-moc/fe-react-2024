@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
-import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.tsx';
 
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
@@ -10,7 +10,7 @@ import { ProductImageCarouselComponent } from '../product-image-carousel/Product
 
 import styles from './product-details.module.css';
 
-export const ProductDetailsComponent: React.FC<ProductProps> = (productData) => {
+export const ProductDetailsComponent: React.FC<Product> = (productData) => {
     const { addToCart, backToPreviousRoute } = useContext(AppContext);
 
     const returnToProducts = () => {

@@ -1,11 +1,11 @@
 import type React from 'react';
 
-import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.tsx';
 
 import productsJSONData from '../assets/data/products.json';
 
 interface ProductData {
-    product: ProductProps | null;
+    product: Product | null;
 }
 
 interface ProductDataProviderProps {
@@ -14,7 +14,7 @@ interface ProductDataProviderProps {
 }
 
 export const ProductDataProviderComponent: React.FC<ProductDataProviderProps> = ({ id, children }) => {
-    const product = productsJSONData.find((iterableProduct: ProductProps) => iterableProduct.id === id) as ProductProps;
+    const product = productsJSONData.find((iterableProduct: Product) => iterableProduct.id === id) as Product;
 
     return children({ product });
 };
