@@ -24,33 +24,31 @@ export const CategoriesFilterComponent: React.FC<CategoriesFilterProps> = ({ cat
     };
 
     return (
-        <div className={styles.categoryFilterWrapper}>
-            <CategoriesDataProviderComponent>
-                {({ categories }) => (
-                    <>
-                        {categories.map((categoryData) => (
-                            <div key={categoryData.id}>
-                                <input
-                                    type="checkbox"
-                                    id={`category_checkbox_${categoryData.id}`}
-                                    name={`category_${categoryData.id}`}
-                                    value={categoryData.id}
-                                    checked={checkedCategories[`${categoryData.id}`] || false}
-                                    onChange={handleCategoryCheck}
-                                    className={styles.categoryFilterCheckbox}
-                                    aria-hidden={true}
-                                />
-                                <label
-                                    htmlFor={`category_checkbox_${categoryData.id}`}
-                                    className={`${appStyles.button} ${styles.categoryFilterButton}`}
-                                >
-                                    {categoryData.name}
-                                </label>
-                            </div>
-                        ))}
-                    </>
-                )}
-            </CategoriesDataProviderComponent>
-        </div>
+        <CategoriesDataProviderComponent>
+            {({ categories }) => (
+                <ul className={styles.categoryFilterWrapper}>
+                    {categories.map((categoryData) => (
+                        <li key={categoryData.id}>
+                            <input
+                                type="checkbox"
+                                id={`category_checkbox_${categoryData.id}`}
+                                name={`category_${categoryData.id}`}
+                                value={categoryData.id}
+                                checked={checkedCategories[`${categoryData.id}`] || false}
+                                onChange={handleCategoryCheck}
+                                className={styles.categoryFilterCheckbox}
+                                aria-hidden={true}
+                            />
+                            <label
+                                htmlFor={`category_checkbox_${categoryData.id}`}
+                                className={`${appStyles.button} ${styles.categoryFilterButton}`}
+                            >
+                                {categoryData.name}
+                            </label>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </CategoriesDataProviderComponent>
     );
 };
