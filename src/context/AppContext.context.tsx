@@ -13,7 +13,7 @@ import { buildRoutePath, parseRoute } from '../helpers/routeHelper.ts';
 import type { AppContextProps, ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
 import type { CartItemProps } from '../interfaces/CartItemProps.interface.tsx';
 import type { CartProps } from '../interfaces/CartProps.interface.tsx';
-import type { RouteProps } from '../interfaces/RouteProps.interface.tsx';
+import type { Route } from '../interfaces/Route.interface.tsx';
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 export const AppContext = createContext<AppContextProps>({
@@ -47,8 +47,8 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
 
     const addToCart = (item: CartItemProps) => setCart((currentCart: CartProps) => prepareUpdatedCartData(currentCart, item));
 
-    const [route, setRoute] = useState<RouteProps>(parseRoute(window.location.hash || '/about'));
-    const [previousRoute, setPreviousRoute] = useState<RouteProps | null>(null);
+    const [route, setRoute] = useState<Route>(parseRoute(window.location.hash || '/about'));
+    const [previousRoute, setPreviousRoute] = useState<Route | null>(null);
 
     const setRoutePath = (path: string, parameters?: RouteParameters) => {
         setPreviousRoute(route);

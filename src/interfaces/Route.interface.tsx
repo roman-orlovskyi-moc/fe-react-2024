@@ -1,6 +1,6 @@
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
-export interface RouteProps {
+export interface Route {
     path: string;
     parameters?: RouteParameters;
 }
