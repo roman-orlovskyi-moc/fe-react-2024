@@ -1,7 +1,7 @@
 import type { RouteParameters } from '@/types/RouteParameters.type.tsx';
 
 import type { ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
-import type { CartItemProps } from '../interfaces/CartItemProps.interface.tsx';
+import type { CartItem } from '../interfaces/CartItem.interface.tsx';
 import type { CartProps } from '../interfaces/CartProps.interface.tsx';
 
 export const parseColorScheme = (): ColorScheme => {
@@ -32,14 +32,14 @@ export const parseStoredCartData = (): CartProps => {
 
 export const getStoredCartData = (): string | null => localStorage.getItem('cart');
 
-const isCartItemProps = (object: any): object is CartItemProps => object && 'id' in object && 'quantity' in object;
+const isCartItemProps = (object: any): object is CartItem => object && 'id' in object && 'quantity' in object;
 
 const isCartProps = (object: any): object is CartProps =>
     object && Array.isArray(object.items) && object.items.every((element: any) => isCartItemProps(element));
 
 export const setStoredCartData = (cartData: CartProps) => localStorage.setItem('cart', JSON.stringify(cartData));
 
-export const prepareUpdatedCartData = (currentCart: CartProps, item: CartItemProps): CartProps => {
+export const prepareUpdatedCartData = (currentCart: CartProps, item: CartItem): CartProps => {
     const itemIndex: number = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
 
     if (itemIndex === -1) {

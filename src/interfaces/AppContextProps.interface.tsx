@@ -1,6 +1,6 @@
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
-import type { CartItemProps } from './CartItemProps.interface.tsx';
+import type { CartItem } from './CartItem.interface.tsx';
 import type { CartProps } from './CartProps.interface.tsx';
 import type { Route } from './Route.interface.tsx';
 
@@ -10,7 +10,7 @@ export interface AppContextProps {
     themeMode: ColorScheme;
     setThemeMode: (mode: ColorScheme) => void;
     cart: CartProps;
-    addToCart: (item: CartItemProps) => void;
+    addToCart: (item: CartItem) => void;
     route: Route;
     setRoutePath: (route: string, parameters?: RouteParameters) => void;
     setRoutePathParameters: (parameters: RouteParameters) => void;
