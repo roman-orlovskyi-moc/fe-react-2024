@@ -4,13 +4,13 @@ import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 
 import styles from './dropdown.module.css';
 
-interface DropdownOptionProps {
+interface DropdownOption {
     value: string;
     label: string;
 }
 
 interface DropdownProps {
-    options: DropdownOptionProps[];
+    options: DropdownOption[];
     onDropdownChange: (value: string) => void;
     selectedValue?: string;
 }
@@ -27,7 +27,7 @@ export const DropdownComponent: React.FC<DropdownProps> = ({ options, onDropdown
         setIsDropdownOpen(false);
     };
 
-    const selectedOption: DropdownOptionProps = options.find((option) => option.value === selectedValue) || options[0];
+    const selectedOption: DropdownOption = options.find((option) => option.value === selectedValue) || options[0];
 
     return (
         <div className={styles.dropdown}>

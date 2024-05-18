@@ -5,7 +5,7 @@ import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 import productsJSONData from '../assets/data/products.json';
 import { filterProductsByCategory, filterProductsByTitle, sliceProducts, sortProducts } from '../helpers/productsListDataProviderHelper.ts';
 
-interface ProductsDataProps {
+interface ProductsData {
     products: ProductProps[];
     productsCount: number;
 }
@@ -16,7 +16,7 @@ interface ProductsDataProviderProps {
     search?: string;
     categoryIds?: number[];
     sort?: string;
-    children: (productsData: ProductsDataProps) => React.ReactNode;
+    children: (productsData: ProductsData) => React.ReactNode;
 }
 
 export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderProps> = ({

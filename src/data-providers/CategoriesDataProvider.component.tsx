@@ -1,10 +1,10 @@
 import type React from 'react';
 
-import type { Category } from '@/interfaces/CategoryProps.interface.tsx';
+import type { Category } from '@/interfaces/Category.interface.tsx';
 
 import categoriesJSONData from '../assets/data/categories.json';
 
-interface CategoriesDataProps {
+interface CategoriesData {
     categories: Category[];
     categoriesCount: number;
 }
@@ -12,7 +12,7 @@ interface CategoriesDataProps {
 interface CategoriesDataProviderProps {
     page?: number;
     limit?: number;
-    children: (categoriesData: CategoriesDataProps) => React.ReactNode;
+    children: (categoriesData: CategoriesData) => React.ReactNode;
 }
 
 export const CategoriesDataProviderComponent: React.FC<CategoriesDataProviderProps> = ({ page, limit, children }) => {

@@ -4,13 +4,13 @@ import type { ProductProps } from '@/interfaces/ProductProps.interface.tsx';
 
 import productsJSONData from '../assets/data/products.json';
 
-interface ProductDataProps {
+interface ProductData {
     product: ProductProps | null;
 }
 
 interface ProductDataProviderProps {
     id: number;
-    children: (productData: ProductDataProps) => React.ReactNode;
+    children: (productData: ProductData) => React.ReactNode;
 }
 
 export const ProductDataProviderComponent: React.FC<ProductDataProviderProps> = ({ id, children }) => {
