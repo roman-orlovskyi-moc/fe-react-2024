@@ -1,8 +1,8 @@
 import type { RouteParameters } from '@/types/RouteParameters.type.tsx';
 
 import type { ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
+import type { Cart } from '../interfaces/Cart.interface.tsx';
 import type { CartItem } from '../interfaces/CartItem.interface.tsx';
-import type { CartProps } from '../interfaces/CartProps.interface.tsx';
 
 export const parseColorScheme = (): ColorScheme => {
     const savedScheme: string | null = getStoredColorScheme();
@@ -23,23 +23,23 @@ export const updateRootColorSchemeClass = (colorScheme: ColorScheme) => {
 
 export const setStoredColorScheme = (colorScheme: ColorScheme) => localStorage.setItem('themeMode', colorScheme);
 
-export const parseStoredCartData = (): CartProps => {
+export const parseStoredCartData = (): Cart => {
     const savedCartData: string | null = getStoredCartData();
     const parsedCartData = savedCartData ? JSON.parse(savedCartData) : null;
 
-    return isCartProps(parsedCartData) ? (parsedCartData as CartProps) : { items: [] };
+    return isCartProps(parsedCartData) ? (parsedCartData as Cart) : { items: [] };
 };
 
 export const getStoredCartData = (): string | null => localStorage.getItem('cart');
 
 const isCartItemProps = (object: any): object is CartItem => object && 'id' in object && 'quantity' in object;
 
-const isCartProps = (object: any): object is CartProps =>
+const isCartProps = (object: any): object is Cart =>
     object && Array.isArray(object.items) && object.items.every((element: any) => isCartItemProps(element));
 
-export const setStoredCartData = (cartData: CartProps) => localStorage.setItem('cart', JSON.stringify(cartData));
+export const setStoredCartData = (cartData: Cart) => localStorage.setItem('cart', JSON.stringify(cartData));
 
-export const prepareUpdatedCartData = (currentCart: CartProps, item: CartItem): CartProps => {
+export const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart => {
     const itemIndex: number = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
 
     if (itemIndex === -1) {

@@ -1,5 +1,5 @@
 import type { CartItem } from './CartItem.interface.tsx';
 
-export interface CartProps {
+export interface Cart {
     items: CartItem[];
 }

@@ -11,8 +11,8 @@ import {
 } from '../helpers/appContextHelper.ts';
 import { buildRoutePath, parseRoute } from '../helpers/routeHelper.ts';
 import type { AppContextProps, ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
+import type { Cart } from '../interfaces/Cart.interface.tsx';
 import type { CartItem } from '../interfaces/CartItem.interface.tsx';
-import type { CartProps } from '../interfaces/CartProps.interface.tsx';
 import type { Route } from '../interfaces/Route.interface.tsx';
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
@@ -39,13 +39,13 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
         setStoredColorScheme(themeMode);
     }, [themeMode]);
 
-    const [cart, setCart] = useState<CartProps>(() => parseStoredCartData());
+    const [cart, setCart] = useState<Cart>(() => parseStoredCartData());
 
     useEffect(() => {
         setStoredCartData(cart);
     }, [cart]);
 
-    const addToCart = (item: CartItem) => setCart((currentCart: CartProps) => prepareUpdatedCartData(currentCart, item));
+    const addToCart = (item: CartItem) => setCart((currentCart: Cart) => prepareUpdatedCartData(currentCart, item));
 
     const [route, setRoute] = useState<Route>(parseRoute(window.location.hash || '/about'));
     const [previousRoute, setPreviousRoute] = useState<Route | null>(null);
