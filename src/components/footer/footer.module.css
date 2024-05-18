@@ -1,11 +1,3 @@
-:global :root.dark {
-  --footer-divider-border-color: var(--secondary-grey-color);
-}
-
-:global :root.light {
-  --footer-divider-border-color: var(--fourth-grey-color);
-}
-
 .footer {
   text-align: center;
   padding-bottom: 40px;

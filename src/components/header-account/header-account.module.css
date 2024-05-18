@@ -1,13 +1,3 @@
-:global :root.dark {
-  --header-account-button-text-color: var(--main-white-color);
-  --header-account-mobile-button-text-color: var(--main-white-color);
-}
-
-:global :root.light {
-  --header-account-button-text-color: var(--main-white-color);
-  --header-account-mobile-button-text-color: var(--main-grey-color);
-}
-
 .headerAccount {
   display: flex;
   align-items: center;

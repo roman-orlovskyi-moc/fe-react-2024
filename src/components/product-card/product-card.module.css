@@ -1,15 +1,3 @@
-:global :root.dark {
-  --product-card-border-color: var(--secondary-grey-color);
-  --product-card-hover-background-color: var(--secondary-grey-color);
-  --product-card-add-to-cart-icon-color: var(--main-white-color);
-}
-
-:global :root.light {
-  --product-card-border-color: var(--fourth-grey-color);
-  --product-card-hover-background-color: var(--fifth-grey-color);
-  --product-card-add-to-cart-icon-color: var(--main-grey-color);
-}
-
 .productCard {
   display: flex;
   flex-direction: column;

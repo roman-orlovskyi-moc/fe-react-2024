@@ -1,13 +1,3 @@
-:global :root.dark {
-  --products-filter-search-background-color: var(--secondary-grey-color);
-  --products-filter-search-text-color: var(--main-white-color);
-}
-
-:global :root.light {
-  --products-filter-search-background-color: var(--fifth-grey-color);
-  --products-filter-search-text-color: var(--secondary-grey-color);
-}
-
 .searchForm {
   display: flex;
   position: relative;

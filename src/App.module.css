@@ -1,15 +1,3 @@
-:global :root.dark {
-  --button-border-color: var(--sixth-grey-color);
-  --button-background-color: var(--main-grey-color);
-  --button-text-color: var(--main-white-color);
-}
-
-:global :root.light {
-  --button-border-color: var(--seventh-grey-color);
-  --button-background-color: var(--main-white-color);
-  --button-text-color: var(--secondary-grey-color);
-}
-
 .pageWrapper {
   width: 100%;
 }

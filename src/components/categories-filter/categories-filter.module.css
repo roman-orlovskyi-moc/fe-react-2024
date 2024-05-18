@@ -1,11 +1,3 @@
-:global :root.dark {
-  --products-filter-category-button-text-color: var(--main-white-color);
-}
-
-:global :root.light {
-  --products-filter-category-button-text-color: var(--sixth-grey-color);
-}
-
 .categoryFilterWrapper {
   display: flex;
   gap: 10px;
