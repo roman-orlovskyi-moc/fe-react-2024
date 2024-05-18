@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
@@ -14,7 +14,7 @@ import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
 
-export const ProductsComponent = () => {
+export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
 
     const { route, setRoutePathParameters } = useContext(AppContext);
