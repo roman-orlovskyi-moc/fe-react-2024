@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import appStyles from '@/App.module.css';
 import { CategoriesDataProviderComponent } from '@/data-providers/CategoriesDataProvider.component.tsx';
 import { transformCheckedCategories, transformCheckedCategoryIds } from '@/helpers/categoriesFilterHelper.ts';
-import type { CheckedCategoriesProps } from '@/types/CheckedCategoriesProps.type.tsx';
+import type { CheckedCategories } from '@/types/CheckedCategories.type.tsx';
 
 import styles from './categories-filter.module.css';
 
@@ -13,7 +13,7 @@ interface CategoriesFilterProps {
 }
 
 export const CategoriesFilterComponent: React.FC<CategoriesFilterProps> = ({ categoryIds, onCategoriesChange }) => {
-    const [checkedCategories, setCheckedCategories] = useState<CheckedCategoriesProps>(() => transformCheckedCategories(categoryIds || []));
+    const [checkedCategories, setCheckedCategories] = useState<CheckedCategories>(() => transformCheckedCategories(categoryIds || []));
 
     const handleCategoryCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
