@@ -1,4 +1,4 @@
-import type { RouteParameters } from '../types/RouteProps.type.tsx';
+import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 import type { CartItemProps } from './CartItemProps.interface.tsx';
 import type { CartProps } from './CartProps.interface.tsx';

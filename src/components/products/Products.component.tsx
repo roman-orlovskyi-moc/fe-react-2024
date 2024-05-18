@@ -8,7 +8,7 @@ import {
     parseRouteParametersSearch,
     parseRouteParametersSort,
 } from '@/helpers/productsHelper.ts';
-import type { RouteParameters } from '@/types/RouteProps.type.tsx';
+import type { RouteParameters } from '@/types/RouteParameters.type.tsx';
 
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';

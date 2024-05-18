@@ -14,7 +14,7 @@ import type { AppContextProps, ColorScheme } from '../interfaces/AppContextProps
 import type { CartItemProps } from '../interfaces/CartItemProps.interface.tsx';
 import type { CartProps } from '../interfaces/CartProps.interface.tsx';
 import type { RouteProps } from '../interfaces/RouteProps.interface.tsx';
-import type { RouteParameters } from '../types/RouteProps.type.tsx';
+import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 export const AppContext = createContext<AppContextProps>({
     themeMode: 'dark',
