@@ -1,11 +1,11 @@
 import type React from 'react';
 
-import type { CategoryProps } from '@/interfaces/CategoryProps.interface.tsx';
+import type { Category } from '@/interfaces/CategoryProps.interface.tsx';
 
 import categoriesJSONData from '../assets/data/categories.json';
 
 interface CategoriesDataProps {
-    categories: CategoryProps[];
+    categories: Category[];
     categoriesCount: number;
 }
 
@@ -23,7 +23,7 @@ export const CategoriesDataProviderComponent: React.FC<CategoriesDataProviderPro
 
     const categoriesData = {
         categoriesCount: categoriesJSONData.length,
-        categories: categoriesJSONData.slice(start, end) as CategoryProps[],
+        categories: categoriesJSONData.slice(start, end) as Category[],
     };
 
     return children(categoriesData);

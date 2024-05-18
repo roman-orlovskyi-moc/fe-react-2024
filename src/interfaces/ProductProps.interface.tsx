@@ -1,4 +1,4 @@
-import type { CategoryProps } from './CategoryProps.interface.tsx';
+import type { Category } from './Category.interface.tsx';
 
 export interface ProductProps {
     id: number;
@@ -8,5 +8,5 @@ export interface ProductProps {
     images: string[];
     creationAt: string;
     updatedAt: string;
-    category: CategoryProps;
+    category: Category;
 }
