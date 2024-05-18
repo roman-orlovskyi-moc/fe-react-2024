@@ -11,10 +11,14 @@ import { ProductImageCarouselComponent } from '../product-image-carousel/Product
 import styles from './product-details.module.css';
 
 export const ProductDetailsComponent: React.FC<Product> = (productData) => {
-    const { addToCart, backToPreviousRoute } = useContext(AppContext);
+    const { addToCart, backToPreviousRoute, setRoutePath } = useContext(AppContext);
 
     const returnToProducts = () => {
         backToPreviousRoute('/products');
+    };
+
+    const navigateToProductCategory = (categoryId: number) => {
+        setRoutePath('/products', { categories: categoryId.toString() });
     };
 
     const addProductToCart = () => {
@@ -35,7 +39,12 @@ export const ProductDetailsComponent: React.FC<Product> = (productData) => {
                         Back
                     </button>
                     <h2 className={styles.productDetailsTitle}>{productData.title}</h2>
-                    <button className={`${appStyles.button} ${styles.productDetailsCategoryButton}`}>{productData.category.name}</button>
+                    <button
+                        className={`${appStyles.button} ${styles.productDetailsCategoryButton}`}
+                        onClick={() => navigateToProductCategory(productData.category.id)}
+                    >
+                        {productData.category.name}
+                    </button>
                     <div className={styles.productDetailsDescription}>{productData.description}</div>
                     <div className={styles.productDetailsPrice}>{formattedPrice(productData.price)} ₴</div>
                     <button
