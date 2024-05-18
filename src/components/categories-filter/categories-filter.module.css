@@ -35,6 +35,13 @@
 @media (max-width: 1233px) {
 
   .categoryFilterWrapper {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 984px) {
+
+  .categoryFilterWrapper {
     justify-content: center;
   }
 }

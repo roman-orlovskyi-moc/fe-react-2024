@@ -1,6 +1,6 @@
 .productsFilterBar {
   display: grid;
-  align-items: center;
+  align-items: flex-start;
   grid-template-columns: 275px 1fr 260px;
   grid-template-areas: "search-form category-filter sort-wrapper";
   margin-bottom: 50px;
@@ -14,6 +14,13 @@
   grid-template-columns: 1fr 196px;
   align-items: center;
   grid-area: sort-wrapper;
+}
+
+@media (max-width: 1294px) {
+
+  .productsFilterBar {
+    margin-bottom: 40px;
+  }
 }
 
 @media (max-width: 984px) {

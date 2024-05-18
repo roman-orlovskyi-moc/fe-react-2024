@@ -35,6 +35,11 @@
     padding-left: 30px;
     padding-right: 30px;
   }
+
+  .mainContentWrapper {
+    padding-top: 30px;
+    padding-bottom: 40px;
+  }
 }
 
 @media (max-width: 768px) {
