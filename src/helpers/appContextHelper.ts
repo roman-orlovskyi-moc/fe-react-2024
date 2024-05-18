@@ -1,8 +1,8 @@
 import type { RouteParameters } from '@/types/RouteParameters.type.tsx';
 
-import type { ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
 import type { Cart } from '../interfaces/Cart.interface.tsx';
 import type { CartItem } from '../interfaces/CartItem.interface.tsx';
+import type { ColorScheme } from '../types/ColorScheme.type.tsx';
 
 export const parseColorScheme = (): ColorScheme => {
     const savedScheme: string | null = getStoredColorScheme();

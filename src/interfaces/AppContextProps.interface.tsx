@@ -1,10 +1,9 @@
+import type { ColorScheme } from '../types/ColorScheme.type.ts';
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 import type { Cart } from './Cart.interface.tsx';
 import type { CartItem } from './CartItem.interface.tsx';
 import type { Route } from './Route.interface.tsx';
-
-export type ColorScheme = 'dark' | 'light';
 
 export interface AppContextProps {
     themeMode: ColorScheme;

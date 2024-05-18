@@ -10,10 +10,11 @@ import {
     updateRootColorSchemeClass,
 } from '../helpers/appContextHelper.ts';
 import { buildRoutePath, parseRoute } from '../helpers/routeHelper.ts';
-import type { AppContextProps, ColorScheme } from '../interfaces/AppContextProps.interface.tsx';
+import type { AppContextProps } from '../interfaces/AppContextProps.interface.tsx';
 import type { Cart } from '../interfaces/Cart.interface.tsx';
 import type { CartItem } from '../interfaces/CartItem.interface.tsx';
 import type { Route } from '../interfaces/Route.interface.tsx';
+import type { ColorScheme } from '../types/ColorScheme.type.tsx';
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 export const AppContext = createContext<AppContextProps>({
