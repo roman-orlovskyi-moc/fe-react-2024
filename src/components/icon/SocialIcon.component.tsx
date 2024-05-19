@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.tsx';
 
 import { FacebookIconComponent } from '../icon/FacebookIcon.component.tsx';
 import { InstagramIconComponent } from '../icon/InstagramIcon.component.tsx';
@@ -12,7 +12,7 @@ export enum SocialIconName {
     LINKEDIN = 'linkedin',
 }
 
-const SocialIcon: Record<SocialIconName, React.FC<IconProps>> = {
+const SocialIcon: Record<SocialIconName, React.FC<Icon>> = {
     [SocialIconName.FACEBOOK]: FacebookIconComponent,
     [SocialIconName.INSTAGRAM]: InstagramIconComponent,
     [SocialIconName.LINKEDIN]: LinkedinIconComponent,

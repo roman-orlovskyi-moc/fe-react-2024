@@ -1,10 +1,10 @@
 import React from 'react';
 
-import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.tsx';
 
-export const LogoIconComponent: React.FC<IconProps> = ({ className, title }) => (
+export const LogoIconComponent: React.FC<Icon> = ({ className, title }) => (
     <svg width="46" height="46" viewBox="0 0 46 46" fill="none" className={className}>
-        <title>{title}</title>
+        {title ? <title>{title}</title> : ''}
         <path
             fillRule="evenodd"
             clipRule="evenodd"

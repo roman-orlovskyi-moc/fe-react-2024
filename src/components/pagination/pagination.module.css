@@ -1,71 +1,3 @@
-:global :root.dark {
-  --pagination-button-border-color: var(--sixth-grey-color);
-  --pagination-button-hover-background-color: var(--sixth-grey-color);
-  --pagination-disabled-button-hover-background-color: transparent;
-  --pagination-disabled-button-border-color: var(--sixth-grey-color);
-  --pagination-arrow-button-hover-background-color: var(--fourth-grey-color);
-  --pagination-arrow-icon-color: var(--main-white-color);
-  --pagination-arrow-icon-hover-color: var(--main-grey-color);
-  --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
-  --pagination-active-button-font-weight: 500;
-  --pagination-mobile-button-background-color: var(--main-white-color);
-  --pagination-mobile-button-border-color: var(--fifth-grey-color);
-  --pagination-mobile-button-text-color: var(--main-grey-color);
-  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
-}
-
-:global :root.light {
-  --pagination-button-border-color: var(--fifth-grey-color);
-  --pagination-button-hover-background-color: var(--fifth-grey-color);
-  --pagination-disabled-button-hover-background-color: var(--fifth-grey-color);
-  --pagination-disabled-button-border-color: var(--fifth-grey-color);
-  --pagination-arrow-button-hover-background-color: var(--fifth-grey-color);
-  --pagination-arrow-icon-color: var(--main-grey-color);
-  --pagination-arrow-icon-hover-color: var(--main-grey-color);
-  --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
-  --pagination-active-button-font-weight: 700;
-  --pagination-mobile-button-background-color: transparent;
-  --pagination-mobile-button-text-color: inherit;
-  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --pagination-button-border-color: var(--sixth-grey-color);
-    --pagination-button-hover-background-color: var(--sixth-grey-color);
-    --pagination-disabled-button-hover-background-color: transparent;
-    --pagination-disabled-button-border-color: var(--sixth-grey-color);
-    --pagination-arrow-button-hover-background-color: var(--fourth-grey-color);
-    --pagination-arrow-icon-color: var(--main-white-color);
-    --pagination-arrow-icon-hover-color: var(--main-grey-color);
-    --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
-    --pagination-active-button-font-weight: 500;
-    --pagination-mobile-button-background-color: var(--main-white-color);
-    --pagination-mobile-button-border-color: var(--fifth-grey-color);
-    --pagination-mobile-button-text-color: var(--main-grey-color);
-    --pagination-mobile-arrow-icon-color: var(--main-grey-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    --pagination-button-border-color: var(--fifth-grey-color);
-    --pagination-button-hover-background-color: var(--fifth-grey-color);
-    --pagination-disabled-button-hover-background-color: var(--fifth-grey-color);
-    --pagination-disabled-button-border-color: var(--fifth-grey-color);
-    --pagination-arrow-button-hover-background-color: var(--fifth-grey-color);
-    --pagination-arrow-icon-color: var(--main-grey-color);
-    --pagination-arrow-icon-hover-color: var(--main-grey-color);
-    --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
-    --pagination-active-button-font-weight: 700;
-    --pagination-mobile-button-background-color: transparent;
-    --pagination-mobile-button-text-color: inherit;
-    --pagination-mobile-arrow-icon-color: var(--main-grey-color);
-  }
-}
-
 .paginationList {
   display: flex;
   list-style: none;
@@ -131,6 +63,10 @@
   stroke: var(--pagination-arrow-icon-color);
 }
 
+.paginationNextButtonIcon {
+  transform: rotate(180deg);
+}
+
 .paginationButton:hover .paginationArrowIcon path {
   stroke: var(--pagination-arrow-icon-hover-color);
 }
@@ -145,10 +81,6 @@
     background-color: var(--pagination-mobile-button-background-color);
     border-color: var(--pagination-mobile-button-border-color);
     color: var(--pagination-mobile-button-text-color);
-  }
-
-  .paginationButton:hover {
-    background-color: var(--pagination-mobile-button-border-color);
   }
 
   .paginationButton:disabled:hover {

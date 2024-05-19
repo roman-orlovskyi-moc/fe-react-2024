@@ -1,14 +1,31 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import type { AppContextProps, ColorScheme } from '@/interfaces/AppContextProps.interface.tsx';
-import type { CartItemProps } from '@/interfaces/CartItemProps.interface.tsx';
-import type { CartProps } from '@/interfaces/CartProps.interface.tsx';
+import {
+    parseColorScheme,
+    parseStoredCartData,
+    prepareRoutePathParameters,
+    prepareUpdatedCartData,
+    setStoredCartData,
+    setStoredColorScheme,
+    updateRootColorSchemeClass,
+} from '../helpers/appContextHelper.ts';
+import { buildRoutePath, parseRoute } from '../helpers/routeHelper.ts';
+import type { AppContextProps } from '../interfaces/AppContextProps.interface.tsx';
+import type { Cart } from '../interfaces/Cart.interface.tsx';
+import type { CartItem } from '../interfaces/CartItem.interface.tsx';
+import type { Route } from '../interfaces/Route.interface.tsx';
+import type { ColorScheme } from '../types/ColorScheme.type.tsx';
+import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 export const AppContext = createContext<AppContextProps>({
     themeMode: 'dark',
     setThemeMode: (mode: ColorScheme) => {},
     cart: { items: [] },
-    addToCart: (item: CartItemProps) => {},
+    addToCart: (item: CartItem) => {},
+    route: { path: '/about', parameters: {} },
+    setRoutePath: (route: string, parameters?: RouteParameters) => {},
+    setRoutePathParameters: (parameters: RouteParameters) => {},
+    backToPreviousRoute: (alternativePath?: string, alternativeParameters?: RouteParameters) => {},
 });
 
 interface AppContextProviderProps {
@@ -16,62 +33,51 @@ interface AppContextProviderProps {
 }
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
-    const browserThemeMode: ColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-    const [themeMode, setThemeMode] = useState<ColorScheme>(() => {
-        const savedScheme = localStorage.getItem('themeMode');
-        const validColorSchemes: ColorScheme[] = ['dark', 'light'];
-
-        return savedScheme && validColorSchemes.includes(savedScheme as ColorScheme) ? (savedScheme as ColorScheme) : browserThemeMode;
-    });
+    const [themeMode, setThemeMode] = useState<ColorScheme>(() => parseColorScheme());
 
     useEffect(() => {
-        const removeThemeClasses = ['dark', 'light'];
+        updateRootColorSchemeClass(themeMode);
+        setStoredColorScheme(themeMode);
+    }, [themeMode]);
 
-        if (browserThemeMode === themeMode) {
-            document.documentElement.classList.remove(...removeThemeClasses);
-            localStorage.removeItem('themeMode');
-        } else {
-            document.documentElement.classList.remove(...removeThemeClasses);
-            document.documentElement.classList.add(themeMode);
-            localStorage.setItem('themeMode', themeMode);
-        }
-    }, [browserThemeMode, themeMode]);
-
-    function isCartItemProps(object: any): object is CartItemProps {
-        return object && 'id' in object && 'title' in object && 'image' in object && 'price' in object && 'quantity' in object;
-    }
-
-    function isCartProps(object: any): object is CartProps {
-        return object && Array.isArray(object.items) && object.items.every((element: any) => isCartItemProps(element));
-    }
-
-    const [cart, setCart] = useState<CartProps>(() => {
-        const savedCartData = localStorage.getItem('cart');
-        const parsedCartData = savedCartData ? JSON.parse(savedCartData) : null;
-
-        return isCartProps(parsedCartData) ? (parsedCartData as CartProps) : { items: [] };
-    });
+    const [cart, setCart] = useState<Cart>(() => parseStoredCartData());
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
+        setStoredCartData(cart);
     }, [cart]);
 
-    const addToCart = (item: CartItemProps) => {
-        setCart((currentCart) => {
-            const itemIndex = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
+    const addToCart = (item: CartItem) => setCart((currentCart: Cart) => prepareUpdatedCartData(currentCart, item));
 
-            if (itemIndex === -1) {
-                return { items: [...currentCart.items, item] };
-            } else {
-                const newCartItems = currentCart.items.map((cartItem) =>
-                    cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + item.quantity } : cartItem,
-                );
+    const [route, setRoute] = useState<Route>(parseRoute(window.location.hash || '/about'));
+    const [previousRoute, setPreviousRoute] = useState<Route | null>(null);
 
-                return { items: newCartItems };
-            }
-        });
+    const setRoutePath = (path: string, parameters?: RouteParameters) => {
+        setPreviousRoute(route);
+        setRoute({ path, parameters: parameters || {} });
+        setLocationHash(path, parameters);
     };
 
-    return <AppContext.Provider value={{ themeMode, setThemeMode, cart, addToCart }}>{children}</AppContext.Provider>;
+    const setRoutePathParameters = (parameters: RouteParameters) => {
+        setRoutePath(route.path, prepareRoutePathParameters(route.parameters || {}, parameters));
+    };
+
+    const backToPreviousRoute = (alternativePath?: string, alternativeParameters?: RouteParameters) => {
+        if (previousRoute) {
+            setRoutePath(previousRoute.path, previousRoute.parameters);
+        } else {
+            setRoutePath(alternativePath || '/about', alternativeParameters);
+        }
+    };
+
+    const setLocationHash = (path: string, parameters?: RouteParameters) => {
+        window.location.hash = buildRoutePath(path, parameters);
+    };
+
+    return (
+        <AppContext.Provider
+            value={{ themeMode, setThemeMode, cart, addToCart, route, setRoutePath, setRoutePathParameters, backToPreviousRoute }}
+        >
+            {children}
+        </AppContext.Provider>
+    );
 };

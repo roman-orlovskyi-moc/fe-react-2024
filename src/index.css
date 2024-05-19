@@ -12,7 +12,7 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark light;
-  padding: 0 0 40px;
+  padding: 0;
   font-synthesis: none;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
@@ -27,6 +27,7 @@
   --fourth-grey-color: #CCC;
   --fifth-grey-color: #F1F1F1;
   --sixth-grey-color: #656565;
+  --seventh-grey-color: #E1E1E1;
 }
 
 :root.dark {
@@ -34,6 +35,47 @@
   --page-text-color: var(--main-white-color);
   --link-color: var(--main-white-color);
   --link-hover-color: var(--main-white-color);
+  --button-border-color: var(--sixth-grey-color);
+  --button-background-color: var(--main-grey-color);
+  --button-text-color: var(--main-white-color);
+  --header-center-menu-background-color: var(--main-grey-color);
+  --header-link-color: var(--main-white-color);
+  --header-mobile-link-color: var(--main-white-color);
+  --header-mobile-mode-active-icon-color: var(--main-white-color);
+  --header-mobile-mode-icon-color: var(--sixth-grey-color);
+  --header-account-button-text-color: var(--main-white-color);
+  --header-account-mobile-button-text-color: var(--main-white-color);
+  --products-filter-search-background-color: var(--secondary-grey-color);
+  --products-filter-search-text-color: var(--main-white-color);
+  --products-filter-category-button-text-color: var(--main-white-color);
+  --dropdown-opened-background-color: var(--secondary-grey-color);
+  --dropdown-opened-text-color: var(--main-white-color);
+  --dropdown-border-color: var(--sixth-grey-color);
+  --dropdown-open-button-icon-color: var(--main-white-color);
+  --product-card-border-color: var(--secondary-grey-color);
+  --product-card-hover-background-color: var(--secondary-grey-color);
+  --product-card-add-to-cart-icon-color: var(--main-white-color);
+  --pagination-button-border-color: var(--sixth-grey-color);
+  --pagination-button-hover-background-color: var(--sixth-grey-color);
+  --pagination-disabled-button-hover-background-color: transparent;
+  --pagination-disabled-button-border-color: var(--sixth-grey-color);
+  --pagination-arrow-button-hover-background-color: var(--fourth-grey-color);
+  --pagination-arrow-icon-color: var(--main-white-color);
+  --pagination-arrow-icon-hover-color: var(--main-grey-color);
+  --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
+  --pagination-active-button-font-weight: 500;
+  --pagination-mobile-button-background-color: var(--main-white-color);
+  --pagination-mobile-button-border-color: var(--fifth-grey-color);
+  --pagination-mobile-button-text-color: var(--main-grey-color);
+  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
+  --product-details-container-border-color: var(--secondary-grey-color);
+  --product-details-category-button-text-color: var(--main-white-color);
+  --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
+  --product-details-mobile-category-button-background-color: var(--main-white-color);
+  --product-details-mobile-category-button-text-color: var(--sixth-grey-color);
+  --product-image-carousel-move-button-border-color: var(--sixth-grey-color);
+  --product-image-carousel-move-button-icon-color: var(--main-white-color);
+  --footer-divider-border-color: var(--secondary-grey-color);
 }
 
 :root.light {
@@ -41,26 +83,46 @@
   --page-text-color: var(--main-grey-color);
   --link-color: var(--main-grey-color);
   --link-hover-color: var(--main-grey-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --page-background-color: var(--main-grey-color);
-    --page-text-color: var(--main-white-color);
-    --link-color: var(--main-white-color);
-    --link-hover-color: var(--main-white-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    --page-background-color: var(--main-white-color);
-    --page-text-color: var(--main-grey-color);
-    --link-color: var(--main-grey-color);
-    --link-hover-color: var(--main-grey-color);
-  }
+  --button-border-color: var(--seventh-grey-color);
+  --button-background-color: var(--main-white-color);
+  --button-text-color: var(--secondary-grey-color);
+  --header-center-menu-background-color: var(--main-white-color);
+  --header-link-color: var(--main-white-color);
+  --header-mobile-link-color: var(--main-grey-color);
+  --header-mobile-mode-active-icon-color: var(--main-grey-color);
+  --header-mobile-mode-icon-color: var(--sixth-grey-color);
+  --header-account-button-text-color: var(--main-white-color);
+  --header-account-mobile-button-text-color: var(--main-grey-color);
+  --products-filter-search-background-color: var(--fifth-grey-color);
+  --products-filter-search-text-color: var(--secondary-grey-color);
+  --products-filter-category-button-text-color: var(--sixth-grey-color);
+  --dropdown-opened-background-color: var(--main-white-color);
+  --dropdown-opened-text-color: var(--sixth-grey-color);
+  --dropdown-border-color: var(--seventh-grey-color);
+  --dropdown-open-button-icon-color: var(--sixth-grey-color);
+  --product-card-border-color: var(--fourth-grey-color);
+  --product-card-hover-background-color: var(--fifth-grey-color);
+  --product-card-add-to-cart-icon-color: var(--main-grey-color);
+  --pagination-button-border-color: var(--fifth-grey-color);
+  --pagination-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-disabled-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-disabled-button-border-color: var(--fifth-grey-color);
+  --pagination-arrow-button-hover-background-color: var(--fifth-grey-color);
+  --pagination-arrow-icon-color: var(--main-grey-color);
+  --pagination-arrow-icon-hover-color: var(--main-grey-color);
+  --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
+  --pagination-active-button-font-weight: 700;
+  --pagination-mobile-button-background-color: transparent;
+  --pagination-mobile-button-text-color: inherit;
+  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
+  --product-details-container-border-color: var(--fourth-grey-color);
+  --product-details-category-button-text-color: var(--sixth-grey-color);
+  --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
+  --product-details-mobile-category-button-background-color: var(--main-white-color);
+  --product-details-mobile-category-button-text-color: var(--sixth-grey-color);
+  --product-image-carousel-move-button-border-color: var(--fifth-grey-color);
+  --product-image-carousel-move-button-icon-color: var(--main-grey-color);
+  --footer-divider-border-color: var(--fourth-grey-color);
 }
 
 a {
@@ -83,37 +145,4 @@ body {
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-.pageWrapper {
-  width: 100%;
-}
-
-.contentWrapper {
-  max-width: 1175px;
-  margin: 0 auto;
-}
-
-.mainContentWrapper {
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
-@media (max-width: 1294px) {
-
-  .contentWrapper {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  :root {
-    padding: 0 0 30px;
-  }
-
-  .mainContentWrapper {
-    padding: 10px 30px 30px;
-  }
 }

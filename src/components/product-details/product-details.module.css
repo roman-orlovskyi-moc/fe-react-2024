@@ -1,0 +1,128 @@
+.productDetails {
+  display: flex;
+  align-items: center;
+  gap: 75px;
+  border: 1px solid var(--product-details-container-border-color);
+  border-radius: 40px;
+  padding: 33px 73px;
+  margin-bottom: 100px;
+}
+
+.productDetailsColumn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.productDetailsContent {
+  display: grid;
+  align-items: center;
+  grid-template-areas: "back-button back-button"
+    "title title"
+    "category-button category-button"
+    "description description"
+    "price add-to-cart-button";
+  justify-items: flex-start;
+  row-gap: 10px;
+}
+
+.productDetailsTitle {
+  grid-area: title;
+  margin: 0;
+}
+
+.productDetailsDescription {
+  grid-area: description;
+  margin: 0 0 30px;
+  font-size: 18px;
+}
+
+.productDetailsPrice {
+  grid-area: price;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.productDetailsBackButton {
+  grid-area: back-button;
+  margin: -10px -50px 25px 0;
+  justify-self: flex-end;
+}
+
+.productDetailsBackButtonIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.productDetailsBackButtonIcon path {
+  stroke: var(--button-text-color);
+}
+
+.productDetailsCategoryButton {
+  grid-area: category-button;
+  margin-bottom: 10px;
+  color: var(--product-details-category-button-text-color);
+}
+
+.productDetailsAddToCartButton {
+  grid-area: add-to-cart-button;
+  justify-self: flex-end;
+  color: var(--main-white-color);
+  background: var(--main-red-color);
+  border: none;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.productDetailsAddToCartButton:hover path {
+  stroke-width: 2;
+}
+
+@media (max-width: 950px) {
+
+  .productDetails {
+    gap: 40px;
+    padding: 33px 43px;
+    margin-bottom: 60px;
+  }
+
+  .productDetailsBackButton {
+    margin-right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .productDetails {
+    flex-direction: column;
+    padding: 30px 0 0;
+    border: none;
+  }
+
+  .productDetailsContent {
+    grid-template-areas: "price price"
+      "title title"
+      "category-button category-button"
+      "description description"
+      "back-button add-to-cart-button";
+    row-gap: 10px;
+  }
+
+  .productDetailsBackButton {
+    margin: 0;
+    justify-self: flex-start;
+  }
+
+  .productDetailsTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .productDetailsCategoryButton {
+    margin-bottom: 20px;
+    color: var(--product-details-mobile-category-button-text-color);
+    background: var(--product-details-mobile-category-button-background-color);
+    border-color: var(--product-details-mobile-category-button-border-color);
+  }
+}

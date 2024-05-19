@@ -1,0 +1,65 @@
+.headerAccount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  grid-area: user-nav;
+  justify-content: space-between;
+}
+
+.headerButton {
+  display: flex;
+  gap: 5px;
+  border-radius: 40px;
+  padding: 5px 10px;
+  background: var(--main-red-color);
+  color: var(--header-account-button-text-color);
+}
+
+.headerButton:hover {
+  background: var(--main-red-hover-color);
+  color: var(--header-account-button-text-color);
+}
+
+.headerButton.loginButton {
+  background: var(--secondary-grey-color);
+}
+
+.headerButton.loginButton:hover {
+  background: var(--third-grey-color);
+}
+
+@media (max-width: 768px) {
+
+  .headerAccount {
+    display: none;
+  }
+
+  :global(.mobileMenuOpened) .headerAccount {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .headerButton {
+    color: var(--header-account-mobile-button-text-color);
+  }
+
+  .headerButton:hover {
+    color: var(--header-account-mobile-button-text-color);
+  }
+
+  :global(.mobileMenuOpened) .headerButton {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  :global(.mobileMenuOpened) .headerButton:hover {
+    background: none;
+  }
+
+  :global(.mobileMenuOpened) .headerButtonIcon {
+    display: none;
+  }
+}

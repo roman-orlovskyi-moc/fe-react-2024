@@ -1,27 +1,6 @@
-:global :root.dark {
-  --footer-divider-border-color: var(--secondary-grey-color);
-}
-
-:global :root.light {
-  --footer-divider-border-color: var(--fourth-grey-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  :root {
-    --footer-divider-border-color: var(--secondary-grey-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-
-  :root {
-    --footer-divider-border-color: var(--fourth-grey-color);
-  }
-}
-
 .footer {
   text-align: center;
+  padding-bottom: 40px;
 }
 
 .footerDivider {
@@ -51,7 +30,7 @@
 @media (max-width: 768px) {
 
   .footer {
-    padding: 0 30px;
+    padding: 0 30px 20px;
   }
 
   .footerDivider {

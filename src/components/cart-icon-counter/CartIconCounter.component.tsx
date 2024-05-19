@@ -1,18 +1,18 @@
 import React from 'react';
 
-import type { IconProps } from '@/interfaces/IconProps.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.tsx';
 
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
 
 import styles from './cart-icon-counter.module.css';
 
-interface CartIconCounterProps {
+interface CartIconCounter {
     count: number;
     wrapperClassName?: string;
     showCounter?: boolean;
 }
 
-type CartIconCounterComponentProps = CartIconCounterProps & IconProps;
+type CartIconCounterComponentProps = CartIconCounter & Icon;
 
 export const CartIconCounterComponent: React.FC<CartIconCounterComponentProps> = ({
     count,

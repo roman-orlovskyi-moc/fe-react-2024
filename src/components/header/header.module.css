@@ -5,51 +5,212 @@
   background-color: var(--main-grey-color);
 }
 
+.headerColumnWrapper {
+  display: grid;
+  align-items: center;
+  grid-template-columns: [logo] 96px [menu-wrapper] 1fr [cart-icon] 45px [user-nav] 220px;
+}
+
 .headerLogoLink {
   display: flex;
-  margin-right: 50px;
+  grid-area: logo;
 }
 
-.headerColumnWrapper {
-  display: flex;
+.headerMenuWrapper {
+  display: grid;
+  grid-area: menu-wrapper;
   align-items: center;
+  grid-template-columns: [mode-switcher] 1fr [nav] 320px;
 }
 
-.headerLeftColumn {
-  flex: 1;
+.headerMobileHeaderAccount {
+  display: none;
 }
 
-.headerRightColumn {
-  flex: 1;
-  flex-basis: 0;
-}
-
-.headerColumnContainer {
+.headerModeSwitcher {
   display: flex;
-  align-items: center;
+  grid-area: mode-switcher;
 }
 
-.headerColumnRight {
-  justify-content: flex-end;
+.headerModeSwitcherButton {
+  display: flex;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
 }
 
-@media (max-width: 1150px) {
+.headerModeIcon path {
+  stroke: var(--sixth-grey-color);
+}
 
-  .headerRightColumn {
-    flex-basis: 10%;
+.headerModeIcon.headerModeActiveIcon path {
+  stroke: var(--main-white-color);
+}
+
+.headerModeIcon.headerModeActiveIcon:hover path {
+  stroke: var(--main-white-color);
+}
+
+.headerNav {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0 20px 0 0;
+  grid-area: nav;
+}
+
+.headerNavLink {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--header-link-color);
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
+}
+
+.headerNavLink:hover {
+  color: var(--header-link-color);
+  font-weight: 700;
+}
+
+.headerNavLinkActive {
+  font-weight: 700;
+}
+
+.headerCart {
+  display: flex;
+  grid-area: cart-icon;
+}
+
+.headerCartCounter {
+  display: flex;
+}
+
+.headerMobileMenuButton {
+  display: none;
+  grid-area: mobile-menu;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
+}
+
+@media (max-width: 1024px) {
+
+  .headerMenuWrapper {
+    grid-template-columns: [mode-switcher] 1fr [nav] 1fr;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
 
-  .headerRightColumn {
-    flex-basis: 15%;
+  .header {
+    height: 100%;
+    font-size: 20px;
+    padding: 15px 0 0;
   }
-}
 
-@media (max-width: 900px) {
+  .headerColumnWrapper {
+    grid-template-columns: [logo] 1fr [cart-icon] 45px [mobile-menu] 30px;
+    grid-template-areas: "logo cart-icon mobile-menu";
+    padding-bottom: 15px;
+  }
 
-  .headerRightColumn {
-    flex-basis: 30%;
+  .headerMenuWrapper {
+    display: none;
+    background-color: var(--header-center-menu-background-color);
+  }
+
+  .headerDesktopHeaderAccount, :global(.mobileMenuOpened) .headerDesktopHeaderAccount {
+    display: none;
+  }
+
+  :global(.mobileMenuOpened) .headerColumnWrapper {
+    height: 100%;
+    grid-template-columns: [logo] 1fr [cart-icon] 45px [mobile-menu] 30px;
+    grid-template-rows: [row1] 46px [row2] 1fr;
+    grid-template-areas: "logo cart-icon mobile-menu"
+      "menu-wrapper menu-wrapper menu-wrapper";
+    row-gap: 15px;
+    padding-bottom: 0;
+  }
+
+  :global(.mobileMenuOpened) .headerMenuWrapper {
+    display: grid;
+    align-self: stretch;
+    grid-template-rows: [row1] 1fr [row2] max-content [row3] 1fr;
+    grid-template-areas: "nav nav nav"
+      "user-nav user-nav user-nav"
+      "mode-switcher mode-switcher mode-switcher";
+    row-gap: 20px;
+    margin-left: -30px;
+    margin-right: -30px;
+    padding-top: 15px;
+  }
+
+  .headerNav {
+    display: none;
+    align-self: end;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  :global(.mobileMenuOpened) .headerNav {
+    display: flex;
+    padding-right: 0;
+  }
+
+  .headerModeSwitcher {
+    display: none;
+  }
+
+  .headerModeIcon path {
+    stroke: var(--header-mobile-mode-icon-color);
+  }
+
+  .headerModeIcon.headerModeActiveIcon path {
+    stroke: var(--header-mobile-mode-active-icon-color);
+  }
+
+  .headerModeIcon.headerModeActiveIcon:hover path {
+    stroke: var(--header-mobile-mode-active-icon-color);
+  }
+
+  :global(.mobileMenuOpened) .headerModeSwitcher {
+    display: flex;
+    justify-self: center;
+    align-self: flex-start;
+  }
+
+  .headerCart {
+    margin-right: 15px;
+  }
+
+  .headerMobileMenuButton {
+    display: flex;
+  }
+
+  .headerNavLink {
+    color: var(--header-mobile-link-color);
+  }
+
+  .headerNavLink:hover {
+    color: var(--header-mobile-link-color);
   }
 }

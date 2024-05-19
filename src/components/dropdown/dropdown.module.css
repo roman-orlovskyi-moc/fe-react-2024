@@ -1,0 +1,81 @@
+.dropdown {
+  position: relative;
+  height: 40px;
+  color: var(--dropdown-opened-text-color);
+}
+
+.dropdownItemContainer {
+  border: 1px solid var(--dropdown-border-color);
+  border-radius: 20px;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.dropdownItemButton {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--dropdown-opened-text-color);
+}
+
+.dropdownItemButton:hover {
+  background-color: var(--main-red-hover-color);
+  border-radius: 50px;
+  color: var(--main-white-color);
+}
+
+.dropdownItemButton.dropdownItemButtonActive {
+  background-color: var(--main-red-color);
+  border-radius: 50px;
+  color: var(--main-white-color);
+}
+
+.dropdownItemsList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dropdownContent {
+  position: absolute;
+  width: 100%;
+}
+
+.dropdownContent .dropdownItemContainer {
+  background-color: var(--dropdown-opened-background-color);
+}
+
+.dropdownOpenButton {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  z-index: 1;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdownOpenButtonIcon {
+  width: 14px;
+  height: 14px;
+  transform: rotate(270deg);
+}
+
+.dropdownOpenButtonIcon path {
+  stroke: var(--dropdown-open-button-icon-color);
+}
+
+.dropdownContent .dropdownOpenButtonIcon {
+  transform: rotate(90deg);
+}
