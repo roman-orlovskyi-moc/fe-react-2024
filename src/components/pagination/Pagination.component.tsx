@@ -15,6 +15,7 @@ interface PaginationProps {
 
 export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, total, setCurrentPage }) => {
     const totalPages = calculateTotalPages(total, limit);
+    const currentPage = page > totalPages ? 1 : page;
 
     const setPreviousPage = (pageNumber: number) => setCurrentPage(pageNumber <= 1 ? 1 : pageNumber - 1);
     const setNextPage = (pageNumber: number) => setCurrentPage(pageNumber >= totalPages ? totalPages : pageNumber + 1);
@@ -25,19 +26,19 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                 <li>
                     <button
                         className={`${styles.paginationButton} ${styles.paginationArrowButton}`}
-                        onClick={() => setPreviousPage(page)}
-                        disabled={page === 1}
+                        onClick={() => setPreviousPage(currentPage)}
+                        disabled={currentPage === 1}
                     >
                         <ArrowIconComponent className={styles.paginationArrowIcon} title="Previous page" />
                     </button>
                 </li>
-                {getPagination(page, totalPages).map((pageNumber, index) => (
+                {getPagination(currentPage, totalPages).map((pageNumber, index) => (
                     <li key={index}>
                         {pageNumber === -1 ? (
                             <span className={`${styles.paginationButton} ${styles.paginationEmptyButton}`}>...</span>
                         ) : (
                             <button
-                                className={`${styles.paginationButton} ${pageNumber === page ? styles.paginationButtonActive : ''}`}
+                                className={`${styles.paginationButton} ${pageNumber === currentPage ? styles.paginationButtonActive : ''}`}
                                 onClick={() => setCurrentPage(pageNumber)}
                             >
                                 {pageNumber}
@@ -48,8 +49,8 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                 <li>
                     <button
                         className={`${styles.paginationButton} ${styles.paginationArrowButton}`}
-                        onClick={() => setNextPage(page)}
-                        disabled={page === totalPages}
+                        onClick={() => setNextPage(currentPage)}
+                        disabled={currentPage === totalPages}
                     >
                         <ArrowIconComponent
                             className={`${styles.paginationArrowIcon} ${styles.paginationNextButtonIcon}`}
