@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { calculateTotalPages, getPagination } from '@/helpers/paginationHelper.ts';
+
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 
 import styles from './pagination.module.css';
@@ -12,8 +14,7 @@ interface PaginationProps {
 }
 
 export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, total, setCurrentPage }) => {
-    const totalPages: number = Math.ceil(total / limit);
-    const pages: number[] = Array.from({ length: totalPages }, (_, index) => index + 1);
+    const totalPages = calculateTotalPages(total, limit);
 
     const setPreviousPage = (pageNumber: number) => setCurrentPage(pageNumber <= 1 ? 1 : pageNumber - 1);
     const setNextPage = (pageNumber: number) => setCurrentPage(pageNumber >= totalPages ? totalPages : pageNumber + 1);
@@ -30,14 +31,18 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                         <ArrowIconComponent className={styles.paginationArrowIcon} title="Previous page" />
                     </button>
                 </li>
-                {pages.map((pageNumber) => (
-                    <li key={pageNumber}>
-                        <button
-                            className={`${styles.paginationButton} ${pageNumber === page ? styles.paginationButtonActive : ''}`}
-                            onClick={() => setCurrentPage(pageNumber)}
-                        >
-                            {pageNumber}
-                        </button>
+                {getPagination(page, totalPages).map((pageNumber, index) => (
+                    <li key={index}>
+                        {pageNumber === -1 ? (
+                            <span>...</span>
+                        ) : (
+                            <button
+                                className={`${styles.paginationButton} ${pageNumber === page ? styles.paginationButtonActive : ''}`}
+                                onClick={() => setCurrentPage(pageNumber)}
+                            >
+                                {pageNumber}
+                            </button>
+                        )}
                     </li>
                 ))}
                 <li>
