@@ -8,13 +8,16 @@
 }
 
 .paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: inherit;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   color: inherit;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background: none;
   padding: 0;
   border: 1px solid var(--pagination-button-border-color);
@@ -23,6 +26,10 @@
   padding-block: 0;
   padding-inline: 0;
   outline: none;
+}
+
+.paginationEmptyButton {
+  border: none;
 }
 
 .paginationButton:hover {

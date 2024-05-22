@@ -34,7 +34,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                 {getPagination(page, totalPages).map((pageNumber, index) => (
                     <li key={index}>
                         {pageNumber === -1 ? (
-                            <span>...</span>
+                            <span className={`${styles.paginationButton} ${styles.paginationEmptyButton}`}>...</span>
                         ) : (
                             <button
                                 className={`${styles.paginationButton} ${pageNumber === page ? styles.paginationButtonActive : ''}`}
