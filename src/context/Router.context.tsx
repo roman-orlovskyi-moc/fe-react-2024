@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react';
 import { buildRoutePath, parseRoute, prepareRoutePathParameters } from '@/helpers/routerContextHelper.ts';
 
 import type { Route } from '../interfaces/Route.interface.tsx';
-import type { Router } from '../interfaces/Router.interface.tsx';
+import type { RouterContextProps } from '../interfaces/RouterContextProps.interface.tsx';
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
-export const RouterContext = createContext<Router>({
+export const RouterContext = createContext<RouterContextProps>({
     route: { path: '/about', parameters: {} },
     setRoutePath: (route: string, parameters?: RouteParameters) => {},
     setRoutePathParameters: (parameters: RouteParameters) => {},
