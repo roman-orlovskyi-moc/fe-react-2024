@@ -4,6 +4,7 @@ import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
+import { calculateCartItemsCount } from '@/helpers/cartContextHelper.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
@@ -24,7 +25,7 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
     const { route, setRoutePath } = useContext(RouterContext);
     const { cart } = useContext(CartContext);
     const { themeMode, setThemeMode } = useContext(AppContext);
-    const cartItemsCount: number = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+    const cartItemsCount: number = calculateCartItemsCount(cart.items);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {
         const target = event.target as HTMLElement;

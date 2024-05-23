@@ -30,3 +30,5 @@ export const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart 
         return { items: newCartItems };
     }
 };
+
+export const calculateCartItemsCount = (cartItems: CartItem[]): number => cartItems.reduce((sum, item) => sum + item.quantity, 0);
