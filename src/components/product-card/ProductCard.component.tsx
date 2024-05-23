@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { AppContext } from '@/context/AppContext.context.tsx';
+import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
 import type { CartItem } from '@/interfaces/CartItem.interface.tsx';
 import type { Product } from '@/interfaces/Product.interface.tsx';
@@ -11,7 +11,7 @@ import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<Product> = (productData) => {
     const { setRoutePath } = useContext(RouterContext);
-    const { cart, addToCart } = useContext(AppContext);
+    const { cart, addToCart } = useContext(CartContext);
     const productCartItem: CartItem | undefined = cart.items.find((item) => item.id === productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 

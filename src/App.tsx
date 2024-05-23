@@ -4,6 +4,7 @@ import { FooterComponent } from './components/footer/Footer.component.tsx';
 import { HeaderComponent } from './components/header/Header.component.tsx';
 import { MainContentComponent } from './components/main-content/MainContent.component.tsx';
 import { AppContextProvider } from './context/AppContext.context.tsx';
+import { CartContextProvider } from './context/Cart.context.tsx';
 import { RouterContextProvider } from './context/Router.context.tsx';
 
 import styles from './App.module.css';
@@ -20,15 +21,17 @@ function App() {
 
     return (
         <RouterContextProvider>
-            <AppContextProvider>
-                <div className={`${styles.pageWrapper} ${isMobileMenuOpen ? 'mobileMenuOpened' : ''}`}>
-                    <HeaderComponent isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenuOpen={toggleMobileMenuOpen} />
-                    <main className={`${styles.mainContentWrapper} ${styles.contentWrapper}`}>
-                        <MainContentComponent fullName={FULL_NAME} nikName={NIK_NAME} />
-                    </main>
-                    <FooterComponent fullName={FULL_NAME} />
-                </div>
-            </AppContextProvider>
+            <CartContextProvider>
+                <AppContextProvider>
+                    <div className={`${styles.pageWrapper} ${isMobileMenuOpen ? 'mobileMenuOpened' : ''}`}>
+                        <HeaderComponent isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenuOpen={toggleMobileMenuOpen} />
+                        <main className={`${styles.mainContentWrapper} ${styles.contentWrapper}`}>
+                            <MainContentComponent fullName={FULL_NAME} nikName={NIK_NAME} />
+                        </main>
+                        <FooterComponent fullName={FULL_NAME} />
+                    </div>
+                </AppContextProvider>
+            </CartContextProvider>
         </RouterContextProvider>
     );
 }
