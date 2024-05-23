@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import { AppContext } from '@/context/AppContext.context.tsx';
+import { RouterContext } from '@/context/Router.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
 import {
     parseRouteParametersCategories,
@@ -17,7 +17,7 @@ import { ProductsListComponent } from '../products-list/ProductsList.component.t
 export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
 
-    const { route, setRoutePathParameters } = useContext(AppContext);
+    const { route, setRoutePathParameters } = useContext(RouterContext);
 
     const [productsFilter, setProductsFilter] = useState(() => {
         const routeParameters: RouteParameters = route.parameters || {};

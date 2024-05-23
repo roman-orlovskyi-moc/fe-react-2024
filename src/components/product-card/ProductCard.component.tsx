@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { AppContext } from '@/context/AppContext.context.tsx';
+import { RouterContext } from '@/context/Router.context.tsx';
 import type { CartItem } from '@/interfaces/CartItem.interface.tsx';
 import type { Product } from '@/interfaces/Product.interface.tsx';
 
@@ -9,7 +10,8 @@ import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.c
 import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<Product> = (productData) => {
-    const { cart, addToCart, setRoutePath } = useContext(AppContext);
+    const { setRoutePath } = useContext(RouterContext);
+    const { cart, addToCart } = useContext(AppContext);
     const productCartItem: CartItem | undefined = cart.items.find((item) => item.id === productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 

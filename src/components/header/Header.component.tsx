@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
 import { AppContext } from '@/context/AppContext.context.tsx';
+import { RouterContext } from '@/context/Router.context.tsx';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
@@ -19,7 +20,8 @@ interface HeaderProps {
 }
 
 export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
-    const { cart, themeMode, setThemeMode, route, setRoutePath } = useContext(AppContext);
+    const { route, setRoutePath } = useContext(RouterContext);
+    const { cart, themeMode, setThemeMode } = useContext(AppContext);
     const cartItemsCount: number = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {

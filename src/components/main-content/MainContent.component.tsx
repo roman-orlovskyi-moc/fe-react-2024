@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { AppContext } from '@/context/AppContext.context.tsx';
+import { RouterContext } from '@/context/Router.context.tsx';
 
 import { AboutComponent } from '../about/About.component.tsx';
 import { PageNotFoundComponent } from '../page-not-found/PageNotFound.component.tsx';
@@ -13,7 +13,7 @@ interface MainContentProps {
 }
 
 export const MainContentComponent: React.FC<MainContentProps> = ({ fullName, nikName }) => {
-    const { route } = useContext(AppContext);
+    const { route } = useContext(RouterContext);
 
     const productPageRegExp: RegExp = /^\/product\/\d+$/;
 

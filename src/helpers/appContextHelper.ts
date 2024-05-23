@@ -1,5 +1,3 @@
-import type { RouteParameters } from '@/types/RouteParameters.type.tsx';
-
 import type { Cart } from '../interfaces/Cart.interface.tsx';
 import type { CartItem } from '../interfaces/CartItem.interface.tsx';
 import type { ColorScheme } from '../types/ColorScheme.type.tsx';
@@ -50,21 +48,5 @@ export const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart 
         );
 
         return { items: newCartItems };
-    }
-};
-
-export const prepareRoutePathParameters = (currentParameters: RouteParameters, newParameters: RouteParameters): RouteParameters => {
-    if (newParameters) {
-        const parameters: RouteParameters = { ...currentParameters, ...newParameters };
-
-        Object.keys(parameters).forEach((key: string) => {
-            if (!parameters[key]) {
-                delete parameters[key];
-            }
-        });
-
-        return parameters;
-    } else {
-        return {};
     }
 };

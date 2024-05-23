@@ -19,3 +19,19 @@ export const buildRoutePath = (path: string, parameters?: RouteParameters): stri
 
     return `${path}${searchParametersString}`;
 };
+
+export const prepareRoutePathParameters = (currentParameters: RouteParameters, newParameters: RouteParameters): RouteParameters => {
+    if (newParameters) {
+        const parameters: RouteParameters = { ...currentParameters, ...newParameters };
+
+        Object.keys(parameters).forEach((key: string) => {
+            if (!parameters[key]) {
+                delete parameters[key];
+            }
+        });
+
+        return parameters;
+    } else {
+        return {};
+    }
+};
