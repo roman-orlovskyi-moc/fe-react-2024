@@ -50,6 +50,7 @@
   --dropdown-opened-text-color: var(--main-white-color);
   --dropdown-border-color: var(--sixth-grey-color);
   --dropdown-open-button-icon-color: var(--main-white-color);
+  --dropdown-open-button-active-icon-color: var(--main-white-color);
   --product-card-border-color: var(--secondary-grey-color);
   --product-card-hover-background-color: var(--secondary-grey-color);
   --product-card-add-to-cart-icon-color: var(--main-white-color);
@@ -98,6 +99,7 @@
   --dropdown-opened-text-color: var(--sixth-grey-color);
   --dropdown-border-color: var(--seventh-grey-color);
   --dropdown-open-button-icon-color: var(--sixth-grey-color);
+  --dropdown-open-button-active-icon-color: var(--main-white-color);
   --product-card-border-color: var(--fourth-grey-color);
   --product-card-hover-background-color: var(--fifth-grey-color);
   --product-card-add-to-cart-icon-color: var(--main-grey-color);

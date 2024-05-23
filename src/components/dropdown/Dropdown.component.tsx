@@ -28,12 +28,13 @@ export const DropdownComponent: React.FC<DropdownProps> = ({ options, onDropdown
     };
 
     const selectedOption: DropdownOption = options.find((option) => option.value === selectedValue) || options[0];
+    const isFirstOptionSelected: boolean = selectedOption.value === options[0].value;
 
     return (
         <div className={styles.dropdown}>
             {!isDropdownOpen && (
                 <div className={styles.dropdownItemContainer} onClick={handleDropdownClick}>
-                    <div className={styles.dropdownItem}>
+                    <div className={styles.dropdownItemButton}>
                         {selectedOption.label}
                         <button className={styles.dropdownOpenButton}>
                             <ArrowIconComponent className={styles.dropdownOpenButtonIcon} />
@@ -43,18 +44,24 @@ export const DropdownComponent: React.FC<DropdownProps> = ({ options, onDropdown
             )}
             {isDropdownOpen && (
                 <div className={styles.dropdownContent}>
-                    <button className={styles.dropdownOpenButton} onClick={handleDropdownClick}>
-                        <ArrowIconComponent className={styles.dropdownOpenButtonIcon} />
-                    </button>
                     <ul className={`${styles.dropdownItemContainer} ${styles.dropdownItemsList}`}>
                         {options.map((option, index) => (
-                            <li key={index}>
+                            <li key={index} className={styles.dropdownItem}>
                                 <button
-                                    className={`${styles.dropdownItem} ${styles.dropdownItemButton} ${selectedOption.value === option.value ? styles.dropdownItemButtonActive : ''}`}
+                                    className={`${styles.dropdownItemButton} ${selectedOption.value === option.value ? styles.dropdownItemButtonActive : ''}`}
                                     onClick={() => handleOptionClick(option.value)}
                                 >
                                     {option.label}
                                 </button>
+                                {index === 0 ? (
+                                    <button className={styles.dropdownOpenButton} onClick={handleDropdownClick}>
+                                        <ArrowIconComponent
+                                            className={`${styles.dropdownOpenButtonIcon} ${isFirstOptionSelected ? styles.dropdownOpenButtonIconActive : ''}`}
+                                        />
+                                    </button>
+                                ) : (
+                                    ''
+                                )}
                             </li>
                         ))}
                     </ul>
