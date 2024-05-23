@@ -1,5 +1,7 @@
 .pageWrapper {
   width: 100%;
+  color: var(--page-text-color);
+  background-color: var(--page-background-color);
 }
 
 .contentWrapper {

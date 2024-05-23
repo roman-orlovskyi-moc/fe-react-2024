@@ -7,8 +7,6 @@
 
 :root {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
-  color: var(--page-text-color);
-  background-color: var(--page-background-color);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark light;
@@ -30,7 +28,7 @@
   --seventh-grey-color: #E1E1E1;
 }
 
-:root.dark {
+.dark {
   --page-background-color: var(--main-grey-color);
   --page-text-color: var(--main-white-color);
   --link-color: var(--main-white-color);
@@ -78,7 +76,7 @@
   --footer-divider-border-color: var(--secondary-grey-color);
 }
 
-:root.light {
+.light {
   --page-background-color: var(--main-white-color);
   --page-text-color: var(--main-grey-color);
   --link-color: var(--main-grey-color);

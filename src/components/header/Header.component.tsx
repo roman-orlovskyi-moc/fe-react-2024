@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
-import { AppContext } from '@/context/AppContext.context.tsx';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
 import { calculateCartItemsCount } from '@/helpers/cartContextHelper.ts';
+import type { ColorScheme } from '@/types/ColorScheme.type.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
@@ -17,14 +17,15 @@ import { MobileMenuIconComponent } from '../icon/MobileMenuIcon.component.tsx';
 import styles from './header.module.css';
 
 interface HeaderProps {
+    themeMode: ColorScheme;
+    setThemeMode: (mode: ColorScheme) => void;
     isMobileMenuOpen: boolean;
     toggleMobileMenuOpen: () => void;
 }
 
-export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
+export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode, isMobileMenuOpen, toggleMobileMenuOpen }) => {
     const { route, setRoutePath } = useContext(RouterContext);
     const { cart } = useContext(CartContext);
-    const { themeMode, setThemeMode } = useContext(AppContext);
     const cartItemsCount: number = calculateCartItemsCount(cart.items);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {
