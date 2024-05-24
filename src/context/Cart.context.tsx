@@ -2,9 +2,9 @@ import React, { createContext, useEffect, useState } from 'react';
 
 import { parseStoredCartData, prepareUpdatedCartData, setStoredCartData } from '@/helpers/cartContextHelper.ts';
 
-import type { Cart } from '../interfaces/Cart.interface.tsx';
-import type { CartContextProps } from '../interfaces/CartContextProps.interface.tsx';
-import type { CartItem } from '../interfaces/CartItem.interface.tsx';
+import type { Cart } from '../interfaces/Cart.interface.ts';
+import type { CartContextProps } from '../interfaces/CartContextProps.interface.ts';
+import type { CartItem } from '../interfaces/CartItem.interface.ts';
 
 export const CartContext = createContext<CartContextProps>({
     cart: { items: [] },

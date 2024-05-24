@@ -2,8 +2,8 @@ import React, { createContext, useState } from 'react';
 
 import { buildRoutePath, parseRoute, prepareRoutePathParameters } from '@/helpers/routerContextHelper.ts';
 
-import type { Route } from '../interfaces/Route.interface.tsx';
-import type { RouterContextProps } from '../interfaces/RouterContextProps.interface.tsx';
+import type { Route } from '../interfaces/Route.interface.ts';
+import type { RouterContextProps } from '../interfaces/RouterContextProps.interface.ts';
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 export const RouterContext = createContext<RouterContextProps>({

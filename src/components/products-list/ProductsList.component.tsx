@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Product } from '@/interfaces/Product.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.ts';
 
 import { ProductCardComponent } from '../product-card/ProductCard.component.tsx';
 

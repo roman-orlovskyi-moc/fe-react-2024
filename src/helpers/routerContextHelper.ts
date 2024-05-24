@@ -1,4 +1,4 @@
-import type { Route } from '../interfaces/Route.interface.tsx';
+import type { Route } from '../interfaces/Route.interface.ts';
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
 export const parseRoute = (route: string): Route => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Icon } from '@/interfaces/Icon.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.ts';
 
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
 

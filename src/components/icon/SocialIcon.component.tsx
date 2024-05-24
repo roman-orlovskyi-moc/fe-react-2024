@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Icon } from '@/interfaces/Icon.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.ts';
 
 import { FacebookIconComponent } from '../icon/FacebookIcon.component.tsx';
 import { InstagramIconComponent } from '../icon/InstagramIcon.component.tsx';

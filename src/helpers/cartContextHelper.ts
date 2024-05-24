@@ -1,5 +1,5 @@
-import type { Cart } from '../interfaces/Cart.interface.tsx';
-import type { CartItem } from '../interfaces/CartItem.interface.tsx';
+import type { Cart } from '../interfaces/Cart.interface.ts';
+import type { CartItem } from '../interfaces/CartItem.interface.ts';
 
 export const parseStoredCartData = (): Cart => {
     const savedCartData: string | null = getStoredCartData();

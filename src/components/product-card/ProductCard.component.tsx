@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
-import type { CartItem } from '@/interfaces/CartItem.interface.tsx';
-import type { Product } from '@/interfaces/Product.interface.tsx';
+import type { CartItem } from '@/interfaces/CartItem.interface.ts';
+import type { Product } from '@/interfaces/Product.interface.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 

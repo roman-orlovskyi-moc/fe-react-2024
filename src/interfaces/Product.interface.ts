@@ -1,4 +1,4 @@
-import type { Category } from './Category.interface.tsx';
+import type { Category } from './Category.interface.ts';
 
 export interface Product {
     id: number;

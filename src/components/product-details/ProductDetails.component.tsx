@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import appStyles from '@/App.module.css';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
-import type { Product } from '@/interfaces/Product.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.ts';
 
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';

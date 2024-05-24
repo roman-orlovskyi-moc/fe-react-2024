@@ -1,6 +1,6 @@
 import type { RouteParameters } from '../types/RouteParameters.type.tsx';
 
-import type { Route } from './Route.interface.tsx';
+import type { Route } from './Route.interface.ts';
 
 export interface RouterContextProps {
     route: Route;

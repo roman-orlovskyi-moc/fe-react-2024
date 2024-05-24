@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Icon } from '@/interfaces/Icon.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.ts';
 
 export const LogoIconComponent: React.FC<Icon> = ({ className, title }) => (
     <svg width="46" height="46" viewBox="0 0 46 46" fill="none" className={className}>
