@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { RouterContext } from '@/context/Router.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
-import { parseRouteFilters } from '@/helpers/productsHelper.ts';
+import { parseRouteFilters } from '@/helpers/ProductsHelper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';

@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import { parseStoredCartData, prepareUpdatedCartData, setStoredCartData } from '@/helpers/cartContextHelper.ts';
+import { parseStoredCartData, prepareUpdatedCartData, setStoredCartData } from '@/helpers/CartContextHelper.ts';
 
 import type { Cart } from '../interfaces/Cart.interface.ts';
 import type { CartContextProps } from '../interfaces/CartContextProps.interface.ts';

@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import type { Product } from '@/interfaces/Product.interface.ts';
 
 import productsJSONData from '../assets/data/products.json';
-import { filterProductsByCategory, filterProductsByTitle, sliceProducts, sortProducts } from '../helpers/productsListDataProviderHelper.ts';
+import { filterProductsByCategory, filterProductsByTitle, sliceProducts, sortProducts } from '../helpers/ProductsListDataProviderHelper.ts';
 
 interface ProductsData {
     products: Product[];
