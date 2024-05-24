@@ -1,4 +1,4 @@
-import { ROUTES } from '../constants/Routes.ts';
+import { ROUTES } from '../constants/Routes.constant.ts';
 import type { Route } from '../interfaces/Route.interface.ts';
 import type { RouteParameters } from '../types/RouteParameters.type.ts';
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
-import { ROUTES } from '@/constants/Routes.ts';
+import { ROUTES } from '@/constants/Routes.constant.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
 import type { Product } from '@/interfaces/Product.interface.ts';

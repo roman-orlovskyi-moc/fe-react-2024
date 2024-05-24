@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { ROUTES } from '@/constants/Routes.ts';
+import { ROUTES } from '@/constants/Routes.constant.ts';
 import { RouterContext } from '@/context/Router.context.tsx';
 
 import { AboutComponent } from '../about/About.component.tsx';
