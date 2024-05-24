@@ -4,6 +4,7 @@ import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
+import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
 import type { Product } from '@/interfaces/Product.interface.ts';
 
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
@@ -28,8 +29,6 @@ export const ProductDetailsComponent: React.FC<Product> = (productData) => {
         addToCart({ id: productData.id, quantity: 1 });
     };
 
-    const formattedPrice = (price: number) => price.toLocaleString('uk-UA');
-
     return (
         <div className={styles.productDetails}>
             <div className={styles.productDetailsColumn}>
@@ -49,7 +48,7 @@ export const ProductDetailsComponent: React.FC<Product> = (productData) => {
                         {productData.category.name}
                     </button>
                     <div className={styles.productDetailsDescription}>{productData.description}</div>
-                    <div className={styles.productDetailsPrice}>{formattedPrice(productData.price)} ₴</div>
+                    <div className={styles.productDetailsPrice}>{formatPrice(productData.price)} ₴</div>
                     <button
                         className={`${appStyles.button} ${styles.productDetailsAddToCartButton}`}
                         type="button"
