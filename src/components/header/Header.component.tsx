@@ -4,7 +4,7 @@ import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
-import { calculateCartItemsCount } from '@/helpers/CartContextHelper.ts';
+import { calculateCartItemsCount } from '@/helpers/CartContext.helper.ts';
 import type { ColorScheme } from '@/types/ColorScheme.type.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';

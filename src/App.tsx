@@ -5,7 +5,7 @@ import { HeaderComponent } from './components/header/Header.component.tsx';
 import { MainContentComponent } from './components/main-content/MainContent.component.tsx';
 import { CartContextProvider } from './context/Cart.context.tsx';
 import { RouterContextProvider } from './context/Router.context.tsx';
-import { parseColorScheme, setStoredColorScheme, updateRootColorSchemeClass } from './helpers/AppHelper.ts';
+import { parseColorScheme, setStoredColorScheme, updateRootColorSchemeClass } from './helpers/App.helper.ts';
 import type { ColorScheme } from './types/ColorScheme.type.ts';
 
 import styles from './App.module.css';

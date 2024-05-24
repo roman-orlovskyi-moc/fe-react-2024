@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { calculateTotalPages, getPagination } from '@/helpers/PaginationHelper.ts';
+import { calculateTotalPages, getPagination } from '@/helpers/Pagination.helper.ts';
 
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 
