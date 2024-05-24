@@ -28,11 +28,12 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode
     const { route, setRoutePath } = useContext(RouterContext);
     const { cart } = useContext(CartContext);
     const cartItemsCount: number = calculateCartItemsCount(cart.items);
+    const MOBILE_MENU_CLOSE_CLICK_TAGS: Set<string> = new Set(['A', 'BUTTON']);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {
         const target = event.target as HTMLElement;
 
-        if (isMobileMenuOpen && target && ['A', 'BUTTON'].includes(target.tagName)) {
+        if (isMobileMenuOpen && target && MOBILE_MENU_CLOSE_CLICK_TAGS.has(target.tagName)) {
             toggleMobileMenuOpen();
         }
     };
