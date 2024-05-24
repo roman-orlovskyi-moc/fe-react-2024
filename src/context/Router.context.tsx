@@ -1,6 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
-import { buildRoutePath, parseRoute, prepareRoutePathParameters } from '@/helpers/routerContextHelper.ts';
+import { buildRoutePath, parseLocationHash, prepareRoutePathParameters } from '@/helpers/routerContextHelper.ts';
 
 import type { Route } from '../interfaces/Route.interface.ts';
 import type { RouterContextProps } from '../interfaces/RouterContextProps.interface.ts';
@@ -18,13 +18,27 @@ interface RouterContextProviderProps {
 }
 
 export const RouterContextProvider: React.FC<RouterContextProviderProps> = ({ children }) => {
-    const [route, setRoute] = useState<Route>(parseRoute(window.location.hash || '/about'));
+    const [route, setRoute] = useState<Route>(parseLocationHash());
     const [previousRoute, setPreviousRoute] = useState<Route | null>(null);
 
+    useEffect(() => {
+        const handleHashChange = () => {
+            setRoute((currentRoute) => {
+                setPreviousRoute(currentRoute);
+
+                return parseLocationHash();
+            });
+        };
+
+        window.addEventListener('hashchange', handleHashChange);
+
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        };
+    }, []);
+
     const setRoutePath = (path: string, parameters?: RouteParameters) => {
-        setPreviousRoute(route);
-        setRoute({ path, parameters: parameters || {} });
-        setLocationHash(path, parameters);
+        window.location.hash = buildRoutePath(path, parameters);
     };
 
     const setRoutePathParameters = (parameters: RouteParameters) => {
@@ -37,10 +51,6 @@ export const RouterContextProvider: React.FC<RouterContextProviderProps> = ({ ch
         } else {
             setRoutePath(alternativePath || '/about', alternativeParameters);
         }
-    };
-
-    const setLocationHash = (path: string, parameters?: RouteParameters) => {
-        window.location.hash = buildRoutePath(path, parameters);
     };
 
     return (
