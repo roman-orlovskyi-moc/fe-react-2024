@@ -1,3 +1,15 @@
+import type { ProductsFilter } from '../interfaces/ProductsFilter.interface.ts';
+import type { RouteParameters } from '../types/RouteParameters.type.tsx';
+
+export const parseRouteFilters = (routeParameters: RouteParameters): ProductsFilter => {
+    const page = parseRouteParametersPage(routeParameters?.page);
+    const search = parseRouteParametersSearch(routeParameters?.search);
+    const categoryIds = parseRouteParametersCategories(routeParameters?.categories);
+    const sort = parseRouteParametersSort(routeParameters?.sort);
+
+    return { page, search, categoryIds, sort };
+};
+
 export const parseRouteParametersPage = (page: string | undefined): number => {
     const routeParametersPage: number | null = page ? Number.parseInt(page, 10) : null;
 

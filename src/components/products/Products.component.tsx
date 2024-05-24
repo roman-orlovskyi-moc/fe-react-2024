@@ -1,14 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { RouterContext } from '@/context/Router.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
-import {
-    parseRouteParametersCategories,
-    parseRouteParametersPage,
-    parseRouteParametersSearch,
-    parseRouteParametersSort,
-} from '@/helpers/productsHelper.ts';
-import type { RouteParameters } from '@/types/RouteParameters.type.tsx';
+import { parseRouteFilters } from '@/helpers/productsHelper.ts';
+import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
@@ -19,15 +14,11 @@ export const ProductsComponent: React.FC = () => {
 
     const { route, setRoutePathParameters } = useContext(RouterContext);
 
-    const [productsFilter, setProductsFilter] = useState(() => {
-        const routeParameters: RouteParameters = route.parameters || {};
-        const page: number = parseRouteParametersPage(routeParameters.page);
-        const search: string = parseRouteParametersSearch(routeParameters.search);
-        const categoryIds: number[] = parseRouteParametersCategories(routeParameters.categories);
-        const sort: string = parseRouteParametersSort(routeParameters.sort);
+    const [productsFilter, setProductsFilter] = useState<ProductsFilter>(() => parseRouteFilters(route.parameters || {}));
 
-        return { page, search, categoryIds, sort };
-    });
+    useEffect(() => {
+        setProductsFilter(parseRouteFilters(route.parameters || {}));
+    }, [route]);
 
     const setCurrentPageWithRoute = (page: number) => {
         setProductsFilter({ ...productsFilter, page });
