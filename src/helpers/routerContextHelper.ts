@@ -1,7 +1,8 @@
+import { ROUTES } from '../constants/routes.ts';
 import type { Route } from '../interfaces/Route.interface.ts';
 import type { RouteParameters } from '../types/RouteParameters.type.ts';
 
-export const parseLocationHash = (): Route => parseRoute(window.location.hash || '/about');
+export const parseLocationHash = (): Route => parseRoute(window.location.hash || ROUTES.ABOUT);
 
 export const parseRoute = (route: string): Route => {
     const routeWithoutHash: string = route.replace(/^#/, '');

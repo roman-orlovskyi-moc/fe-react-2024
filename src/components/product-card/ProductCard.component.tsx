@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+import { ROUTES } from '@/constants/routes.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
 import type { CartItem } from '@/interfaces/CartItem.interface.ts';
@@ -16,7 +17,7 @@ export const ProductCardComponent: React.FC<Product> = (productData) => {
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
     const showProductPage = () => {
-        setRoutePath(`/product/${productData.id}`);
+        setRoutePath(`${ROUTES.PRODUCT}${productData.id}`);
     };
 
     const addProductToCart = () => {

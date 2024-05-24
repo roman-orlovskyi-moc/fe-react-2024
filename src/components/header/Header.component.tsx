@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
+import { ROUTES } from '@/constants/routes.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
 import { calculateCartItemsCount } from '@/helpers/cartContextHelper.ts';
@@ -45,16 +46,16 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode
     };
 
     const showAboutPage = () => {
-        setRoutePath('/about');
+        setRoutePath(ROUTES.ABOUT);
     };
 
     const showProductsPage = () => {
-        setRoutePath('/products');
+        setRoutePath(ROUTES.PRODUCTS);
     };
 
-    const aboutPageActiveClass: string = route.path === '/about' ? styles.headerNavLinkActive : '';
+    const aboutPageActiveClass: string = route.path === ROUTES.ABOUT ? styles.headerNavLinkActive : '';
     const productsPageActiveClass: string =
-        route.path === '/products' || route.path.startsWith('/product/') ? styles.headerNavLinkActive : '';
+        route.path === ROUTES.PRODUCTS || route.path.startsWith(ROUTES.PRODUCT) ? styles.headerNavLinkActive : '';
 
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
+import { ROUTES } from '@/constants/routes.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { RouterContext } from '@/context/Router.context.tsx';
 import type { Product } from '@/interfaces/Product.interface.ts';
@@ -16,11 +17,11 @@ export const ProductDetailsComponent: React.FC<Product> = (productData) => {
     const { addToCart } = useContext(CartContext);
 
     const returnToProducts = () => {
-        backToPreviousRoute('/products');
+        backToPreviousRoute(ROUTES.PRODUCTS);
     };
 
     const navigateToProductCategory = (categoryId: number) => {
-        setRoutePath('/products', { page: '1', categories: categoryId.toString() });
+        setRoutePath(ROUTES.PRODUCTS, { page: '1', categories: categoryId.toString() });
     };
 
     const addProductToCart = () => {

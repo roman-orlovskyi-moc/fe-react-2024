@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import { buildRoutePath, parseLocationHash, prepareRoutePathParameters } from '@/helpers/routerContextHelper.ts';
-
+import { ROUTES } from '../constants/routes.ts';
+import { buildRoutePath, parseLocationHash, prepareRoutePathParameters } from '../helpers/routerContextHelper.ts';
 import type { Route } from '../interfaces/Route.interface.ts';
 import type { RouterContextProps } from '../interfaces/RouterContextProps.interface.ts';
 import type { RouteParameters } from '../types/RouteParameters.type.ts';
 
 export const RouterContext = createContext<RouterContextProps>({
-    route: { path: '/about', parameters: {} },
+    route: { path: ROUTES.ABOUT, parameters: {} },
     setRoutePath: (route: string, parameters?: RouteParameters) => {},
     setRoutePathParameters: (parameters: RouteParameters) => {},
     backToPreviousRoute: (alternativePath?: string, alternativeParameters?: RouteParameters) => {},
@@ -49,7 +49,7 @@ export const RouterContextProvider: React.FC<RouterContextProviderProps> = ({ ch
         if (previousRoute) {
             setRoutePath(previousRoute.path, previousRoute.parameters);
         } else {
-            setRoutePath(alternativePath || '/about', alternativeParameters);
+            setRoutePath(alternativePath || ROUTES.ABOUT, alternativeParameters);
         }
     };
 

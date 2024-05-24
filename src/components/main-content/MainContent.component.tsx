@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+import { ROUTES } from '@/constants/routes.ts';
 import { RouterContext } from '@/context/Router.context.tsx';
 
 import { AboutComponent } from '../about/About.component.tsx';
@@ -15,15 +16,15 @@ interface MainContentProps {
 export const MainContentComponent: React.FC<MainContentProps> = ({ fullName, nikName }) => {
     const { route } = useContext(RouterContext);
 
-    const productPageRegExp: RegExp = /^\/product\/\d+$/;
+    const productPageRegExp: RegExp = new RegExp(`${ROUTES.PRODUCT}(\\d+)`);
 
-    if (route.path === '/about') {
+    if (route.path === ROUTES.ABOUT) {
         return <AboutComponent fullName={fullName} nikName={nikName} />;
-    } else if (route.path === '/products') {
+    } else if (route.path === ROUTES.PRODUCTS) {
         return <ProductsComponent />;
     } else if (productPageRegExp.test(route.path)) {
-        const productId: number = Number(route.path.split('/').pop());
-
+        // @ts-ignore
+        const productId: number = Number(route.path.match(productPageRegExp)[1]);
         return <ProductComponent id={productId} />;
     } else {
         return <PageNotFoundComponent />;
