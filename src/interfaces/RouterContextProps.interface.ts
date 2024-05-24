@@ -1,4 +1,4 @@
-import type { RouteParameters } from '../types/RouteParameters.type.tsx';
+import type { RouteParameters } from '../types/RouteParameters.type.ts';
 
 import type { Route } from './Route.interface.ts';
 

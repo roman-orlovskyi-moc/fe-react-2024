@@ -1,5 +1,5 @@
 import type { ProductsFilter } from '../interfaces/ProductsFilter.interface.ts';
-import type { RouteParameters } from '../types/RouteParameters.type.tsx';
+import type { RouteParameters } from '../types/RouteParameters.type.ts';
 
 export const parseRouteFilters = (routeParameters: RouteParameters): ProductsFilter => {
     const page = parseRouteParametersPage(routeParameters?.page);

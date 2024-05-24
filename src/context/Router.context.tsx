@@ -4,7 +4,7 @@ import { buildRoutePath, parseRoute, prepareRoutePathParameters } from '@/helper
 
 import type { Route } from '../interfaces/Route.interface.ts';
 import type { RouterContextProps } from '../interfaces/RouterContextProps.interface.ts';
-import type { RouteParameters } from '../types/RouteParameters.type.tsx';
+import type { RouteParameters } from '../types/RouteParameters.type.ts';
 
 export const RouterContext = createContext<RouterContextProps>({
     route: { path: '/about', parameters: {} },

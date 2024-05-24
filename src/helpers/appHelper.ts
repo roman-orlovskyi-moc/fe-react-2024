@@ -1,4 +1,4 @@
-import type { ColorScheme } from '../types/ColorScheme.type.tsx';
+import type { ColorScheme } from '../types/ColorScheme.type.ts';
 
 export const parseColorScheme = (): ColorScheme => {
     const savedScheme: string | null = getStoredColorScheme();

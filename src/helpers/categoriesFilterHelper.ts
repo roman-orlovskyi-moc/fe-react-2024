@@ -1,4 +1,4 @@
-import type { CheckedCategories } from '../types/CheckedCategories.type.tsx';
+import type { CheckedCategories } from '../types/CheckedCategories.type.ts';
 
 export const transformCheckedCategoryIds = (checkedCategories: CheckedCategories): number[] =>
     Object.keys(checkedCategories)

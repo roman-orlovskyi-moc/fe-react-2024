@@ -1,5 +1,5 @@
 import type { Route } from '../interfaces/Route.interface.ts';
-import type { RouteParameters } from '../types/RouteParameters.type.tsx';
+import type { RouteParameters } from '../types/RouteParameters.type.ts';
 
 export const parseRoute = (route: string): Route => {
     const routeWithoutHash: string = route.replace(/^#/, '');
