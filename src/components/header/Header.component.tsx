@@ -62,7 +62,7 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode
         <header className={styles.header} onClick={handleMobileMenuClose}>
             <div className={`${appStyles.contentWrapper} ${styles.headerColumnWrapper}`}>
                 <a className={styles.headerLogoLink} href="/">
-                    <LogoIconComponent />
+                    <LogoIconComponent className={styles.headerLogoIcon} />
                 </a>
                 <div className={styles.headerMenuWrapper}>
                     <div className={styles.headerModeSwitcher}>

@@ -1,4 +1,6 @@
 .footer {
+  width: 100%;
+  box-sizing: border-box;
   text-align: center;
   padding-bottom: 40px;
 }
