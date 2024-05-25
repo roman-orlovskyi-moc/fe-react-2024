@@ -43,8 +43,11 @@
   --header-mobile-mode-icon-color: var(--sixth-grey-color);
   --header-account-button-text-color: var(--main-white-color);
   --header-account-mobile-button-text-color: var(--main-white-color);
-  --products-filter-search-background-color: var(--secondary-grey-color);
+  --products-filter-search-background-color: var(--main-grey-color);
+  --products-filter-search-border-color: var(--sixth-grey-color);
   --products-filter-search-text-color: var(--main-white-color);
+  --products-filter-search-hover-background-color: var(--secondary-grey-color);
+  --products-filter-search-hover-text-color: var(--main-white-color);
   --products-filter-category-button-text-color: var(--main-white-color);
   --dropdown-opened-background-color: var(--secondary-grey-color);
   --dropdown-opened-text-color: var(--main-white-color);
@@ -88,8 +91,11 @@
   --header-mobile-mode-icon-color: var(--sixth-grey-color);
   --header-account-button-text-color: var(--main-white-color);
   --header-account-mobile-button-text-color: var(--main-grey-color);
-  --products-filter-search-background-color: var(--fifth-grey-color);
-  --products-filter-search-text-color: var(--secondary-grey-color);
+  --products-filter-search-background-color: var(--main-white-color);
+  --products-filter-search-border-color: var(--seventh-grey-color);
+  --products-filter-search-text-color: var(--sixth-grey-color);
+  --products-filter-search-hover-background-color: var(--fifth-grey-color);
+  --products-filter-search-hover-text-color: var(--secondary-grey-color);
   --products-filter-category-button-text-color: var(--sixth-grey-color);
   --dropdown-opened-background-color: var(--main-white-color);
   --dropdown-opened-text-color: var(--sixth-grey-color);

@@ -34,12 +34,10 @@ export const DropdownComponent: React.FC<DropdownProps> = ({ options, onDropdown
         <div className={styles.dropdown}>
             {!isDropdownOpen && (
                 <div className={styles.dropdownItemContainer} onClick={handleDropdownClick}>
-                    <div className={styles.dropdownItemButton}>
-                        {selectedOption.label}
-                        <button className={styles.dropdownOpenButton}>
-                            <ArrowIconComponent className={styles.dropdownOpenButtonIcon} />
-                        </button>
-                    </div>
+                    <button className={styles.dropdownOpenButton}>
+                        <ArrowIconComponent className={styles.dropdownOpenButtonIcon} />
+                    </button>
+                    <button className={styles.dropdownItemButton}>{selectedOption.label}</button>
                 </div>
             )}
             {isDropdownOpen && (
@@ -47,12 +45,6 @@ export const DropdownComponent: React.FC<DropdownProps> = ({ options, onDropdown
                     <ul className={`${styles.dropdownItemContainer} ${styles.dropdownItemsList}`}>
                         {options.map((option, index) => (
                             <li key={index} className={styles.dropdownItem}>
-                                <button
-                                    className={`${styles.dropdownItemButton} ${selectedOption.value === option.value ? styles.dropdownItemButtonActive : ''}`}
-                                    onClick={() => handleOptionClick(option.value)}
-                                >
-                                    {option.label}
-                                </button>
                                 {index === 0 ? (
                                     <button className={styles.dropdownOpenButton} onClick={handleDropdownClick}>
                                         <ArrowIconComponent
@@ -62,6 +54,12 @@ export const DropdownComponent: React.FC<DropdownProps> = ({ options, onDropdown
                                 ) : (
                                     ''
                                 )}
+                                <button
+                                    className={`${styles.dropdownItemButton} ${selectedOption.value === option.value ? styles.dropdownItemButtonActive : ''}`}
+                                    onClick={() => handleOptionClick(option.value)}
+                                >
+                                    {option.label}
+                                </button>
                             </li>
                         ))}
                     </ul>

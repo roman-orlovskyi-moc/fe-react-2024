@@ -5,7 +5,7 @@
 }
 
 .searchFormInput {
-  border: 1px solid var(--products-filter-search-background-color);
+  border: 1px solid var(--products-filter-search-border-color);
   background-color: var(--products-filter-search-background-color);
   border-radius: 20px;
   width: 100%;
@@ -20,6 +20,12 @@
   font-size: 14px;
 }
 
+.searchFormInput:hover {
+  background-color: var(--products-filter-search-hover-background-color);
+  border-color: var(--products-filter-search-hover-background-color);
+  color: var(--products-filter-search-hover-text-color);
+}
+
 .searchFormButton {
   position: absolute;
   top: 0;
@@ -32,4 +38,13 @@
   padding: 0;
   cursor: pointer;
   outline: none;
+}
+
+.searchFormButton:hover {
+  background-color: var(--main-red-hover-color);
+}
+
+.searchFormIcon {
+  width: 18px;
+  height: 18px;
 }

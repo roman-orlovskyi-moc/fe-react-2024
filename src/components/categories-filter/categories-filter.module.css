@@ -20,12 +20,7 @@
   color: var(--products-filter-category-button-text-color);
 }
 
-.categoryFilterButton:hover {
-  background-color: var(--main-red-hover-color);
-  border-color: var(--main-red-hover-color);
-  color: var(--main-white-color);
-}
-
+.categoryFilterButton:hover,
 .categoryFilterCheckbox:checked + .categoryFilterButton {
   background-color: var(--main-red-color);
   border-color: var(--main-red-color);
