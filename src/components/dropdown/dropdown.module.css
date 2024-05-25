@@ -4,9 +4,12 @@
   color: var(--dropdown-opened-text-color);
 }
 
-.dropdownItemContainer {
+.dropdownItemsContainer {
   border: 1px solid var(--dropdown-border-color);
   border-radius: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .dropdownItemButton {
@@ -35,18 +38,12 @@
   color: var(--main-white-color);
 }
 
-.dropdownItemsList {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .dropdownContent {
   position: absolute;
   width: 100%;
 }
 
-.dropdownContent .dropdownItemContainer {
+.dropdownContent .dropdownItemsContainer {
   background-color: var(--dropdown-opened-background-color);
 }
 
@@ -72,7 +69,7 @@
 }
 
 .dropdownOpenButtonIconActive path,
-.dropdownItemButton:hover + .dropdownOpenButton .dropdownOpenButtonIcon path {
+.dropdownItem:hover .dropdownOpenButtonIcon path {
   stroke: var(--dropdown-open-button-active-icon-color);
 }
 

@@ -33,16 +33,18 @@ export const DropdownComponent: React.FC<DropdownProps> = ({ options, onDropdown
     return (
         <div className={styles.dropdown}>
             {!isDropdownOpen && (
-                <div className={styles.dropdownItemContainer} onClick={handleDropdownClick}>
-                    <button className={styles.dropdownOpenButton}>
-                        <ArrowIconComponent className={styles.dropdownOpenButtonIcon} />
-                    </button>
-                    <button className={styles.dropdownItemButton}>{selectedOption.label}</button>
+                <div className={styles.dropdownItemsContainer} onClick={handleDropdownClick}>
+                    <div className={styles.dropdownItem}>
+                        <button className={styles.dropdownOpenButton}>
+                            <ArrowIconComponent className={styles.dropdownOpenButtonIcon} />
+                        </button>
+                        <button className={styles.dropdownItemButton}>{selectedOption.label}</button>
+                    </div>
                 </div>
             )}
             {isDropdownOpen && (
                 <div className={styles.dropdownContent}>
-                    <ul className={`${styles.dropdownItemContainer} ${styles.dropdownItemsList}`}>
+                    <ul className={styles.dropdownItemsContainer}>
                         {options.map((option, index) => (
                             <li key={index} className={styles.dropdownItem}>
                                 {index === 0 ? (
