@@ -10,13 +10,4 @@ export const parseColorScheme = (): ColorScheme => {
 
 const getStoredColorScheme = (): string | null => localStorage.getItem('themeMode');
 
-export const updateRootColorSchemeClass = (appWrapper: HTMLDivElement | null, colorScheme: ColorScheme) => {
-    if (appWrapper) {
-        const removeThemeClasses: string[] = ['dark', 'light'];
-
-        appWrapper.classList.remove(...removeThemeClasses);
-        appWrapper.classList.add(colorScheme);
-    }
-};
-
 export const setStoredColorScheme = (colorScheme: ColorScheme) => localStorage.setItem('themeMode', colorScheme);
