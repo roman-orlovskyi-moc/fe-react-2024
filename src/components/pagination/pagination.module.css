@@ -84,21 +84,7 @@
 
 @media (max-width: 768px) {
 
-  .paginationButton {
-    background-color: var(--pagination-mobile-button-background-color);
-    border-color: var(--pagination-mobile-button-border-color);
-    color: var(--pagination-mobile-button-text-color);
-  }
-
-  .paginationButton:disabled:hover {
-    background-color: var(--pagination-mobile-button-border-color);
-  }
-
   .paginationButton.paginationButtonActive {
     font-weight: 700;
-  }
-
-  .paginationArrowIcon path {
-    stroke: var(--pagination-mobile-arrow-icon-color);
   }
 }
