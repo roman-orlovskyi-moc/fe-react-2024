@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { calculateTotalPages, getPagination } from '@/helpers/Pagination.helper.ts';
+
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 
 import styles from './pagination.module.css';
@@ -12,8 +14,8 @@ interface PaginationProps {
 }
 
 export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, total, setCurrentPage }) => {
-    const totalPages: number = Math.ceil(total / limit);
-    const pages: number[] = Array.from({ length: totalPages }, (_, index) => index + 1);
+    const totalPages = calculateTotalPages(total, limit);
+    const currentPage = page > totalPages ? 0 : page;
 
     const setPreviousPage = (pageNumber: number) => setCurrentPage(pageNumber <= 1 ? 1 : pageNumber - 1);
     const setNextPage = (pageNumber: number) => setCurrentPage(pageNumber >= totalPages ? totalPages : pageNumber + 1);
@@ -24,27 +26,31 @@ export const PaginationComponent: React.FC<PaginationProps> = ({ page, limit, to
                 <li>
                     <button
                         className={`${styles.paginationButton} ${styles.paginationArrowButton}`}
-                        onClick={() => setPreviousPage(page)}
-                        disabled={page === 1}
+                        onClick={() => setPreviousPage(currentPage)}
+                        disabled={currentPage === 1}
                     >
                         <ArrowIconComponent className={styles.paginationArrowIcon} title="Previous page" />
                     </button>
                 </li>
-                {pages.map((pageNumber) => (
-                    <li key={pageNumber}>
-                        <button
-                            className={`${styles.paginationButton} ${pageNumber === page ? styles.paginationButtonActive : ''}`}
-                            onClick={() => setCurrentPage(pageNumber)}
-                        >
-                            {pageNumber}
-                        </button>
+                {getPagination(currentPage, totalPages).map((pageNumber, index) => (
+                    <li key={index}>
+                        {pageNumber === -1 ? (
+                            <span className={`${styles.paginationButton} ${styles.paginationEmptyButton}`}>...</span>
+                        ) : (
+                            <button
+                                className={`${styles.paginationButton} ${pageNumber === currentPage ? styles.paginationButtonActive : ''}`}
+                                onClick={() => setCurrentPage(pageNumber)}
+                            >
+                                {pageNumber}
+                            </button>
+                        )}
                     </li>
                 ))}
                 <li>
                     <button
                         className={`${styles.paginationButton} ${styles.paginationArrowButton}`}
-                        onClick={() => setNextPage(page)}
-                        disabled={page === totalPages}
+                        onClick={() => setNextPage(currentPage)}
+                        disabled={currentPage === totalPages}
                     >
                         <ArrowIconComponent
                             className={`${styles.paginationArrowIcon} ${styles.paginationNextButtonIcon}`}

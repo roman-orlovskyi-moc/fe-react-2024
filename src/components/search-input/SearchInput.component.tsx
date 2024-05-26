@@ -33,7 +33,7 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({ search, onSea
                 onChange={handleSearchChange}
             />
             <button className={styles.searchFormButton} type="submit">
-                <SearchIconComponent title="Search" />
+                <SearchIconComponent className={styles.searchFormIcon} title="Search" />
             </button>
         </form>
     );

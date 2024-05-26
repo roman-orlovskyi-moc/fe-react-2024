@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Product } from '@/interfaces/Product.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.ts';
 
 import { ProductCardComponent } from '../product-card/ProductCard.component.tsx';
 
@@ -11,11 +11,17 @@ interface ProductsListProps {
 }
 
 export const ProductsListComponent: React.FC<ProductsListProps> = ({ products }) => (
-    <ul className={styles.productsList}>
-        {products.map((productData) => (
-            <li className={styles.productListItem} key={productData.id}>
-                <ProductCardComponent {...productData} />
-            </li>
-        ))}
-    </ul>
+    <>
+        {products.length > 0 ? (
+            <ul className={styles.productsList}>
+                {products.map((productData) => (
+                    <li className={styles.productListItem} key={productData.id}>
+                        <ProductCardComponent {...productData} />
+                    </li>
+                ))}
+            </ul>
+        ) : (
+            <p className={styles.productsListEmpty}>No products found</p>
+        )}
+    </>
 );

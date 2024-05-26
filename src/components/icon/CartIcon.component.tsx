@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Icon } from '@/interfaces/Icon.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.ts';
 
 export const CartIconComponent: React.FC<Icon> = ({ className, title }) => (
     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" className={className}>

@@ -12,6 +12,13 @@
   display: flex;
 }
 
+.productsListEmpty {
+  margin: 0 0 40px;
+  padding: 0;
+  text-align: center;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
 
   .productsList {

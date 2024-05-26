@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
 
 import appStyles from '@/App.module.css';
-import { AppContext } from '@/context/AppContext.context.tsx';
+import { ROUTES } from '@/constants/Routes.constant.ts';
+import { CartContext } from '@/context/Cart.context.tsx';
+import { RouterContext } from '@/context/Router.context.tsx';
+import { calculateCartItemsCount } from '@/helpers/CartContext.helper.ts';
+import type { ColorScheme } from '@/types/ColorScheme.type.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
@@ -14,18 +18,22 @@ import { MobileMenuIconComponent } from '../icon/MobileMenuIcon.component.tsx';
 import styles from './header.module.css';
 
 interface HeaderProps {
+    themeMode: ColorScheme;
+    setThemeMode: (mode: ColorScheme) => void;
     isMobileMenuOpen: boolean;
     toggleMobileMenuOpen: () => void;
 }
 
-export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
-    const { cart, themeMode, setThemeMode, route, setRoutePath } = useContext(AppContext);
-    const cartItemsCount: number = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode, isMobileMenuOpen, toggleMobileMenuOpen }) => {
+    const { route, setRoutePath } = useContext(RouterContext);
+    const { cart } = useContext(CartContext);
+    const cartItemsCount: number = calculateCartItemsCount(cart.items);
+    const MOBILE_MENU_CLOSE_CLICK_TAGS: Set<string> = new Set(['A', 'BUTTON']);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {
         const target = event.target as HTMLElement;
 
-        if (isMobileMenuOpen && target && ['A', 'BUTTON'].includes(target.tagName)) {
+        if (isMobileMenuOpen && target && MOBILE_MENU_CLOSE_CLICK_TAGS.has(target.tagName)) {
             toggleMobileMenuOpen();
         }
     };
@@ -39,22 +47,22 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
     };
 
     const showAboutPage = () => {
-        setRoutePath('/about');
+        setRoutePath(ROUTES.ABOUT);
     };
 
     const showProductsPage = () => {
-        setRoutePath('/products');
+        setRoutePath(ROUTES.PRODUCTS);
     };
 
-    const aboutPageActiveClass: string = route.path === '/about' ? styles.headerNavLinkActive : '';
+    const aboutPageActiveClass: string = route.path === ROUTES.ABOUT ? styles.headerNavLinkActive : '';
     const productsPageActiveClass: string =
-        route.path === '/products' || route.path.startsWith('/product/') ? styles.headerNavLinkActive : '';
+        route.path === ROUTES.PRODUCTS || route.path.startsWith(ROUTES.PRODUCT) ? styles.headerNavLinkActive : '';
 
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>
             <div className={`${appStyles.contentWrapper} ${styles.headerColumnWrapper}`}>
                 <a className={styles.headerLogoLink} href="/">
-                    <LogoIconComponent />
+                    <LogoIconComponent className={styles.headerLogoIcon} />
                 </a>
                 <div className={styles.headerMenuWrapper}>
                     <div className={styles.headerModeSwitcher}>

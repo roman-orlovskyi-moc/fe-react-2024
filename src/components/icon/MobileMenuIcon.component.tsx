@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Icon } from '@/interfaces/Icon.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.ts';
 
 export const MobileMenuIconComponent: React.FC<Icon> = ({ className, title }) => (
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" className={className}>

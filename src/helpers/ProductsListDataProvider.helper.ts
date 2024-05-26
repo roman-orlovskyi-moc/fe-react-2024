@@ -1,4 +1,4 @@
-import type { Product } from '../interfaces/Product.interface.tsx';
+import type { Product } from '../interfaces/Product.interface.ts';
 
 export const filterProductsByTitle = (products: Product[], title: string) => {
     const filterTitle = title.toLowerCase();

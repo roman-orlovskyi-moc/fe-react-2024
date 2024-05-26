@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import type { Category } from '@/interfaces/Category.interface.tsx';
+import type { Category } from '@/interfaces/Category.interface.ts';
 
 import categoriesJSONData from '../assets/data/categories.json';
 

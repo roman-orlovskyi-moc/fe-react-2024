@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Icon } from '@/interfaces/Icon.interface.tsx';
+import type { Icon } from '@/interfaces/Icon.interface.ts';
 
 export const LinkedinIconComponent: React.FC<Icon> = ({ className, title }) => (
     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" className={className}>

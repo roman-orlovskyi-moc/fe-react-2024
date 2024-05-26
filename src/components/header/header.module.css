@@ -3,6 +3,7 @@
   padding: 17px 0;
   color: var(--main-white-color);
   background-color: var(--main-grey-color);
+  box-sizing: border-box;
 }
 
 .headerColumnWrapper {
@@ -14,6 +15,11 @@
 .headerLogoLink {
   display: flex;
   grid-area: logo;
+}
+
+.headerLogoIcon {
+  width: 46px;
+  height: 46px;
 }
 
 .headerMenuWrapper {
@@ -121,7 +127,6 @@
 @media (max-width: 768px) {
 
   .header {
-    height: 100%;
     font-size: 20px;
     padding: 15px 0 0;
   }
@@ -141,10 +146,15 @@
     display: none;
   }
 
+  .headerLogoIcon {
+    width: 40px;
+    height: 40px;
+  }
+
   :global(.mobileMenuOpened) .headerColumnWrapper {
     height: 100%;
     grid-template-columns: [logo] 1fr [cart-icon] 45px [mobile-menu] 30px;
-    grid-template-rows: [row1] 46px [row2] 1fr;
+    grid-template-rows: [row1] 40px [row2] 1fr;
     grid-template-areas: "logo cart-icon mobile-menu"
       "menu-wrapper menu-wrapper menu-wrapper";
     row-gap: 15px;

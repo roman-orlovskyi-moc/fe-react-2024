@@ -1,27 +1,30 @@
 import React, { useContext } from 'react';
 
-import { AppContext } from '@/context/AppContext.context.tsx';
-import type { CartItem } from '@/interfaces/CartItem.interface.tsx';
-import type { Product } from '@/interfaces/Product.interface.tsx';
+import { ROUTES } from '@/constants/Routes.constant.ts';
+import { CartContext } from '@/context/Cart.context.tsx';
+import { RouterContext } from '@/context/Router.context.tsx';
+import { findCartItemById } from '@/helpers/CartContext.helper.ts';
+import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
+import type { CartItem } from '@/interfaces/CartItem.interface.ts';
+import type { Product } from '@/interfaces/Product.interface.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 
 import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<Product> = (productData) => {
-    const { cart, addToCart, setRoutePath } = useContext(AppContext);
-    const productCartItem: CartItem | undefined = cart.items.find((item) => item.id === productData.id);
+    const { setRoutePath } = useContext(RouterContext);
+    const { cart, addToCart } = useContext(CartContext);
+    const productCartItem: CartItem | undefined = findCartItemById(cart.items, productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
     const showProductPage = () => {
-        setRoutePath(`/product/${productData.id}`);
+        setRoutePath(`${ROUTES.PRODUCT}${productData.id}`);
     };
 
     const addProductToCart = () => {
         addToCart({ id: productData.id, quantity: 1 });
     };
-
-    const formattedPrice = (price: number) => price.toLocaleString('uk-UA');
 
     return (
         <div className={styles.productCard}>
@@ -30,7 +33,7 @@ export const ProductCardComponent: React.FC<Product> = (productData) => {
                 {productData.title}
             </h3>
             <div className={styles.addToCartWrapper}>
-                <div className={styles.productCardPrice}>{formattedPrice(productData.price)} ₴</div>
+                <div className={styles.productCardPrice}>{formatPrice(productData.price)} ₴</div>
                 <button className={styles.productCardAddToCartButton} type="button" onClick={addProductToCart}>
                     <CartIconCounterComponent count={productCartItemCount} showCounter={productCartItemCount > 0} title="Add to cart" />
                 </button>

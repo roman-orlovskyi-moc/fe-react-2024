@@ -1,5 +1,10 @@
 .pageWrapper {
+  display: grid;
+  grid-template-rows: [header] auto [content] 1fr [footer] auto;
   width: 100%;
+  min-height: 100%;
+  color: var(--page-text-color);
+  background-color: var(--page-background-color);
 }
 
 .contentWrapper {
@@ -8,6 +13,8 @@
 }
 
 .mainContentWrapper {
+  width: 100%;
+  box-sizing: border-box;
   padding-top: 60px;
   padding-bottom: 60px;
 }
@@ -53,12 +60,7 @@
   }
 
   :global(.mobileMenuOpened).pageWrapper {
-    height: 100%;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    grid-template-rows: [header] 1fr [footer] auto;
   }
 
   .button {

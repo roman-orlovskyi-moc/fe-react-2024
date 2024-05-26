@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import appStyles from '@/App.module.css';
 import { CategoriesDataProviderComponent } from '@/data-providers/CategoriesDataProvider.component.tsx';
-import { transformCheckedCategories, transformCheckedCategoryIds } from '@/helpers/categoriesFilterHelper.ts';
-import type { CheckedCategories } from '@/types/CheckedCategories.type.tsx';
+import { transformCheckedCategories, transformCheckedCategoryIds } from '@/helpers/CategoriesFilter.helper.ts';
+import type { CheckedCategories } from '@/types/CheckedCategories.type.ts';
 
 import styles from './categories-filter.module.css';
 

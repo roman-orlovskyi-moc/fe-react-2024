@@ -1,9 +1,15 @@
 import type React from 'react';
+import { useMemo } from 'react';
 
-import type { Product } from '@/interfaces/Product.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.ts';
 
 import productsJSONData from '../assets/data/products.json';
-import { filterProductsByCategory, filterProductsByTitle, sliceProducts, sortProducts } from '../helpers/productsListDataProviderHelper.ts';
+import {
+    filterProductsByCategory,
+    filterProductsByTitle,
+    sliceProducts,
+    sortProducts,
+} from '../helpers/ProductsListDataProvider.helper.ts';
 
 interface ProductsData {
     products: Product[];
@@ -27,19 +33,23 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
     sort,
     children,
 }) => {
-    let filteredProducts = productsJSONData;
+    const filteredProducts = useMemo(() => {
+        let products = productsJSONData;
 
-    if (search) {
-        filteredProducts = filterProductsByTitle(filteredProducts, search);
-    }
+        if (search) {
+            products = filterProductsByTitle(products, search);
+        }
 
-    if (categoryIds && categoryIds.length > 0) {
-        filteredProducts = filterProductsByCategory(filteredProducts, categoryIds);
-    }
+        if (categoryIds && categoryIds.length > 0) {
+            products = filterProductsByCategory(products, categoryIds);
+        }
 
-    if (sort) {
-        filteredProducts = sortProducts(filteredProducts, sort);
-    }
+        if (sort) {
+            products = sortProducts(products, sort);
+        }
+
+        return products;
+    }, [search, categoryIds, sort]);
 
     const productsData = {
         productsCount: filteredProducts.length,

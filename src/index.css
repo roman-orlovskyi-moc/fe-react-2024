@@ -7,8 +7,6 @@
 
 :root {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
-  color: var(--page-text-color);
-  background-color: var(--page-background-color);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark light;
@@ -30,7 +28,7 @@
   --seventh-grey-color: #E1E1E1;
 }
 
-:root.dark {
+.dark {
   --page-background-color: var(--main-grey-color);
   --page-text-color: var(--main-white-color);
   --link-color: var(--main-white-color);
@@ -45,13 +43,17 @@
   --header-mobile-mode-icon-color: var(--sixth-grey-color);
   --header-account-button-text-color: var(--main-white-color);
   --header-account-mobile-button-text-color: var(--main-white-color);
-  --products-filter-search-background-color: var(--secondary-grey-color);
+  --products-filter-search-background-color: var(--main-grey-color);
+  --products-filter-search-border-color: var(--sixth-grey-color);
   --products-filter-search-text-color: var(--main-white-color);
+  --products-filter-search-hover-background-color: var(--secondary-grey-color);
+  --products-filter-search-hover-text-color: var(--main-white-color);
   --products-filter-category-button-text-color: var(--main-white-color);
   --dropdown-opened-background-color: var(--secondary-grey-color);
   --dropdown-opened-text-color: var(--main-white-color);
   --dropdown-border-color: var(--sixth-grey-color);
   --dropdown-open-button-icon-color: var(--main-white-color);
+  --dropdown-open-button-active-icon-color: var(--main-white-color);
   --product-card-border-color: var(--secondary-grey-color);
   --product-card-hover-background-color: var(--secondary-grey-color);
   --product-card-add-to-cart-icon-color: var(--main-white-color);
@@ -64,10 +66,6 @@
   --pagination-arrow-icon-hover-color: var(--main-grey-color);
   --pagination-arrow-icon-disabled-color: var(--sixth-grey-color);
   --pagination-active-button-font-weight: 500;
-  --pagination-mobile-button-background-color: var(--main-white-color);
-  --pagination-mobile-button-border-color: var(--fifth-grey-color);
-  --pagination-mobile-button-text-color: var(--main-grey-color);
-  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
   --product-details-container-border-color: var(--secondary-grey-color);
   --product-details-category-button-text-color: var(--main-white-color);
   --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
@@ -78,7 +76,7 @@
   --footer-divider-border-color: var(--secondary-grey-color);
 }
 
-:root.light {
+.light {
   --page-background-color: var(--main-white-color);
   --page-text-color: var(--main-grey-color);
   --link-color: var(--main-grey-color);
@@ -93,13 +91,17 @@
   --header-mobile-mode-icon-color: var(--sixth-grey-color);
   --header-account-button-text-color: var(--main-white-color);
   --header-account-mobile-button-text-color: var(--main-grey-color);
-  --products-filter-search-background-color: var(--fifth-grey-color);
-  --products-filter-search-text-color: var(--secondary-grey-color);
+  --products-filter-search-background-color: var(--main-white-color);
+  --products-filter-search-border-color: var(--seventh-grey-color);
+  --products-filter-search-text-color: var(--sixth-grey-color);
+  --products-filter-search-hover-background-color: var(--fifth-grey-color);
+  --products-filter-search-hover-text-color: var(--secondary-grey-color);
   --products-filter-category-button-text-color: var(--sixth-grey-color);
   --dropdown-opened-background-color: var(--main-white-color);
   --dropdown-opened-text-color: var(--sixth-grey-color);
   --dropdown-border-color: var(--seventh-grey-color);
   --dropdown-open-button-icon-color: var(--sixth-grey-color);
+  --dropdown-open-button-active-icon-color: var(--main-white-color);
   --product-card-border-color: var(--fourth-grey-color);
   --product-card-hover-background-color: var(--fifth-grey-color);
   --product-card-add-to-cart-icon-color: var(--main-grey-color);
@@ -112,9 +114,6 @@
   --pagination-arrow-icon-hover-color: var(--main-grey-color);
   --pagination-arrow-icon-disabled-color: var(--fourth-grey-color);
   --pagination-active-button-font-weight: 700;
-  --pagination-mobile-button-background-color: transparent;
-  --pagination-mobile-button-text-color: inherit;
-  --pagination-mobile-arrow-icon-color: var(--main-grey-color);
   --product-details-container-border-color: var(--fourth-grey-color);
   --product-details-category-button-text-color: var(--sixth-grey-color);
   --product-details-mobile-category-button-border-color: var(--seventh-grey-color);
@@ -141,8 +140,13 @@ p {
 
 body {
   font-weight: 400;
-  margin: 0;
-  align-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+html, body, .root-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }

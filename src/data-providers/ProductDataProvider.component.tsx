@@ -1,6 +1,7 @@
 import type React from 'react';
+import { useMemo } from 'react';
 
-import type { Product } from '@/interfaces/Product.interface.tsx';
+import type { Product } from '@/interfaces/Product.interface.ts';
 
 import productsJSONData from '../assets/data/products.json';
 
@@ -14,7 +15,7 @@ interface ProductDataProviderProps {
 }
 
 export const ProductDataProviderComponent: React.FC<ProductDataProviderProps> = ({ id, children }) => {
-    const product = productsJSONData.find((iterableProduct: Product) => iterableProduct.id === id) as Product;
+    const product = useMemo(() => productsJSONData.find((iterableProduct: Product) => iterableProduct.id === id) as Product, [id]);
 
     return children({ product });
 };
