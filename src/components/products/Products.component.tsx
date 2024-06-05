@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-import { RouterContext } from '@/context/Router.context.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
 import { parseRouteFilters } from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
@@ -12,32 +12,47 @@ import { ProductsListComponent } from '../products-list/ProductsList.component.t
 export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
 
-    const { route, setRoutePathParameters } = useContext(RouterContext);
+    const [searchParameters, setSearchParameters] = useSearchParams();
 
-    const [productsFilter, setProductsFilter] = useState<ProductsFilter>(() => parseRouteFilters(route.parameters || {}));
+    const [productsFilter, setProductsFilter] = useState<ProductsFilter>(() => parseRouteFilters(searchParameters));
 
     useEffect(() => {
-        setProductsFilter(parseRouteFilters(route.parameters || {}));
-    }, [route]);
+        setProductsFilter(parseRouteFilters(searchParameters));
+    }, [searchParameters]);
 
     const setCurrentPageWithRoute = (page: number) => {
-        setProductsFilter({ ...productsFilter, page });
-        setRoutePathParameters({ page: page.toString() });
+        setSearchParameters((previousSearchParameters) => {
+            previousSearchParameters.set('page', page.toString());
+
+            return previousSearchParameters;
+        });
     };
 
     const setSearchWithRoute = (search: string) => {
-        setProductsFilter({ ...productsFilter, page: 1, search });
-        setRoutePathParameters({ page: '1', search });
+        setSearchParameters((previousSearchParameters) => {
+            previousSearchParameters.set('page', '1');
+            previousSearchParameters.set('search', search);
+
+            return previousSearchParameters;
+        });
     };
 
     const setCategoriesWithRoute = (categoryIds: number[]) => {
-        setProductsFilter({ ...productsFilter, page: 1, categoryIds });
-        setRoutePathParameters({ page: '1', categories: categoryIds.join(',') });
+        setSearchParameters((previousSearchParameters) => {
+            previousSearchParameters.set('page', '1');
+            previousSearchParameters.set('categories', categoryIds.join(','));
+
+            return previousSearchParameters;
+        });
     };
 
     const setSortWithRoute = (sort: string) => {
-        setProductsFilter({ ...productsFilter, page: 1, sort });
-        setRoutePathParameters({ page: '1', sort });
+        setSearchParameters((previousSearchParameters) => {
+            previousSearchParameters.set('page', '1');
+            previousSearchParameters.set('sort', sort);
+
+            return previousSearchParameters;
+        });
     };
 
     return (

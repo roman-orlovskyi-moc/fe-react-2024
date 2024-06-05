@@ -1,24 +1,23 @@
 import type { ProductsFilter } from '../interfaces/ProductsFilter.interface.ts';
-import type { RouteParameters } from '../types/RouteParameters.type.ts';
 
-export const parseRouteFilters = (routeParameters: RouteParameters): ProductsFilter => {
-    const page = parseRouteParametersPage(routeParameters?.page);
-    const search = parseRouteParametersSearch(routeParameters?.search);
-    const categoryIds = parseRouteParametersCategories(routeParameters?.categories);
-    const sort = parseRouteParametersSort(routeParameters?.sort);
+export const parseRouteFilters = (searchParameters: URLSearchParams): ProductsFilter => {
+    const page = parseRouteParametersPage(searchParameters.get('page'));
+    const search = parseRouteParametersSearch(searchParameters.get('search'));
+    const categoryIds = parseRouteParametersCategories(searchParameters.get('categories'));
+    const sort = parseRouteParametersSort(searchParameters.get('sort'));
 
     return { page, search, categoryIds, sort };
 };
 
-export const parseRouteParametersPage = (page: string | undefined): number => {
+export const parseRouteParametersPage = (page: string | null): number => {
     const routeParametersPage: number | null = page ? Number.parseInt(page, 10) : null;
 
     return routeParametersPage && !Number.isNaN(routeParametersPage) ? routeParametersPage : 1;
 };
 
-export const parseRouteParametersSearch = (search: string | undefined): string => search || '';
+export const parseRouteParametersSearch = (search: string | null): string => search || '';
 
-export const parseRouteParametersCategories = (categories: string | undefined): number[] =>
+export const parseRouteParametersCategories = (categories: string | null): number[] =>
     categories
         ? categories
               .split(',')
@@ -26,4 +25,4 @@ export const parseRouteParametersCategories = (categories: string | undefined): 
               .filter((categoryId) => !Number.isNaN(categoryId))
         : [];
 
-export const parseRouteParametersSort = (sort: string | undefined): string => sort || 'price:desc';
+export const parseRouteParametersSort = (sort: string | null): string => sort || 'price:desc';

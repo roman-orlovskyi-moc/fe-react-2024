@@ -1,47 +1,25 @@
-import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import { FooterComponent } from './components/footer/Footer.component.tsx';
-import { HeaderComponent } from './components/header/Header.component.tsx';
-import { MainContentComponent } from './components/main-content/MainContent.component.tsx';
+import { AboutComponent } from './components/about/About.component.tsx';
+import { LayoutComponent } from './components/layout/Layout.component.tsx';
+import { PageNotFoundComponent } from './components/page-not-found/PageNotFound.component.tsx';
+import { ProductComponent } from './components/product/Product.component.tsx';
+import { ProductsComponent } from './components/products/Products.component.tsx';
+import { ROUTE_NAMES, ROUTES } from './constants/Routes.constant.ts';
 import { CartContextProvider } from './context/Cart.context.tsx';
-import { RouterContextProvider } from './context/Router.context.tsx';
-import { parseColorScheme, setStoredColorScheme } from './helpers/App.helper.ts';
-import type { ColorScheme } from './types/ColorScheme.type.ts';
-
-import styles from './App.module.css';
 
 function App() {
-    const FULL_NAME: string = `Roman Orlovskyi`;
-    const NIK_NAME: string = `roman-orlovskyi-moc`;
-
-    const [themeMode, setThemeMode] = useState<ColorScheme>(() => parseColorScheme());
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-
-    useEffect(() => {
-        setStoredColorScheme(themeMode);
-    }, [themeMode]);
-
-    const toggleMobileMenuOpen = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
-
     return (
-        <RouterContextProvider>
-            <CartContextProvider>
-                <div className={`${styles.pageWrapper} ${themeMode} ${isMobileMenuOpen ? 'mobileMenuOpened' : ''}`}>
-                    <HeaderComponent
-                        themeMode={themeMode}
-                        setThemeMode={setThemeMode}
-                        isMobileMenuOpen={isMobileMenuOpen}
-                        toggleMobileMenuOpen={toggleMobileMenuOpen}
-                    />
-                    <main className={`${styles.mainContentWrapper} ${styles.contentWrapper}`}>
-                        <MainContentComponent fullName={FULL_NAME} nikName={NIK_NAME} />
-                    </main>
-                    <FooterComponent fullName={FULL_NAME} />
-                </div>
-            </CartContextProvider>
-        </RouterContextProvider>
+        <CartContextProvider>
+            <Routes>
+                <Route path={ROUTES.ROOT} element={<LayoutComponent />}>
+                    <Route index element={<AboutComponent />} />
+                    <Route path={ROUTE_NAMES.PRODUCTS} element={<ProductsComponent />} />
+                    <Route path={ROUTE_NAMES.PRODUCTID} element={<ProductComponent />} />
+                    <Route path="*" element={<PageNotFoundComponent />} />
+                </Route>
+            </Routes>
+        </CartContextProvider>
     );
 }
 

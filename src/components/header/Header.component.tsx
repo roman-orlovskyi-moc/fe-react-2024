@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
-import { RouterContext } from '@/context/Router.context.tsx';
 import { calculateCartItemsCount } from '@/helpers/CartContext.helper.ts';
 import type { ColorScheme } from '@/types/ColorScheme.type.ts';
 
@@ -25,7 +25,6 @@ interface HeaderProps {
 }
 
 export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode, isMobileMenuOpen, toggleMobileMenuOpen }) => {
-    const { route, setRoutePath } = useContext(RouterContext);
     const { cart } = useContext(CartContext);
     const cartItemsCount: number = calculateCartItemsCount(cart.items);
     const MOBILE_MENU_CLOSE_CLICK_TAGS: Set<string> = new Set(['A', 'BUTTON']);
@@ -46,24 +45,14 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode
         setThemeMode('light');
     };
 
-    const showAboutPage = () => {
-        setRoutePath(ROUTES.ABOUT);
-    };
-
-    const showProductsPage = () => {
-        setRoutePath(ROUTES.PRODUCTS);
-    };
-
-    const aboutPageActiveClass: string = route.path === ROUTES.ABOUT ? styles.headerNavLinkActive : '';
-    const productsPageActiveClass: string =
-        route.path === ROUTES.PRODUCTS || route.path.startsWith(ROUTES.PRODUCT) ? styles.headerNavLinkActive : '';
+    const headerNavLinkClasses = (isActive: boolean) => `${styles.headerNavLink} ${isActive ? styles.headerNavLinkActive : ''}`;
 
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>
             <div className={`${appStyles.contentWrapper} ${styles.headerColumnWrapper}`}>
-                <a className={styles.headerLogoLink} href="/">
+                <Link to={ROUTES.ROOT} className={styles.headerLogoLink}>
                     <LogoIconComponent className={styles.headerLogoIcon} />
-                </a>
+                </Link>
                 <div className={styles.headerMenuWrapper}>
                     <div className={styles.headerModeSwitcher}>
                         <button className={styles.headerModeSwitcherButton} onClick={setLightColorScheme} title="Switch to light mode">
@@ -80,21 +69,21 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode
                     </div>
                     <ul className={styles.headerNav}>
                         <li>
-                            <button className={`${styles.headerNavLink} ${aboutPageActiveClass}`} onClick={showAboutPage}>
+                            <NavLink to={ROUTES.ROOT} className={({ isActive }) => headerNavLinkClasses(isActive)}>
                                 About
-                            </button>
+                            </NavLink>
                         </li>
                         <li>
-                            <button className={`${styles.headerNavLink} ${productsPageActiveClass}`} onClick={showProductsPage}>
+                            <NavLink to={ROUTES.PRODUCTS} className={({ isActive }) => headerNavLinkClasses(isActive)}>
                                 Products
-                            </button>
+                            </NavLink>
                         </li>
                     </ul>
                     <HeaderAccountComponent className={styles.headerMobileHeaderAccount} />
                 </div>
-                <a href="/cart" className={styles.headerCart}>
+                <Link to={ROUTES.CART} className={styles.headerCart}>
                     <CartIconCounterComponent count={cartItemsCount} wrapperClassName={styles.headerCartCounter} />
-                </a>
+                </Link>
                 <HeaderAccountComponent className={styles.headerDesktopHeaderAccount} />
                 <button className={styles.headerMobileMenuButton} onClick={toggleMobileMenuOpen}>
                     <MobileMenuIconComponent />
