@@ -45,6 +45,9 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode
         setThemeMode('light');
     };
 
+    const lightColorModeIconActiveClass = themeMode === 'dark' ? '' : styles.headerModeActiveIcon;
+    const darkColorModeIconActiveClass = themeMode === 'dark' ? styles.headerModeActiveIcon : '';
+
     const headerNavLinkClasses = (isActive: boolean) => `${styles.headerNavLink} ${isActive ? styles.headerNavLinkActive : ''}`;
 
     return (
@@ -56,20 +59,16 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ themeMode, setThemeMode
                 <div className={styles.headerMenuWrapper}>
                     <div className={styles.headerModeSwitcher}>
                         <button className={styles.headerModeSwitcherButton} onClick={setLightColorScheme} title="Switch to light mode">
-                            <LightColorModeIconComponent
-                                className={`${styles.headerModeIcon} ${themeMode === 'dark' ? '' : styles.headerModeActiveIcon}`}
-                            />
+                            <LightColorModeIconComponent className={`${styles.headerModeIcon} ${lightColorModeIconActiveClass}`} />
                         </button>
                         <ColorModeDividerIconComponent />
                         <button className={styles.headerModeSwitcherButton} onClick={setDarkColorScheme} title="Switch to dark mode">
-                            <DarkColorModeIconComponent
-                                className={`${styles.headerModeIcon} ${themeMode === 'dark' ? styles.headerModeActiveIcon : ''}`}
-                            />
+                            <DarkColorModeIconComponent className={`${styles.headerModeIcon} ${darkColorModeIconActiveClass}`} />
                         </button>
                     </div>
                     <ul className={styles.headerNav}>
                         <li>
-                            <NavLink to={ROUTES.ROOT} className={({ isActive }) => headerNavLinkClasses(isActive)}>
+                            <NavLink to={ROUTES.ROOT} className={({ isActive }) => headerNavLinkClasses(isActive)} end={true}>
                                 About
                             </NavLink>
                         </li>
