@@ -1,4 +1,5 @@
 export const ROUTE_NAMES = {
+    ROOT: 'fe-react-2024',
     PRODUCTS: 'products',
     PRODUCT: 'product',
     PRODUCTID: `product/:id`,
@@ -6,9 +7,8 @@ export const ROUTE_NAMES = {
 };
 
 export const ROUTES = {
-    ROOT: '/fe-react-2024',
-    ABOUT: '/fe-react-2024/about',
-    PRODUCTS: `/fe-react-2024/${ROUTE_NAMES.PRODUCTS}`,
-    PRODUCT: `/fe-react-2024/${ROUTE_NAMES.PRODUCT}`,
-    CART: `/fe-react-2024/${ROUTE_NAMES.CART}`,
+    ROOT: `/${ROUTE_NAMES.ROOT}/`,
+    PRODUCTS: `/${ROUTE_NAMES.ROOT}/${ROUTE_NAMES.PRODUCTS}`,
+    PRODUCT: `/${ROUTE_NAMES.ROOT}/${ROUTE_NAMES.PRODUCT}`,
+    CART: `/${ROUTE_NAMES.ROOT}/${ROUTE_NAMES.CART}`,
 };
