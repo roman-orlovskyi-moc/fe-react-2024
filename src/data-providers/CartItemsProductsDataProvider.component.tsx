@@ -20,10 +20,11 @@ export const CartItemsProductsDataProviderComponent: React.FC<CartItemsProductsD
         () =>
             cartItems.map((cartItem) => {
                 const cartItemProduct = productsJSONData.find((product) => product.id === cartItem.id);
+                const { id, ...cartItemWithoutId } = cartItem;
 
                 return {
                     ...cartItemProduct,
-                    cartItem,
+                    ...cartItemWithoutId,
                 } as CartItemProduct;
             }),
         [cartItems],

@@ -36,13 +36,13 @@ export const CartItemComponent: React.FC<CartItemProps> = ({ cartItemProduct }) 
                 <button className={styles.cartItemQuantityButton}>
                     <MinusIconComponent className={styles.cartItemQuantityButtonIcon} title="Decrease quantity" />
                 </button>
-                <input className={styles.cartItemQuantityInput} defaultValue={cartItemProduct.cartItem.quantity} />
+                <input className={styles.cartItemQuantityInput} defaultValue={cartItemProduct.quantity} />
                 <button className={styles.cartItemQuantityButton}>
                     <PlusIconComponent className={styles.cartItemQuantityButtonIcon} title="Increase quantity" />
                 </button>
             </div>
             <div className={styles.cartTotalPriceContainer}>
-                <span className={styles.cartItemTotalPrice}>{formatPrice(cartItemProduct.cartItem.quantity * cartItemProduct.price)}</span>
+                <span className={styles.cartItemTotalPrice}>{formatPrice(cartItemProduct.quantity * cartItemProduct.price)}</span>
                 <span className={styles.cartItemTotalPriceUnit}>₴</span>
             </div>
             <div className={styles.cartItemRemoveContainer}>
