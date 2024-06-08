@@ -4,5 +4,30 @@
   border: 1px solid var(--page-container-border-color);
   border-radius: 40px;
   padding: 38px 73px;
+  position: relative;
 }
 
+.cartTitle {
+  padding: 10px 0 40px 10px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.cartCloseButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.cartCloseIcon:hover path {
+  stroke-width: 2;
+}

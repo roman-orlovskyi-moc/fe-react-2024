@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { CartContext } from '@/context/Cart.context.tsx';
 import { CartItemsProductsDataProviderComponent } from '@/data-providers/CartItemsProductsDataProvider.component.tsx';
+import { useCart } from '@/hooks/UseCart.hook.ts';
 
 import { CartItemComponent } from '../cart-item/CartItem.component.tsx';
 
 import styles from './cart-items.module.css';
 
 export const CartItemsComponent: React.FC = () => {
-    const { cart } = useContext(CartContext);
+    const { cart } = useCart();
 
     return (
         <CartItemsProductsDataProviderComponent cartItems={cart.items}>
