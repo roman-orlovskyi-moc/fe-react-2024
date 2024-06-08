@@ -15,8 +15,10 @@ function App() {
                 <Route path="/" element={<LayoutComponent />}>
                     <Route path={ROUTE_NAMES.ROOT}>
                         <Route index element={<AboutComponent />} />
-                        <Route path={ROUTE_NAMES.PRODUCTS} element={<ProductsComponent />} />
-                        <Route path={ROUTE_NAMES.PRODUCTID} element={<ProductComponent />} />
+                        <Route path={ROUTE_NAMES.PRODUCTS}>
+                            <Route index element={<ProductsComponent />} />
+                            <Route path=":id" element={<ProductComponent />} />
+                        </Route>
                         <Route path="*" element={<PageNotFoundComponent />} />
                     </Route>
                 </Route>

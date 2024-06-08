@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ROUTES } from '@/constants/Routes.constant.ts';
 import { CartContext } from '@/context/Cart.context.tsx';
 import { findCartItemById } from '@/helpers/CartContext.helper.ts';
 import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
@@ -19,7 +18,7 @@ export const ProductCardComponent: React.FC<Product> = (productData) => {
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
     const showProductPage = () => {
-        navigate(`${ROUTES.PRODUCT}/${productData.id}`);
+        navigate(`${productData.id}`);
     };
 
     const addProductToCart = () => {
