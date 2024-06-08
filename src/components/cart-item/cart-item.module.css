@@ -1,0 +1,10 @@
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cartItemImage {
+  max-width: 80px;
+  border-radius: 20px;
+}

@@ -1,0 +1,8 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--page-container-border-color);
+  border-radius: 40px;
+  padding: 38px 73px;
+}
+
