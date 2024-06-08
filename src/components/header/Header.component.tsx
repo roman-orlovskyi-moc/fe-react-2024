@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
-import { CartContext } from '@/context/Cart.context.tsx';
 import { calculateCartItemsCount } from '@/helpers/CartContext.helper.ts';
+import { useCart } from '@/hooks/UseCart.hook.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
@@ -20,7 +20,7 @@ interface HeaderProps {
 }
 
 export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
-    const { cart } = useContext(CartContext);
+    const { cart } = useCart();
     const cartItemsCount: number = calculateCartItemsCount(cart.items);
     const MOBILE_MENU_CLOSE_CLICK_TAGS: Set<string> = new Set(['A', 'BUTTON']);
 

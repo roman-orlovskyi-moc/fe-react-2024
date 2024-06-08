@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { CartContext } from '@/context/Cart.context.tsx';
 import { findCartItemById } from '@/helpers/CartContext.helper.ts';
 import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
+import { useCart } from '@/hooks/UseCart.hook.ts';
 import type { CartItem } from '@/interfaces/CartItem.interface.ts';
 import type { Product } from '@/interfaces/Product.interface.ts';
 
@@ -13,7 +13,7 @@ import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<Product> = (productData) => {
     const navigate = useNavigate();
-    const { cart, addToCart } = useContext(CartContext);
+    const { cart, addToCart } = useCart();
     const productCartItem: CartItem | undefined = findCartItemById(cart.items, productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 

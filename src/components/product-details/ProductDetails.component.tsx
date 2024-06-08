@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
-import { CartContext } from '@/context/Cart.context.tsx';
 import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
+import { useCart } from '@/hooks/UseCart.hook.ts';
 import type { Product } from '@/interfaces/Product.interface.ts';
 
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
@@ -14,8 +14,8 @@ import { ProductImageCarouselComponent } from '../product-image-carousel/Product
 import styles from './product-details.module.css';
 
 export const ProductDetailsComponent: React.FC<Product> = (productData) => {
+    const { addToCart } = useCart();
     const navigate = useNavigate();
-    const { addToCart } = useContext(CartContext);
 
     const returnToProducts = () => {
         navigate(-1);
