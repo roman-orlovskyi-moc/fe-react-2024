@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
@@ -8,6 +8,7 @@ import { useCart } from '@/hooks/UseCart.hook.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
+import { HeaderNavigationComponent } from '../header-navigation/HeaderNavigation.component.tsx';
 import { LogoIconComponent } from '../icon/LogoIcon.component.tsx';
 import { MobileMenuIconComponent } from '../icon/MobileMenuIcon.component.tsx';
 import { ThemeSwitcherComponent } from '../theme-switcher/ThemeSwitcher.component.tsx';
@@ -32,8 +33,6 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
         }
     };
 
-    const headerNavLinkClasses = (isActive: boolean) => `${styles.headerNavLink} ${isActive ? styles.headerNavLinkActive : ''}`;
-
     return (
         <header className={styles.header} onClick={handleMobileMenuClose}>
             <div className={`${appStyles.contentWrapper} ${styles.headerColumnWrapper}`}>
@@ -42,18 +41,7 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
                 </Link>
                 <div className={styles.headerMenuWrapper}>
                     <ThemeSwitcherComponent />
-                    <ul className={styles.headerNav}>
-                        <li>
-                            <NavLink to={ROUTES.ROOT} className={({ isActive }) => headerNavLinkClasses(isActive)} end={true}>
-                                About
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={ROUTES.PRODUCTS} className={({ isActive }) => headerNavLinkClasses(isActive)}>
-                                Products
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <HeaderNavigationComponent />
                     <HeaderAccountComponent className={styles.headerMobileHeaderAccount} />
                 </div>
                 <Link to={ROUTES.CART} className={styles.headerCart}>
