@@ -33,35 +33,6 @@
   display: none;
 }
 
-.headerModeSwitcher {
-  display: flex;
-  grid-area: mode-switcher;
-}
-
-.headerModeSwitcherButton {
-  display: flex;
-  cursor: pointer;
-  background: none;
-  padding: 0;
-  border: none;
-  margin: 0;
-  padding-block: 0;
-  padding-inline: 0;
-  outline: none;
-}
-
-.headerModeIcon path {
-  stroke: var(--sixth-grey-color);
-}
-
-.headerModeIcon.headerModeActiveIcon path {
-  stroke: var(--main-white-color);
-}
-
-.headerModeIcon.headerModeActiveIcon:hover path {
-  stroke: var(--main-white-color);
-}
-
 .headerNav {
   margin: 0;
   list-style: none;
@@ -184,28 +155,6 @@
   :global(.mobileMenuOpened) .headerNav {
     display: flex;
     padding-right: 0;
-  }
-
-  .headerModeSwitcher {
-    display: none;
-  }
-
-  .headerModeIcon path {
-    stroke: var(--header-mobile-mode-icon-color);
-  }
-
-  .headerModeIcon.headerModeActiveIcon path {
-    stroke: var(--header-mobile-mode-active-icon-color);
-  }
-
-  .headerModeIcon.headerModeActiveIcon:hover path {
-    stroke: var(--header-mobile-mode-active-icon-color);
-  }
-
-  :global(.mobileMenuOpened) .headerModeSwitcher {
-    display: flex;
-    justify-self: center;
-    align-self: flex-start;
   }
 
   .headerCart {

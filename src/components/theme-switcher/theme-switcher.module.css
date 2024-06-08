@@ -1,0 +1,53 @@
+.themeSwitcher {
+  display: flex;
+  grid-area: mode-switcher;
+}
+
+.themeSwitcherButton {
+  display: flex;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  outline: none;
+}
+
+.themeSwitcherIcon path {
+  stroke: var(--sixth-grey-color);
+}
+
+.themeSwitcherIcon.themeSwitcherActiveIcon path {
+  stroke: var(--main-white-color);
+}
+
+.themeSwitcherIcon.themeSwitcherActiveIcon:hover path {
+  stroke: var(--main-white-color);
+}
+
+@media (max-width: 768px) {
+
+  .themeSwitcher {
+    display: none;
+  }
+
+  .themeSwitcherIcon path {
+    stroke: var(--header-mobile-mode-icon-color);
+  }
+
+  .themeSwitcherIcon.themeSwitcherActiveIcon path {
+    stroke: var(--header-mobile-mode-active-icon-color);
+  }
+
+  .themeSwitcherIcon.themeSwitcherActiveIcon:hover path {
+    stroke: var(--header-mobile-mode-active-icon-color);
+  }
+
+  :global(.mobileMenuOpened) .themeSwitcher {
+    display: flex;
+    justify-self: center;
+    align-self: flex-start;
+  }
+}
