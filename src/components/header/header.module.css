@@ -33,68 +33,6 @@
   display: none;
 }
 
-.headerModeSwitcher {
-  display: flex;
-  grid-area: mode-switcher;
-}
-
-.headerModeSwitcherButton {
-  display: flex;
-  cursor: pointer;
-  background: none;
-  padding: 0;
-  border: none;
-  margin: 0;
-  padding-block: 0;
-  padding-inline: 0;
-  outline: none;
-}
-
-.headerModeIcon path {
-  stroke: var(--sixth-grey-color);
-}
-
-.headerModeIcon.headerModeActiveIcon path {
-  stroke: var(--main-white-color);
-}
-
-.headerModeIcon.headerModeActiveIcon:hover path {
-  stroke: var(--main-white-color);
-}
-
-.headerNav {
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding: 0 20px 0 0;
-  grid-area: nav;
-}
-
-.headerNavLink {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 500;
-  cursor: pointer;
-  color: var(--header-link-color);
-  background: none;
-  padding: 0;
-  border: none;
-  margin: 0;
-  padding-block: 0;
-  padding-inline: 0;
-  outline: none;
-}
-
-.headerNavLink:hover {
-  color: var(--header-link-color);
-  font-weight: 700;
-}
-
-.headerNavLinkActive {
-  font-weight: 700;
-}
-
 .headerCart {
   display: flex;
   grid-area: cart-icon;
@@ -174,53 +112,11 @@
     padding-top: 15px;
   }
 
-  .headerNav {
-    display: none;
-    align-self: end;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  :global(.mobileMenuOpened) .headerNav {
-    display: flex;
-    padding-right: 0;
-  }
-
-  .headerModeSwitcher {
-    display: none;
-  }
-
-  .headerModeIcon path {
-    stroke: var(--header-mobile-mode-icon-color);
-  }
-
-  .headerModeIcon.headerModeActiveIcon path {
-    stroke: var(--header-mobile-mode-active-icon-color);
-  }
-
-  .headerModeIcon.headerModeActiveIcon:hover path {
-    stroke: var(--header-mobile-mode-active-icon-color);
-  }
-
-  :global(.mobileMenuOpened) .headerModeSwitcher {
-    display: flex;
-    justify-self: center;
-    align-self: flex-start;
-  }
-
   .headerCart {
     margin-right: 15px;
   }
 
   .headerMobileMenuButton {
     display: flex;
-  }
-
-  .headerNavLink {
-    color: var(--header-mobile-link-color);
-  }
-
-  .headerNavLink:hover {
-    color: var(--header-mobile-link-color);
   }
 }

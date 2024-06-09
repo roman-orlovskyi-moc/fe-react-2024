@@ -1,5 +1,10 @@
+export const ROUTE_NAMES = {
+    PRODUCTS: 'products',
+    CART: 'cart',
+};
+
 export const ROUTES = {
-    ABOUT: '/about',
-    PRODUCTS: '/products',
-    PRODUCT: '/product/',
+    ROOT: '/',
+    PRODUCTS: `/${ROUTE_NAMES.PRODUCTS}`,
+    CART: `/${ROUTE_NAMES.CART}`,
 };

@@ -4,18 +4,13 @@ import image from '@/assets/img/aboutme.png';
 
 import styles from './about.module.css';
 
-interface AboutMeProps {
-    fullName: string;
-    nikName: string;
-}
-
-export const AboutComponent: React.FC<AboutMeProps> = ({ fullName, nikName }) => (
+export const AboutComponent: React.FC = () => (
     <div className={styles.aboutMe}>
         <h1 className={styles.aboutMeHeadline}>About me</h1>
         <div className={styles.aboutMeTextContainer}>
             <p className={styles.aboutMeParagraph}>
-                Hi! My name is {fullName} and I&apos;m a Junior Frontend Developer. I am already familiar with main Web Technologies like
-                React, HTML, CSS, JavaScript and Git version control system.
+                Hi! My name is Roman Orlovskyi and I&apos;m a Junior Frontend Developer. I am already familiar with main Web Technologies
+                like React, HTML, CSS, JavaScript and Git version control system.
             </p>
             <p className={styles.aboutMeParagraph}>
                 This page was developed during the course{' '}
@@ -35,7 +30,7 @@ export const AboutComponent: React.FC<AboutMeProps> = ({ fullName, nikName }) =>
             </p>
             <p className={styles.aboutMeParagraph}>
                 You can check out my{' '}
-                <a className={styles.aboutMeLink} href={`https://github.com/${nikName}`} target="_blank" rel="noreferrer">
+                <a className={styles.aboutMeLink} href="https://github.com/roman-orlovskyi-moc" target="_blank" rel="noreferrer">
                     GitHub
                 </a>
                 .

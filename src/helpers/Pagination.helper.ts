@@ -7,14 +7,10 @@ export const getPagination = (page: number, totalPages: number): number[] => {
         const startPage = Math.max(2, page - 1);
         const endPage = Math.min(totalPages - 1, page + 1);
 
-        if (page < 2) {
-            return [1, 2, -1, totalPages];
-        } else if (page <= 3) {
-            return [1, 2, 3, -1, totalPages];
-        } else if (page >= totalPages - 1) {
-            return [1, -1, totalPages - 1, totalPages];
+        if (page <= 3) {
+            return [...Array.from({ length: page + 1 }, (_, index) => index + 1), -1, totalPages];
         } else if (page >= totalPages - 2) {
-            return [1, -1, totalPages - 2, totalPages - 1, totalPages];
+            return [1, -1, ...Array.from({ length: totalPages - page + 2 }, (_, index) => index + page - 1)];
         } else {
             return [1, -1, startPage, page, endPage, -1, totalPages];
         }

@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { ROUTES } from '@/constants/Routes.constant.ts';
-import { CartContext } from '@/context/Cart.context.tsx';
-import { RouterContext } from '@/context/Router.context.tsx';
 import { findCartItemById } from '@/helpers/CartContext.helper.ts';
 import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
+import { useCart } from '@/hooks/UseCart.hook.ts';
 import type { CartItem } from '@/interfaces/CartItem.interface.ts';
 import type { Product } from '@/interfaces/Product.interface.ts';
 
@@ -13,13 +12,13 @@ import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.c
 import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<Product> = (productData) => {
-    const { setRoutePath } = useContext(RouterContext);
-    const { cart, addToCart } = useContext(CartContext);
+    const navigate = useNavigate();
+    const { cart, addToCart } = useCart();
     const productCartItem: CartItem | undefined = findCartItemById(cart.items, productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
     const showProductPage = () => {
-        setRoutePath(`${ROUTES.PRODUCT}${productData.id}`);
+        navigate(`${productData.id}`);
     };
 
     const addProductToCart = () => {
