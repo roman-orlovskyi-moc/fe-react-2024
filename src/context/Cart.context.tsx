@@ -1,6 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import { parseStoredCartData, prepareUpdatedCartData, setStoredCartData } from '@/helpers/CartContext.helper.ts';
+import {
+    parseStoredCartData,
+    prepareRemovedCartItemCartData,
+    prepareUpdatedCartData,
+    prepareUpdatedCartItemQuantityCartData,
+    setStoredCartData,
+} from '@/helpers/CartContext.helper.ts';
 
 import type { Cart } from '../interfaces/Cart.interface.ts';
 import type { CartContextProps } from '../interfaces/CartContextProps.interface.ts';
@@ -9,6 +15,9 @@ import type { CartItem } from '../interfaces/CartItem.interface.ts';
 export const CartContext = createContext<CartContextProps>({
     cart: { items: [] },
     addToCart: (item: CartItem) => {},
+    updateCartItemQuantity: (itemId: number, newQuantity: number) => {},
+    removeCartItem: (itemId: number) => {},
+    clearCart: () => {},
 });
 
 interface CartContextProviderProps {
@@ -24,5 +33,21 @@ export const CartContextProvider: React.FC<CartContextProviderProps> = ({ childr
 
     const addToCart = (item: CartItem) => setCart((currentCart: Cart) => prepareUpdatedCartData(currentCart, item));
 
-    return <CartContext.Provider value={{ cart, addToCart }}>{children}</CartContext.Provider>;
+    const updateCartItemQuantity = (itemId: number, newQuantity: number) => {
+        setCart((currentCart: Cart) => prepareUpdatedCartItemQuantityCartData(currentCart, itemId, newQuantity));
+    };
+
+    const removeCartItem = (itemId: number) => {
+        setCart((currentCart: Cart) => prepareRemovedCartItemCartData(currentCart, itemId));
+    };
+
+    const clearCart = () => {
+        setCart({ items: [] });
+    };
+
+    return (
+        <CartContext.Provider value={{ cart, addToCart, updateCartItemQuantity, removeCartItem, clearCart }}>
+            {children}
+        </CartContext.Provider>
+    );
 };

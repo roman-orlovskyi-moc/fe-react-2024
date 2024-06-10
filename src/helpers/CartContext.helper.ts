@@ -34,3 +34,15 @@ export const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart 
 export const calculateCartItemsCount = (cartItems: CartItem[]): number => cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
 export const findCartItemById = (cartItems: CartItem[], id: number): CartItem | undefined => cartItems.find((item) => item.id === id);
+
+export const prepareUpdatedCartItemQuantityCartData = (currentCart: Cart, itemId: number, newQuantity: number): Cart => {
+    const newCartItems = currentCart.items.map((cartItem) => (cartItem.id === itemId ? { ...cartItem, quantity: newQuantity } : cartItem));
+
+    return { items: newCartItems };
+};
+
+export const prepareRemovedCartItemCartData = (currentCart: Cart, itemId: number): Cart => {
+    const newCartItems = currentCart.items.filter((cartItem) => cartItem.id !== itemId);
+
+    return { items: newCartItems };
+};
