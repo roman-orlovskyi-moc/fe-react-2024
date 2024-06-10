@@ -12,11 +12,17 @@ export const CartComponent: React.FC = () => {
     const { cart } = useCart();
     const cartItemsCount: number = calculateCartItemsCount(cart.items);
 
+    const { clearCart } = useCart();
+
+    const handleClearCart = () => {
+        clearCart();
+    };
+
     return (
         <div className={styles.cart}>
             <h1 className={styles.cartTitle}>Cart ({cartItemsCount})</h1>
-            <button className={styles.cartCloseButton}>
-                <CloseIconComponent className={styles.cartCloseIcon} title="Close cart" />
+            <button className={styles.cartCloseButton} onClick={handleClearCart}>
+                <CloseIconComponent className={styles.cartCloseIcon} title="Clear cart" />
             </button>
             {cart.items.length > 0 ? (
                 <CartItemsComponent />
