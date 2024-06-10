@@ -31,3 +31,20 @@
 .cartCloseIcon:hover path {
   stroke-width: 2;
 }
+
+@media (max-width: 768px) {
+
+  .cart {
+    padding: 0;
+    border: none;
+  }
+
+  .cartTitle {
+    padding: 0 0 30px;
+    font-size: 25px;
+  }
+
+  .cartCloseButton {
+    display: none;
+  }
+}

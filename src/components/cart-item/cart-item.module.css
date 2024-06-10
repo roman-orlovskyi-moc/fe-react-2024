@@ -118,3 +118,26 @@
 .cartItemRemoveIcon:hover path {
   stroke-width: 2;
 }
+
+@media (max-width: 768px) {
+
+  .cartItem {
+    grid-template-columns: [left-column] 106px [right-column] 1fr;
+    grid-template-areas: "image remove-item"
+      "title-price title-price"
+      "quantity total-price";
+    padding: 0;
+    border: none;
+    gap: 20px;
+  }
+
+  .cartItemImageContainer {
+    width: 80px;
+  }
+
+  .cartItemRemoveContainer {
+    justify-self: end;
+    align-self: start;
+    padding-top: 10px;
+  }
+}
