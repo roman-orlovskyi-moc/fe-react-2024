@@ -1,0 +1,31 @@
+@keyframes moveRight {
+
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.loader {
+  height: 1px;
+  width: 100%;
+  background-color: var(--main-red-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  background-color: var(--page-background-color);
+  animation: moveRight 3s ease-in-out infinite;
+}

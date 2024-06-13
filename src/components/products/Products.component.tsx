@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { LogoIconComponent } from '@/components/icon/LogoIcon.component.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
 import { parseRouteFilters } from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 
+import { LoaderComponent } from '../loader/Loader.component.tsx';
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
-
-import styles from './products.module.css';
 
 export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
@@ -76,7 +74,7 @@ export const ProductsComponent: React.FC = () => {
                         setProductsCategories={setCategoriesWithRoute}
                         setProductsSort={setSortWithRoute}
                     />
-                    {isLoading ? <LogoIconComponent className={styles.loader} /> : null}
+                    {isLoading ? <LoaderComponent /> : null}
                     <ProductsListComponent products={products} />
                     {productsCount > 0 ? (
                         <PaginationComponent
