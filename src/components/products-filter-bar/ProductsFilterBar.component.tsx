@@ -38,10 +38,10 @@ export const ProductsFilterBarComponent: React.FC<ProductsFilterBarProps> = ({
                 <span className={styles.productsFilterSortLabel}>Sort by:</span>
                 <DropdownComponent
                     options={[
-                        { value: 'price:desc', label: 'Price: High to Low' },
-                        { value: 'price:asc', label: 'Price: Low to High' },
-                        { value: 'creationAt:asc', label: 'Newest' },
-                        { value: 'creationAt:desc', label: 'Oldest' },
+                        { value: 'desc', label: 'Price: High to Low' },
+                        { value: 'asc', label: 'Price: Low to High' },
+                        // { value: 'creationAt:asc', label: 'Newest' },
+                        // { value: 'creationAt:desc', label: 'Oldest' },
                     ]}
                     onDropdownChange={handleSortChange}
                     selectedValue={sortValue}

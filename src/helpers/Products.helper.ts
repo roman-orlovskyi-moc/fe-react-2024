@@ -25,4 +25,4 @@ export const parseRouteParametersCategories = (categories: string | null): numbe
               .filter((categoryId) => !Number.isNaN(categoryId))
         : [];
 
-export const parseRouteParametersSort = (sort: string | null): string => sort || 'price:desc';
+export const parseRouteParametersSort = (sort: string | null): string => sort || 'desc';

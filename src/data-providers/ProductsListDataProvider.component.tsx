@@ -1,19 +1,14 @@
 import type React from 'react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
+import { fetchProducts } from '@/helpers/ProductsListDataProvider.helper.ts';
 import type { Product } from '@/interfaces/Product.interface.ts';
-
-import productsJSONData from '../assets/data/products.json';
-import {
-    filterProductsByCategory,
-    filterProductsByTitle,
-    sliceProducts,
-    sortProducts,
-} from '../helpers/ProductsListDataProvider.helper.ts';
+import type { ProductsResponse } from '@/interfaces/ProductsResponse.interface.ts';
 
 interface ProductsData {
     products: Product[];
     productsCount: number;
+    isLoading: boolean;
 }
 
 interface ProductsDataProviderProps {
@@ -33,28 +28,21 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
     sort,
     children,
 }) => {
-    const filteredProducts = useMemo(() => {
-        let products = productsJSONData;
+    const [productsData, setProductsData] = useState<ProductsData>({ products: [], productsCount: 0, isLoading: true });
 
-        if (search) {
-            products = filterProductsByTitle(products, search);
-        }
+    useEffect(() => {
+        setProductsData((previousProductsData) => ({ ...previousProductsData, isLoading: true }));
 
-        if (categoryIds && categoryIds.length > 0) {
-            products = filterProductsByCategory(products, categoryIds);
-        }
+        fetchProducts(page, limit, search, categoryIds, sort).then((products: ProductsResponse) => {
+            setProductsData({
+                productsCount: products.total,
+                products: products.products as Product[],
+                isLoading: false,
+            });
+        });
+    }, [page, limit, search, categoryIds, sort]);
 
-        if (sort) {
-            products = sortProducts(products, sort);
-        }
+    const memoizedProductsData = useMemo(() => productsData, [productsData]);
 
-        return products;
-    }, [search, categoryIds, sort]);
-
-    const productsData = {
-        productsCount: filteredProducts.length,
-        products: sliceProducts(filteredProducts, page, limit) as Product[],
-    };
-
-    return children(productsData);
+    return children(memoizedProductsData);
 };

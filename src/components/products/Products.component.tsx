@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { LogoIconComponent } from '@/components/icon/LogoIcon.component.tsx';
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
 import { parseRouteFilters } from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
@@ -8,6 +9,8 @@ import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
+
+import styles from './products.module.css';
 
 export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
@@ -63,7 +66,7 @@ export const ProductsComponent: React.FC = () => {
             categoryIds={productsFilter.categoryIds}
             sort={productsFilter.sort}
         >
-            {({ products, productsCount }) => (
+            {({ products, productsCount, isLoading }) => (
                 <>
                     <ProductsFilterBarComponent
                         search={productsFilter.search}
@@ -73,13 +76,16 @@ export const ProductsComponent: React.FC = () => {
                         setProductsCategories={setCategoriesWithRoute}
                         setProductsSort={setSortWithRoute}
                     />
+                    {isLoading ? <LogoIconComponent className={styles.loader} /> : null}
                     <ProductsListComponent products={products} />
-                    <PaginationComponent
-                        page={productsFilter.page}
-                        limit={PRODUCTS_LIMIT}
-                        total={productsCount}
-                        setCurrentPage={setCurrentPageWithRoute}
-                    />
+                    {productsCount > 0 ? (
+                        <PaginationComponent
+                            page={productsFilter.page}
+                            limit={PRODUCTS_LIMIT}
+                            total={productsCount}
+                            setCurrentPage={setCurrentPageWithRoute}
+                        />
+                    ) : null}
                 </>
             )}
         </ProductsListDataProviderComponent>
