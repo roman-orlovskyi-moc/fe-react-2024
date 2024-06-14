@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import appStyles from '@/App.module.css';
 import { CategoriesDataProviderComponent } from '@/data-providers/CategoriesDataProvider.component.tsx';
@@ -12,6 +12,10 @@ interface CategoriesFilterProps {
 
 export const CategoriesFilterComponent: React.FC<CategoriesFilterProps> = ({ categoryId, onCategoryChange }) => {
     const [category, setCategory] = useState<number | undefined>(categoryId);
+
+    useEffect(() => {
+        setCategory(categoryId);
+    }, [categoryId]);
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
