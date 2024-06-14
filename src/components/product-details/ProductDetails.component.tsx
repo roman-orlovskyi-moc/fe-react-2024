@@ -22,7 +22,7 @@ export const ProductDetailsComponent: React.FC<Product> = (productData) => {
     };
 
     const navigateToProductCategory = (categoryId: number) => {
-        const searchParameters = new URLSearchParams({ page: '1', categories: `${categoryId}` }).toString();
+        const searchParameters = new URLSearchParams({ page: '1', category: `${categoryId}` }).toString();
         navigate(`${ROUTES.PRODUCTS}?${searchParameters}`);
     };
 
