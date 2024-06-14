@@ -26,3 +26,30 @@ export const parseRouteParametersCategory = (category: string | null): number | 
 };
 
 export const parseRouteParametersSort = (sort: string | null): string => sort || 'desc';
+
+export const setCurrentPageSearchParameter = (searchParameters: URLSearchParams, page: number): URLSearchParams => {
+    searchParameters.set('page', page.toString());
+
+    return searchParameters;
+};
+
+export const setSearchQuerySearchParameter = (searchParameters: URLSearchParams, search: string): URLSearchParams => {
+    searchParameters.set('page', '1');
+    searchParameters.set('search', search);
+
+    return searchParameters;
+};
+
+export const setCategorySearchParameter = (searchParameters: URLSearchParams, categoryId: number): URLSearchParams => {
+    searchParameters.set('page', '1');
+    searchParameters.set('category', categoryId.toString());
+
+    return searchParameters;
+};
+
+export const setSortOrderSearchParameter = (searchParameters: URLSearchParams, sort: string): URLSearchParams => {
+    searchParameters.set('page', '1');
+    searchParameters.set('sort', sort);
+
+    return searchParameters;
+};

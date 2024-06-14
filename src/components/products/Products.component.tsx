@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
-import { parseRouteFilters } from '@/helpers/Products.helper.ts';
+import {
+    parseRouteFilters,
+    setCategorySearchParameter,
+    setCurrentPageSearchParameter,
+    setSearchQuerySearchParameter,
+    setSortOrderSearchParameter,
+} from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 
 import { LoaderComponent } from '../loader/Loader.component.tsx';
@@ -22,38 +28,19 @@ export const ProductsComponent: React.FC = () => {
     }, [searchParameters]);
 
     const setCurrentPageWithRoute = (page: number) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', page.toString());
-
-            return previousSearchParameters;
-        });
+        setSearchParameters((previousSearchParameters) => setCurrentPageSearchParameter(previousSearchParameters, page));
     };
 
     const setSearchWithRoute = (search: string) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', '1');
-            previousSearchParameters.set('search', search);
-
-            return previousSearchParameters;
-        });
+        setSearchParameters((previousSearchParameters) => setSearchQuerySearchParameter(previousSearchParameters, search));
     };
 
     const setCategoryWithRoute = (categoryId: number) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', '1');
-            previousSearchParameters.set('category', categoryId.toString());
-
-            return previousSearchParameters;
-        });
+        setSearchParameters((previousSearchParameters) => setCategorySearchParameter(previousSearchParameters, categoryId));
     };
 
     const setSortWithRoute = (sort: string) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', '1');
-            previousSearchParameters.set('sort', sort);
-
-            return previousSearchParameters;
-        });
+        setSearchParameters((previousSearchParameters) => setSortOrderSearchParameter(previousSearchParameters, sort));
     };
 
     return (
