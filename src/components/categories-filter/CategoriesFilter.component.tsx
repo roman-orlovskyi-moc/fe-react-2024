@@ -11,6 +11,8 @@ interface CategoriesFilterProps {
 }
 
 export const CategoriesFilterComponent: React.FC<CategoriesFilterProps> = ({ categoryId, onCategoryChange }) => {
+    const CATEGORIES_LIMIT: number = 10;
+
     const [category, setCategory] = useState<number | undefined>(categoryId);
 
     useEffect(() => {
@@ -28,7 +30,7 @@ export const CategoriesFilterComponent: React.FC<CategoriesFilterProps> = ({ cat
     };
 
     return (
-        <CategoriesDataProviderComponent limit={8}>
+        <CategoriesDataProviderComponent limit={CATEGORIES_LIMIT}>
             {({ categories }) => (
                 <ul className={styles.categoryFilterWrapper}>
                     {categories.map((categoryData) => (
