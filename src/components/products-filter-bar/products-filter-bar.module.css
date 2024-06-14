@@ -3,7 +3,7 @@
   align-items: flex-start;
   grid-template-columns: 275px 1fr 260px;
   grid-template-areas: "search-form category-filter sort-wrapper";
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   gap: 20px;
   font-size: 14px;
   font-weight: 600;
@@ -19,7 +19,7 @@
 @media (max-width: 1294px) {
 
   .productsFilterBar {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 }
 
