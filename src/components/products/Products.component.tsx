@@ -38,10 +38,10 @@ export const ProductsComponent: React.FC = () => {
         });
     };
 
-    const setCategoriesWithRoute = (categoryIds: number[]) => {
+    const setCategoryWithRoute = (categoryId: number) => {
         setSearchParameters((previousSearchParameters) => {
             previousSearchParameters.set('page', '1');
-            previousSearchParameters.set('categories', categoryIds.join(','));
+            previousSearchParameters.set('category', categoryId.toString());
 
             return previousSearchParameters;
         });
@@ -61,17 +61,17 @@ export const ProductsComponent: React.FC = () => {
             page={productsFilter.page}
             limit={PRODUCTS_LIMIT}
             search={productsFilter.search}
-            categoryIds={productsFilter.categoryIds}
+            categoryId={productsFilter.categoryId}
             sort={productsFilter.sort}
         >
             {({ products, productsCount, isLoading }) => (
                 <>
                     <ProductsFilterBarComponent
                         search={productsFilter.search}
-                        categoryIds={productsFilter.categoryIds}
+                        categoryId={productsFilter.categoryId}
                         sort={productsFilter.sort}
                         setProductsSearch={setSearchWithRoute}
-                        setProductsCategories={setCategoriesWithRoute}
+                        setProductsCategory={setCategoryWithRoute}
                         setProductsSort={setSortWithRoute}
                     />
                     {isLoading ? <LoaderComponent /> : null}

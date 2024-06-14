@@ -1,13 +1,12 @@
-import type { ProductsResponse } from '@/interfaces/ProductsResponse.interface.ts';
-
 import type { ProductsRequestParameters } from '../interfaces/ProductsRequestParameters.interface.ts';
+import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.ts';
 import { ApiService } from '../services/Api.service.ts';
 
 export const fetchProducts = async (
     page: number,
     limit: number,
     search?: string,
-    categoryIds?: number[],
+    categoryId?: number,
     sort?: string,
 ): Promise<ProductsResponse> => {
     const requestParameters: ProductsRequestParameters = { limit, offset: (page - 1) * limit };
@@ -16,8 +15,8 @@ export const fetchProducts = async (
         requestParameters.title = search;
     }
 
-    if (categoryIds && categoryIds.length > 0) {
-        requestParameters.categoryId = categoryIds[0];
+    if (categoryId) {
+        requestParameters.categoryId = categoryId;
     }
 
     if (sort) {

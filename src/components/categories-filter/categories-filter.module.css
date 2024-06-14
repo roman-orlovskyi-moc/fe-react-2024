@@ -9,7 +9,7 @@
   list-style: none;
 }
 
-.categoryFilterCheckbox {
+.categoryFilterRadio {
   position: absolute;
   appearance: none;
 }
@@ -21,7 +21,7 @@
 }
 
 .categoryFilterButton:hover,
-.categoryFilterCheckbox:checked + .categoryFilterButton {
+.categoryFilterRadio:checked + .categoryFilterButton {
   background-color: var(--main-red-color);
   border-color: var(--main-red-color);
   color: var(--main-white-color);
