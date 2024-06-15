@@ -37,7 +37,7 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
 
         fetchProducts(page, limit, search, categoryId, sort).then((products: ProductsResponse) => {
             if (isMergeNewDataWithPrevious) {
-                setProductsData((previousProductsData) => ({
+                setProductsData((previousProductsData: ProductsData) => ({
                     products: [...previousProductsData.products, ...products.products] as Product[],
                     productsTotalCount: products.total,
                     isLoading: false,
