@@ -40,8 +40,6 @@ export const ProductsFilterBarComponent: React.FC<ProductsFilterBarProps> = ({
                     options={[
                         { value: 'desc', label: 'Price: High to Low' },
                         { value: 'asc', label: 'Price: Low to High' },
-                        // { value: 'creationAt:asc', label: 'Newest' },
-                        // { value: 'creationAt:desc', label: 'Oldest' },
                     ]}
                     onDropdownChange={handleSortChange}
                     selectedValue={sortValue}
