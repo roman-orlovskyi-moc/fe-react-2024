@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 
@@ -7,6 +9,13 @@ export class ApiService {
 
     private constructor() {
         axios.defaults.baseURL = this.baseURL;
+        axios.interceptors.response.use(
+            (response) => response,
+            (error) => {
+                toast.error(error.message);
+                return Promise.reject(error);
+            },
+        );
     }
 
     public static GetInstance(): ApiService {

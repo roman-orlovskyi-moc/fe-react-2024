@@ -2,7 +2,6 @@ import type React from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
 import { fetchProducts } from '../helpers/ProductsListDataProvider.helper.ts';
-import { useNotification } from '../hooks/UseNotification.hook.ts';
 import type { Product } from '../interfaces/Product.interface.ts';
 import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.ts';
 
@@ -32,10 +31,8 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
     children,
 }) => {
     const [productsData, setProductsData] = useState<ProductsData>({ products: undefined, productsTotalCount: 0, isLoading: true });
-    const { notify } = useNotification();
 
     useEffect(() => {
-        notify(null);
         setProductsData((previousProductsData) => ({ ...previousProductsData, isLoading: true }));
 
         fetchProducts(page, limit, search, categoryId, sort)
@@ -57,11 +54,10 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
                     } as ProductsData);
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 setProductsData(() => ({ products: [], productsTotalCount: 0, isLoading: false }) as ProductsData);
-                notify({ message: `Error: ${error.message}`, type: 'error' });
             });
-    }, [page, limit, search, categoryId, sort, isMergeNewDataWithPrevious, notify]);
+    }, [page, limit, search, categoryId, sort, isMergeNewDataWithPrevious]);
 
     const memoizedProductsData = useMemo(() => productsData, [productsData]);
 

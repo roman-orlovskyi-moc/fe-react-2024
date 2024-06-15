@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
 import { isMobileView } from '@/helpers/DeviceView.helper.ts';
@@ -13,10 +14,11 @@ import {
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 
 import { LoaderComponent } from '../loader/Loader.component.tsx';
-import { NotificationComponent } from '../notification/Notification.component.tsx';
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
@@ -98,7 +100,7 @@ export const ProductsComponent: React.FC = () => {
                             setCurrentPage={setCurrentPageWithRoute}
                         />
                     ) : null}
-                    <NotificationComponent />
+                    <ToastContainer position="bottom-right" />
                 </>
             )}
         </ProductsListDataProviderComponent>
