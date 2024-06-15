@@ -35,21 +35,25 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
     useEffect(() => {
         setProductsData((previousProductsData) => ({ ...previousProductsData, isLoading: true }));
 
-        fetchProducts(page, limit, search, categoryId, sort).then((products: ProductsResponse) => {
-            if (isMergeNewDataWithPrevious) {
-                setProductsData((previousProductsData: ProductsData) => ({
-                    products: [...previousProductsData.products, ...products.products] as Product[],
-                    productsTotalCount: products.total,
-                    isLoading: false,
-                }));
-            } else {
-                setProductsData({
-                    productsTotalCount: products.total,
-                    products: products.products as Product[],
-                    isLoading: false,
-                });
-            }
-        });
+        fetchProducts(page, limit, search, categoryId, sort)
+            .then((products: ProductsResponse) => {
+                if (isMergeNewDataWithPrevious) {
+                    setProductsData((previousProductsData: ProductsData) => ({
+                        products: [...previousProductsData.products, ...products.products] as Product[],
+                        productsTotalCount: products.total,
+                        isLoading: false,
+                    }));
+                } else {
+                    setProductsData({
+                        productsTotalCount: products.total,
+                        products: products.products as Product[],
+                        isLoading: false,
+                    });
+                }
+            })
+            .catch(() => {
+                setProductsData((previousProductsData) => ({ ...previousProductsData, isLoading: false }));
+            });
     }, [page, limit, search, categoryId, sort, isMergeNewDataWithPrevious]);
 
     const memoizedProductsData = useMemo(() => productsData, [productsData]);
