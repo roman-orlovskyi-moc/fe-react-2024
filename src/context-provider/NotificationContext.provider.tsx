@@ -10,5 +10,9 @@ interface NotificationContextProviderProps {
 export const NotificationContextProvider: React.FC<NotificationContextProviderProps> = ({ children }) => {
     const [notification, setNotification] = useState<Notification | null>(null);
 
-    return <NotificationContext.Provider value={{ notification, setNotification }}>{children}</NotificationContext.Provider>;
+    const notify = (note: Notification | null): void => {
+        setNotification(note);
+    };
+
+    return <NotificationContext.Provider value={{ notification, notify }}>{children}</NotificationContext.Provider>;
 };
