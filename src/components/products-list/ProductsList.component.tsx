@@ -43,7 +43,7 @@ export const ProductsListComponent: React.FC<ProductsListProps> = ({
 
     return (
         <>
-            {products.length > 0 ? (
+            {products && products.length > 0 ? (
                 <ul className={styles.productsList}>
                     {products.map((productData: Product, index: number) => (
                         <li

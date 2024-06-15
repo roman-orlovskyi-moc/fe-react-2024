@@ -13,6 +13,7 @@ import {
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 
 import { LoaderComponent } from '../loader/Loader.component.tsx';
+import { NotificationComponent } from '../notification/Notification.component.tsx';
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
@@ -81,12 +82,14 @@ export const ProductsComponent: React.FC = () => {
                         setProductsSort={setSortWithRoute}
                     />
                     {isLoading ? <LoaderComponent /> : null}
-                    <ProductsListComponent
-                        products={products}
-                        productsTotalCount={productsTotalCount}
-                        isInfiniteScroll={isInfiniteScroll}
-                        loadNextPageProductsData={loadNextPageProductsData}
-                    />
+                    {products ? (
+                        <ProductsListComponent
+                            products={products}
+                            productsTotalCount={productsTotalCount}
+                            isInfiniteScroll={isInfiniteScroll}
+                            loadNextPageProductsData={loadNextPageProductsData}
+                        />
+                    ) : null}
                     {productsTotalCount > 0 && !isInfiniteScroll ? (
                         <PaginationComponent
                             page={productsFilter.page}
@@ -95,6 +98,7 @@ export const ProductsComponent: React.FC = () => {
                             setCurrentPage={setCurrentPageWithRoute}
                         />
                     ) : null}
+                    <NotificationComponent />
                 </>
             )}
         </ProductsListDataProviderComponent>

@@ -6,7 +6,7 @@ import type { Product } from '../interfaces/Product.interface.ts';
 import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.ts';
 
 interface ProductsData {
-    products: Product[];
+    products: Product[] | undefined;
     productsTotalCount: number;
     isLoading: boolean;
 }
@@ -30,7 +30,7 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
     isMergeNewDataWithPrevious,
     children,
 }) => {
-    const [productsData, setProductsData] = useState<ProductsData>({ products: [], productsTotalCount: 0, isLoading: true });
+    const [productsData, setProductsData] = useState<ProductsData>({ products: undefined, productsTotalCount: 0, isLoading: true });
 
     useEffect(() => {
         setProductsData((previousProductsData) => ({ ...previousProductsData, isLoading: true }));
@@ -39,7 +39,7 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
             .then((products: ProductsResponse) => {
                 if (isMergeNewDataWithPrevious) {
                     setProductsData((previousProductsData: ProductsData) => ({
-                        products: [...previousProductsData.products, ...products.products] as Product[],
+                        products: [...(previousProductsData.products || []), ...products.products] as Product[],
                         productsTotalCount: products.total,
                         isLoading: false,
                     }));
