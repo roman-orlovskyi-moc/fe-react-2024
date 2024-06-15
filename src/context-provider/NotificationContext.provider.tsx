@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import { NotificationContext } from '../context/Notification.context.tsx';
+import { NotificationContext } from '../context/Notification.context.ts';
 import type { Notification } from '../interfaces/Notification.interface.ts';
 
 interface NotificationContextProviderProps {
