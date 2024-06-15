@@ -7,7 +7,7 @@ import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.
 
 interface ProductsData {
     products: Product[];
-    productsCount: number;
+    productsTotalCount: number;
     isLoading: boolean;
 }
 
@@ -17,6 +17,7 @@ interface ProductsDataProviderProps {
     search?: string;
     categoryId?: number;
     sort?: string;
+    isMergeNewDataWithPrevious?: boolean;
     children: (productsData: ProductsData) => React.ReactNode;
 }
 
@@ -26,21 +27,30 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
     search,
     categoryId,
     sort,
+    isMergeNewDataWithPrevious,
     children,
 }) => {
-    const [productsData, setProductsData] = useState<ProductsData>({ products: [], productsCount: 0, isLoading: true });
+    const [productsData, setProductsData] = useState<ProductsData>({ products: [], productsTotalCount: 0, isLoading: true });
 
     useEffect(() => {
         setProductsData((previousProductsData) => ({ ...previousProductsData, isLoading: true }));
 
         fetchProducts(page, limit, search, categoryId, sort).then((products: ProductsResponse) => {
-            setProductsData({
-                productsCount: products.total,
-                products: products.products as Product[],
-                isLoading: false,
-            });
+            if (isMergeNewDataWithPrevious) {
+                setProductsData((previousProductsData) => ({
+                    products: [...previousProductsData.products, ...products.products] as Product[],
+                    productsTotalCount: products.total,
+                    isLoading: false,
+                }));
+            } else {
+                setProductsData({
+                    productsTotalCount: products.total,
+                    products: products.products as Product[],
+                    isLoading: false,
+                });
+            }
         });
-    }, [page, limit, search, categoryId, sort]);
+    }, [page, limit, search, categoryId, sort, isMergeNewDataWithPrevious]);
 
     const memoizedProductsData = useMemo(() => productsData, [productsData]);
 

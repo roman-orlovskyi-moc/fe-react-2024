@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
+import { isMobileView } from '@/helpers/DeviceView.helper.ts';
 import {
     parseRouteFilters,
     setCategorySearchParameter,
@@ -20,28 +21,45 @@ export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
 
     const [searchParameters, setSearchParameters] = useSearchParams();
-
     const [productsFilter, setProductsFilter] = useState<ProductsFilter>(() => parseRouteFilters(searchParameters));
+    const [isInfiniteScroll, setIsInfiniteScroll] = useState<boolean>(isMobileView());
+
+    useEffect(() => {
+        const handleResize = () => setIsInfiniteScroll(isMobileView());
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         setProductsFilter(parseRouteFilters(searchParameters));
     }, [searchParameters]);
 
     const setCurrentPageWithRoute = (page: number) => {
-        setSearchParameters((previousSearchParameters) => setCurrentPageSearchParameter(previousSearchParameters, page));
+        setSearchParameters((previousSearchParameters: URLSearchParams) => setCurrentPageSearchParameter(previousSearchParameters, page));
     };
 
     const setSearchWithRoute = (search: string) => {
-        setSearchParameters((previousSearchParameters) => setSearchQuerySearchParameter(previousSearchParameters, search));
+        setSearchParameters((previousSearchParameters: URLSearchParams) => setSearchQuerySearchParameter(previousSearchParameters, search));
     };
 
     const setCategoryWithRoute = (categoryId: number) => {
-        setSearchParameters((previousSearchParameters) => setCategorySearchParameter(previousSearchParameters, categoryId));
+        setSearchParameters((previousSearchParameters: URLSearchParams) =>
+            setCategorySearchParameter(previousSearchParameters, categoryId),
+        );
     };
 
     const setSortWithRoute = (sort: string) => {
-        setSearchParameters((previousSearchParameters) => setSortOrderSearchParameter(previousSearchParameters, sort));
+        setSearchParameters((previousSearchParameters: URLSearchParams) => setSortOrderSearchParameter(previousSearchParameters, sort));
     };
+
+    const loadNextPageProductsData = useCallback(() => {
+        setProductsFilter((previousProductsFilter: ProductsFilter) => ({
+            ...previousProductsFilter,
+            page: (previousProductsFilter.page || 1) + 1,
+        }));
+    }, []);
 
     return (
         <ProductsListDataProviderComponent
@@ -50,8 +68,9 @@ export const ProductsComponent: React.FC = () => {
             search={productsFilter.search}
             categoryId={productsFilter.categoryId}
             sort={productsFilter.sort}
+            isMergeNewDataWithPrevious={isInfiniteScroll && productsFilter.page > 1}
         >
-            {({ products, productsCount, isLoading }) => (
+            {({ products, productsTotalCount, isLoading }) => (
                 <>
                     <ProductsFilterBarComponent
                         search={productsFilter.search}
@@ -62,12 +81,17 @@ export const ProductsComponent: React.FC = () => {
                         setProductsSort={setSortWithRoute}
                     />
                     {isLoading ? <LoaderComponent /> : null}
-                    <ProductsListComponent products={products} />
-                    {productsCount > 0 ? (
+                    <ProductsListComponent
+                        products={products}
+                        productsTotalCount={productsTotalCount}
+                        isInfiniteScroll={isInfiniteScroll}
+                        loadNextPageProductsData={loadNextPageProductsData}
+                    />
+                    {productsTotalCount > 0 && !isInfiniteScroll ? (
                         <PaginationComponent
                             page={productsFilter.page}
                             limit={PRODUCTS_LIMIT}
-                            total={productsCount}
+                            total={productsTotalCount}
                             setCurrentPage={setCurrentPageWithRoute}
                         />
                     ) : null}
