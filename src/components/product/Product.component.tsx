@@ -16,10 +16,10 @@ export const ProductComponent: React.FC = () => {
             {({ product, isLoading }) => {
                 if (isLoading) {
                     return <LoaderComponent />;
-                } else if (product === undefined) {
-                    return null;
                 } else if (product) {
                     return <ProductDetailsComponent {...product} />;
+                } else if (product === undefined) {
+                    return null;
                 } else {
                     return <PageNotFoundComponent />;
                 }
