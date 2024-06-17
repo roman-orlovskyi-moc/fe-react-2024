@@ -1,6 +1,6 @@
 import type { ProductsRequestParameters } from '../interfaces/ProductsRequestParameters.interface.ts';
 import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.ts';
-import { ApiService } from '../services/Api.service.ts';
+import { apiService } from '../services/Api.service.ts';
 
 export const fetchProducts = async (
     page: number,
@@ -23,5 +23,5 @@ export const fetchProducts = async (
         requestParameters.sortOrder = sort;
     }
 
-    return ApiService.GetInstance().get('/products', requestParameters);
+    return apiService.get('/products', requestParameters);
 };

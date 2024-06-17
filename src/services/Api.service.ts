@@ -4,10 +4,9 @@ import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 
 export class ApiService {
-    private static INSTANCE: ApiService;
     private baseURL: string = 'https://ma-backend-api.mocintra.com/api/v1';
 
-    private constructor() {
+    public constructor() {
         axios.defaults.baseURL = this.baseURL;
         axios.interceptors.response.use(
             (response) => response,
@@ -16,14 +15,6 @@ export class ApiService {
                 return Promise.reject(error);
             },
         );
-    }
-
-    public static GetInstance(): ApiService {
-        if (!ApiService.INSTANCE) {
-            ApiService.INSTANCE = new ApiService();
-        }
-
-        return ApiService.INSTANCE;
     }
 
     public async get<T = any>(url: string, parameters?: any): Promise<T> {
@@ -37,3 +28,5 @@ export class ApiService {
         }
     }
 }
+
+export const apiService = new ApiService();
