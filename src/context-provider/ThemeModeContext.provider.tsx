@@ -1,14 +1,9 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { parseColorScheme, setStoredColorScheme } from '@/helpers/ThemeModeContext.helper.ts';
 
-import type { ThemeModeContextProps } from '../interfaces/ThemeModeContextProps.interface.ts';
+import { ThemeModeContext } from '../context/ThemeMode.context.ts';
 import type { ColorScheme } from '../types/ColorScheme.type.ts';
-
-export const ThemeModeContext = createContext<ThemeModeContextProps>({
-    colorScheme: 'dark',
-    setColorScheme: (colorScheme: ColorScheme) => {},
-});
 
 interface ThemeModeContextProviderProps {
     children: React.ReactNode;

@@ -1,6 +1,6 @@
 export interface ProductsFilter {
     search: string;
-    categoryIds: number[];
+    categoryId?: number;
     sort: string;
     page: number;
 }

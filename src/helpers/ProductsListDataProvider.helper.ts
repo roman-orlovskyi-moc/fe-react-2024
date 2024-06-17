@@ -1,46 +1,27 @@
-import type { Product } from '../interfaces/Product.interface.ts';
+import type { ProductsRequestParameters } from '../interfaces/ProductsRequestParameters.interface.ts';
+import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.ts';
+import { apiService } from '../services/Api.service.ts';
 
-export const filterProductsByTitle = (products: Product[], title: string) => {
-    const filterTitle = title.toLowerCase();
+export const fetchProducts = async (
+    page: number,
+    limit: number,
+    search?: string,
+    categoryId?: number,
+    sort?: string,
+): Promise<ProductsResponse> => {
+    const requestParameters: ProductsRequestParameters = { limit, offset: (page - 1) * limit };
 
-    return products.filter((product) => product.title.toLowerCase().includes(filterTitle));
-};
-
-export const filterProductsByCategory = (products: Product[], categoryIds: number[]) =>
-    products.filter((product) => categoryIds.includes(product.category.id));
-
-export const sortProducts = (products: Product[], sort: string) => {
-    const [sortField, sortDirection] = sort.split(':');
-
-    switch (sortField) {
-        case 'price': {
-            return sortProductsByPrice(products, sortDirection);
-        }
-        case 'creationAt': {
-            return sortProductsByCreationDate(products, sortDirection);
-        }
-        default: {
-            return products;
-        }
+    if (search) {
+        requestParameters.title = search;
     }
-};
 
-export const sortProductsByPrice = (products: Product[], sortDirection: string) =>
-    products.sort((firstProduct, secondProduct) =>
-        sortDirection === 'desc' ? secondProduct.price - firstProduct.price : firstProduct.price - secondProduct.price,
-    );
+    if (categoryId) {
+        requestParameters.categoryId = categoryId;
+    }
 
-export const sortProductsByCreationDate = (products: Product[], sortDirection: string) =>
-    products.sort((firstProduct, secondProduct) => {
-        const firstDate = new Date(firstProduct.creationAt).getTime();
-        const secondDate = new Date(secondProduct.creationAt).getTime();
+    if (sort) {
+        requestParameters.sortOrder = sort;
+    }
 
-        return sortDirection === 'desc' ? secondDate - firstDate : firstDate - secondDate;
-    });
-
-export const sliceProducts = (products: Product[], page: number, limit: number) => {
-    const start: number = (page - 1) * limit;
-    const end: number = start + limit;
-
-    return products.slice(start, end);
+    return apiService.get('/products', requestParameters);
 };

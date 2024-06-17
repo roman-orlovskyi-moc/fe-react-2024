@@ -1,12 +1,12 @@
 import type React from 'react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import type { Product } from '@/interfaces/Product.interface.ts';
-
-import productsJSONData from '../assets/data/products.json';
+import { fetchProduct } from '../helpers/ProductDataProvider.helper.ts';
+import type { Product } from '../interfaces/Product.interface.ts';
 
 interface ProductData {
-    product: Product | null;
+    product: Product | null | undefined;
+    isLoading: boolean;
 }
 
 interface ProductDataProviderProps {
@@ -15,7 +15,21 @@ interface ProductDataProviderProps {
 }
 
 export const ProductDataProviderComponent: React.FC<ProductDataProviderProps> = ({ id, children }) => {
-    const product = useMemo(() => productsJSONData.find((iterableProduct: Product) => iterableProduct.id === id) as Product, [id]);
+    const [productData, setProductData] = useState<ProductData>({ product: undefined, isLoading: true });
 
-    return children({ product });
+    useEffect(() => {
+        setProductData((previousProductData: ProductData) => ({ ...previousProductData, isLoading: true }));
+
+        fetchProduct(id)
+            .then((product: Product) => {
+                setProductData({ product, isLoading: false } as ProductData);
+            })
+            .catch(() => {
+                setProductData({ product: null, isLoading: false } as ProductData);
+            });
+    }, [id]);
+
+    const memoizedProductData = useMemo(() => productData, [productData]);
+
+    return children(memoizedProductData);
 };

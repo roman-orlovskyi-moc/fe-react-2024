@@ -1,46 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import appStyles from '@/App.module.css';
 import { CategoriesDataProviderComponent } from '@/data-providers/CategoriesDataProvider.component.tsx';
-import { transformCheckedCategories, transformCheckedCategoryIds } from '@/helpers/CategoriesFilter.helper.ts';
-import type { CheckedCategories } from '@/types/CheckedCategories.type.ts';
 
 import styles from './categories-filter.module.css';
 
 interface CategoriesFilterProps {
-    categoryIds?: number[];
-    onCategoriesChange: (categoryIds: number[]) => void;
+    categoryId?: number;
+    onCategoryChange: (categoryId: number) => void;
 }
 
-export const CategoriesFilterComponent: React.FC<CategoriesFilterProps> = ({ categoryIds, onCategoriesChange }) => {
-    const [checkedCategories, setCheckedCategories] = useState<CheckedCategories>(() => transformCheckedCategories(categoryIds || []));
+export const CategoriesFilterComponent: React.FC<CategoriesFilterProps> = ({ categoryId, onCategoryChange }) => {
+    const CATEGORIES_LIMIT: number = 10;
 
-    const handleCategoryCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const [category, setCategory] = useState<number | undefined>(categoryId);
+
+    useEffect(() => {
+        setCategory(categoryId);
+    }, [categoryId]);
+
+    const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
-        const updatedCheckedCategories = { ...checkedCategories, [target.value]: target.checked };
+        const parsedCategoryId = Number.parseInt(target.value, 10);
 
-        setCheckedCategories(updatedCheckedCategories);
-        onCategoriesChange(transformCheckedCategoryIds(updatedCheckedCategories));
+        if (!Number.isNaN(parsedCategoryId)) {
+            setCategory(parsedCategoryId);
+            onCategoryChange(parsedCategoryId);
+        }
     };
 
     return (
-        <CategoriesDataProviderComponent>
+        <CategoriesDataProviderComponent limit={CATEGORIES_LIMIT}>
             {({ categories }) => (
                 <ul className={styles.categoryFilterWrapper}>
                     {categories.map((categoryData) => (
                         <li key={categoryData.id}>
                             <input
-                                type="checkbox"
-                                id={`category_checkbox_${categoryData.id}`}
-                                name={`category_${categoryData.id}`}
+                                type="radio"
+                                id={`category_selector_${categoryData.id}`}
+                                name="category_selector"
                                 value={categoryData.id}
-                                checked={checkedCategories[`${categoryData.id}`] || false}
-                                onChange={handleCategoryCheck}
-                                className={styles.categoryFilterCheckbox}
+                                checked={category === categoryData.id}
+                                onChange={handleCategoryChange}
+                                className={styles.categoryFilterRadio}
                                 aria-hidden={true}
                             />
                             <label
-                                htmlFor={`category_checkbox_${categoryData.id}`}
+                                htmlFor={`category_selector_${categoryData.id}`}
                                 className={`${appStyles.button} ${styles.categoryFilterButton}`}
                             >
                                 {categoryData.name}

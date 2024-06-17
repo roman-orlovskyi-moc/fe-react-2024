@@ -1,85 +1,106 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
-import { parseRouteFilters } from '@/helpers/Products.helper.ts';
+import { isMobileView } from '@/helpers/DeviceView.helper.ts';
+import {
+    parseRouteFilters,
+    setCategorySearchParameter,
+    setCurrentPageSearchParameter,
+    setSearchQuerySearchParameter,
+    setSortOrderSearchParameter,
+} from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 
+import { LoaderComponent } from '../loader/Loader.component.tsx';
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
 import { ProductsFilterBarComponent } from '../products-filter-bar/ProductsFilterBar.component.tsx';
 import { ProductsListComponent } from '../products-list/ProductsList.component.tsx';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
 
     const [searchParameters, setSearchParameters] = useSearchParams();
-
     const [productsFilter, setProductsFilter] = useState<ProductsFilter>(() => parseRouteFilters(searchParameters));
+    const [isInfiniteScroll, setIsInfiniteScroll] = useState<boolean>(isMobileView());
+
+    useEffect(() => {
+        const handleResize = () => setIsInfiniteScroll(isMobileView());
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         setProductsFilter(parseRouteFilters(searchParameters));
     }, [searchParameters]);
 
     const setCurrentPageWithRoute = (page: number) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', page.toString());
-
-            return previousSearchParameters;
-        });
+        setSearchParameters((previousSearchParameters: URLSearchParams) => setCurrentPageSearchParameter(previousSearchParameters, page));
     };
 
     const setSearchWithRoute = (search: string) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', '1');
-            previousSearchParameters.set('search', search);
-
-            return previousSearchParameters;
-        });
+        setSearchParameters((previousSearchParameters: URLSearchParams) => setSearchQuerySearchParameter(previousSearchParameters, search));
     };
 
-    const setCategoriesWithRoute = (categoryIds: number[]) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', '1');
-            previousSearchParameters.set('categories', categoryIds.join(','));
-
-            return previousSearchParameters;
-        });
+    const setCategoryWithRoute = (categoryId: number) => {
+        setSearchParameters((previousSearchParameters: URLSearchParams) =>
+            setCategorySearchParameter(previousSearchParameters, categoryId),
+        );
     };
 
     const setSortWithRoute = (sort: string) => {
-        setSearchParameters((previousSearchParameters) => {
-            previousSearchParameters.set('page', '1');
-            previousSearchParameters.set('sort', sort);
-
-            return previousSearchParameters;
-        });
+        setSearchParameters((previousSearchParameters: URLSearchParams) => setSortOrderSearchParameter(previousSearchParameters, sort));
     };
+
+    const loadNextPageProductsData = useCallback(() => {
+        setProductsFilter((previousProductsFilter: ProductsFilter) => ({
+            ...previousProductsFilter,
+            page: (previousProductsFilter.page || 1) + 1,
+        }));
+    }, []);
 
     return (
         <ProductsListDataProviderComponent
             page={productsFilter.page}
             limit={PRODUCTS_LIMIT}
             search={productsFilter.search}
-            categoryIds={productsFilter.categoryIds}
+            categoryId={productsFilter.categoryId}
             sort={productsFilter.sort}
+            isMergeNewDataWithPrevious={isInfiniteScroll && productsFilter.page > 1}
         >
-            {({ products, productsCount }) => (
+            {({ products, productsTotalCount, isLoading }) => (
                 <>
                     <ProductsFilterBarComponent
                         search={productsFilter.search}
-                        categoryIds={productsFilter.categoryIds}
+                        categoryId={productsFilter.categoryId}
                         sort={productsFilter.sort}
                         setProductsSearch={setSearchWithRoute}
-                        setProductsCategories={setCategoriesWithRoute}
+                        setProductsCategory={setCategoryWithRoute}
                         setProductsSort={setSortWithRoute}
                     />
-                    <ProductsListComponent products={products} />
-                    <PaginationComponent
-                        page={productsFilter.page}
-                        limit={PRODUCTS_LIMIT}
-                        total={productsCount}
-                        setCurrentPage={setCurrentPageWithRoute}
-                    />
+                    {isLoading ? <LoaderComponent /> : null}
+                    {products ? (
+                        <ProductsListComponent
+                            products={products}
+                            productsTotalCount={productsTotalCount}
+                            isInfiniteScroll={isInfiniteScroll}
+                            loadNextPageProductsData={loadNextPageProductsData}
+                        />
+                    ) : null}
+                    {productsTotalCount > 0 && !isInfiniteScroll ? (
+                        <PaginationComponent
+                            page={productsFilter.page}
+                            limit={PRODUCTS_LIMIT}
+                            total={productsTotalCount}
+                            setCurrentPage={setCurrentPageWithRoute}
+                        />
+                    ) : null}
+                    <ToastContainer position="bottom-right" />
                 </>
             )}
         </ProductsListDataProviderComponent>

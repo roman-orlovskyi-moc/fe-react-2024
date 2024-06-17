@@ -1,27 +1,23 @@
 import type React from 'react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import type { Product } from '@/interfaces/Product.interface.ts';
-
-import productsJSONData from '../assets/data/products.json';
-import {
-    filterProductsByCategory,
-    filterProductsByTitle,
-    sliceProducts,
-    sortProducts,
-} from '../helpers/ProductsListDataProvider.helper.ts';
+import { fetchProducts } from '../helpers/ProductsListDataProvider.helper.ts';
+import type { Product } from '../interfaces/Product.interface.ts';
+import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.ts';
 
 interface ProductsData {
-    products: Product[];
-    productsCount: number;
+    products: Product[] | undefined;
+    productsTotalCount: number;
+    isLoading: boolean;
 }
 
 interface ProductsDataProviderProps {
     page: number;
     limit: number;
     search?: string;
-    categoryIds?: number[];
+    categoryId?: number;
     sort?: string;
+    isMergeNewDataWithPrevious?: boolean;
     children: (productsData: ProductsData) => React.ReactNode;
 }
 
@@ -29,32 +25,41 @@ export const ProductsListDataProviderComponent: React.FC<ProductsDataProviderPro
     page,
     limit,
     search,
-    categoryIds,
+    categoryId,
     sort,
+    isMergeNewDataWithPrevious,
     children,
 }) => {
-    const filteredProducts = useMemo(() => {
-        let products = productsJSONData;
+    const [productsData, setProductsData] = useState<ProductsData>({ products: undefined, productsTotalCount: 0, isLoading: true });
 
-        if (search) {
-            products = filterProductsByTitle(products, search);
-        }
+    useEffect(() => {
+        setProductsData((previousProductsData) => ({ ...previousProductsData, isLoading: true }));
 
-        if (categoryIds && categoryIds.length > 0) {
-            products = filterProductsByCategory(products, categoryIds);
-        }
+        fetchProducts(page, limit, search, categoryId, sort)
+            .then((products: ProductsResponse) => {
+                if (isMergeNewDataWithPrevious) {
+                    setProductsData(
+                        (previousProductsData: ProductsData) =>
+                            ({
+                                products: [...(previousProductsData.products || []), ...products.products] as Product[],
+                                productsTotalCount: products.total,
+                                isLoading: false,
+                            }) as ProductsData,
+                    );
+                } else {
+                    setProductsData({
+                        productsTotalCount: products.total,
+                        products: products.products as Product[],
+                        isLoading: false,
+                    } as ProductsData);
+                }
+            })
+            .catch(() => {
+                setProductsData(() => ({ products: [], productsTotalCount: 0, isLoading: false }) as ProductsData);
+            });
+    }, [page, limit, search, categoryId, sort, isMergeNewDataWithPrevious]);
 
-        if (sort) {
-            products = sortProducts(products, sort);
-        }
+    const memoizedProductsData = useMemo(() => productsData, [productsData]);
 
-        return products;
-    }, [search, categoryIds, sort]);
-
-    const productsData = {
-        productsCount: filteredProducts.length,
-        products: sliceProducts(filteredProducts, page, limit) as Product[],
-    };
-
-    return children(productsData);
+    return children(memoizedProductsData);
 };

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { ProductDataProviderComponent } from '@/data-providers/ProductDataProvider.component.tsx';
 
+import { LoaderComponent } from '../loader/Loader.component.tsx';
 import { PageNotFoundComponent } from '../page-not-found/PageNotFound.component.tsx';
 import { ProductDetailsComponent } from '../product-details/ProductDetails.component.tsx';
 
@@ -12,7 +13,17 @@ export const ProductComponent: React.FC = () => {
 
     return productId && !Number.isNaN(productId) ? (
         <ProductDataProviderComponent id={productId}>
-            {({ product }) => (product ? <ProductDetailsComponent {...product} /> : <PageNotFoundComponent />)}
+            {({ product, isLoading }) => {
+                if (isLoading) {
+                    return <LoaderComponent />;
+                } else if (product) {
+                    return <ProductDetailsComponent {...product} />;
+                } else if (product === undefined) {
+                    return null;
+                } else {
+                    return <PageNotFoundComponent />;
+                }
+            }}
         </ProductDataProviderComponent>
     ) : (
         <PageNotFoundComponent />

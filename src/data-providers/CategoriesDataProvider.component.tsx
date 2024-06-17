@@ -1,30 +1,28 @@
 import type React from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import type { Category } from '@/interfaces/Category.interface.ts';
-
-import categoriesJSONData from '../assets/data/categories.json';
+import { fetchCategories } from '../helpers/CategoriesDataProvider.helper.ts';
+import type { Category } from '../interfaces/Category.interface.ts';
 
 interface CategoriesData {
     categories: Category[];
-    categoriesCount: number;
 }
 
 interface CategoriesDataProviderProps {
-    page?: number;
-    limit?: number;
+    limit: number;
     children: (categoriesData: CategoriesData) => React.ReactNode;
 }
 
-export const CategoriesDataProviderComponent: React.FC<CategoriesDataProviderProps> = ({ page, limit, children }) => {
-    const currentPage: number = page || 1;
-    const itemsLimit: number = limit || 10;
-    const start: number = (currentPage - 1) * itemsLimit;
-    const end: number = start + itemsLimit;
+export const CategoriesDataProviderComponent: React.FC<CategoriesDataProviderProps> = ({ limit, children }) => {
+    const [categoriesData, setCategoriesData] = useState<CategoriesData>({ categories: [] });
 
-    const categoriesData = {
-        categoriesCount: categoriesJSONData.length,
-        categories: categoriesJSONData.slice(start, end) as Category[],
-    };
+    useEffect(() => {
+        fetchCategories(limit).then((categories: Category[]) => {
+            setCategoriesData({ categories });
+        });
+    }, [limit]);
 
-    return children(categoriesData);
+    const memoizedCategoriesData = useMemo(() => categoriesData, [categoriesData]);
+
+    return children(memoizedCategoriesData);
 };
