@@ -14,11 +14,13 @@
 }
 
 .loader {
-  height: 1px;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  height: 2px;
   width: 100%;
   background-color: var(--main-red-color);
-  position: relative;
-  overflow: hidden;
 }
 
 .loader::before {
