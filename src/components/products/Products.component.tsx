@@ -12,8 +12,10 @@ import {
     setSortOrderSearchParameter,
 } from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
-import { fetchProducts, setMergeNewDataWithPrevious } from '@/store/products/slice.ts';
-import type { AppDispatch, RootState } from '@/store/store.ts';
+import { productsSelector } from '@/store/products/selector.ts';
+import { setIsInfiniteScroll } from '@/store/products/slice.ts';
+import { fetchProductsThunk } from '@/store/products/thunks.ts';
+import type { AppDispatch } from '@/store/store.ts';
 
 import { LoaderComponent } from '../loader/Loader.component.tsx';
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
@@ -22,33 +24,28 @@ import { ProductsListComponent } from '../products-list/ProductsList.component.t
 
 import 'react-toastify/dist/ReactToastify.css';
 
-const selectProducts = (state: RootState) => state.products;
-
 export const ProductsComponent: React.FC = () => {
     const PRODUCTS_LIMIT: number = 8;
 
     const [searchParameters, setSearchParameters] = useSearchParams();
     const [productsFilter, setProductsFilter] = useState<ProductsFilter>(() => parseRouteFilters(searchParameters));
-    const [isInfiniteScroll, setIsInfiniteScroll] = useState<boolean>(isMobileView());
 
     const dispatch = useDispatch<AppDispatch>();
-    const { products, productsTotal, status } = useSelector(selectProducts);
+    const { products, productsTotal, status, isInfiniteScroll } = useSelector(productsSelector);
 
     useEffect(() => {
-        dispatch(setMergeNewDataWithPrevious(isInfiniteScroll));
-    }, [dispatch, isInfiniteScroll]);
+        dispatch(setIsInfiniteScroll(isMobileView()));
 
-    useEffect(() => {
-        const handleResize = () => setIsInfiniteScroll(isMobileView());
+        const handleResize = () => dispatch(setIsInfiniteScroll(isMobileView()));
 
         window.addEventListener('resize', handleResize);
 
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(
-            fetchProducts({
+            fetchProductsThunk({
                 page: productsFilter.page,
                 limit: PRODUCTS_LIMIT,
                 search: productsFilter.search,

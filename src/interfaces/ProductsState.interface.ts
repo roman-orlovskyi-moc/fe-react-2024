@@ -8,6 +8,6 @@ export interface ProductsState {
     productsTotal: number;
     status: EntityStateStatus;
     error: string | null;
-    isMergeNewDataWithPrevious?: boolean;
+    isInfiniteScroll: boolean;
     productsFetchArguments: ProductsFetchArguments;
 }
