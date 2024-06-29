@@ -1,10 +1,12 @@
+import type { EntityStateStatus } from '../types/EntityStateStatus.type.ts';
+
 import type { Product } from './Product.interface.ts';
 import type { ProductsFetchArguments } from './ProductsFetchArguments.ts';
 
 export interface ProductsState {
     products: Product[] | undefined;
     productsTotal: number;
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    status: EntityStateStatus;
     error: string | null;
     isMergeNewDataWithPrevious?: boolean;
     productsFetchArguments: ProductsFetchArguments;
