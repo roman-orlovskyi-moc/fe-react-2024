@@ -6,23 +6,6 @@ import type { ProductsFetchArguments } from '@/interfaces/ProductsFetchArguments
 import type { ProductsResponse } from '@/interfaces/ProductsResponse.interface.ts';
 import type { ProductsState } from '@/interfaces/ProductsState.interface.ts';
 
-export const fetchProducts = createAsyncThunk<ProductsResponse, ProductsFetchArguments>(
-    'products/fetchProducts',
-    async ({ page, limit, search, categoryId, sort }, { dispatch }): Promise<ProductsResponse> => {
-        dispatch(fetchProductsStart());
-        dispatch(setProductsFetchArguments({ page, limit, search, categoryId, sort }));
-
-        try {
-            const response: ProductsResponse = await fetchProductsAPI(page, limit, search, categoryId, sort);
-            dispatch(fetchProductsSuccess(response));
-            return response;
-        } catch (error: any) {
-            dispatch(fetchProductsFailure(error.toString()));
-            throw error;
-        }
-    },
-);
-
 const initialState: ProductsState = {
     products: undefined,
     productsTotal: 0,
@@ -62,7 +45,24 @@ export const productsSlice = createSlice({
     },
 });
 
-export const { fetchProductsStart, fetchProductsSuccess, fetchProductsFailure, setMergeNewDataWithPrevious, setProductsFetchArguments } =
-    productsSlice.actions;
+const { fetchProductsStart, fetchProductsSuccess, fetchProductsFailure, setProductsFetchArguments } = productsSlice.actions;
+export const { setMergeNewDataWithPrevious } = productsSlice.actions;
+
+export const fetchProducts = createAsyncThunk<ProductsResponse, ProductsFetchArguments>(
+    'products/fetchProducts',
+    async ({ page, limit, search, categoryId, sort }, { dispatch }): Promise<ProductsResponse> => {
+        dispatch(fetchProductsStart());
+        dispatch(setProductsFetchArguments({ page, limit, search, categoryId, sort }));
+
+        try {
+            const response: ProductsResponse = await fetchProductsAPI(page, limit, search, categoryId, sort);
+            dispatch(fetchProductsSuccess(response));
+            return response;
+        } catch (error: any) {
+            dispatch(fetchProductsFailure(error.toString()));
+            throw error;
+        }
+    },
+);
 
 export default productsSlice.reducer;

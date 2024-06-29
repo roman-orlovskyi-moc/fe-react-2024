@@ -6,22 +6,6 @@ import type { Product } from '@/interfaces/Product.interface.ts';
 import type { ProductFetchArguments } from '@/interfaces/ProductFetchArguments.ts';
 import type { ProductState } from '@/interfaces/ProductState.interface.ts';
 
-export const fetchProduct = createAsyncThunk<Product, ProductFetchArguments>(
-    'product/fetchProduct',
-    async ({ id }, { dispatch }): Promise<Product> => {
-        dispatch(fetchProductStart());
-
-        try {
-            const response: Product = await fetchProductAPI(id);
-            dispatch(fetchProductSuccess(response));
-            return response;
-        } catch (error: any) {
-            dispatch(fetchProductFailure(error.toString()));
-            throw error;
-        }
-    },
-);
-
 const initialState: ProductState = {
     product: undefined,
     status: 'idle',
@@ -48,5 +32,21 @@ export const productSlice = createSlice({
 });
 
 const { fetchProductStart, fetchProductSuccess, fetchProductFailure } = productSlice.actions;
+
+export const fetchProduct = createAsyncThunk<Product, ProductFetchArguments>(
+    'product/fetchProduct',
+    async ({ id }, { dispatch }): Promise<Product> => {
+        dispatch(fetchProductStart());
+
+        try {
+            const response: Product = await fetchProductAPI(id);
+            dispatch(fetchProductSuccess(response));
+            return response;
+        } catch (error: any) {
+            dispatch(fetchProductFailure(error.toString()));
+            throw error;
+        }
+    },
+);
 
 export default productSlice.reducer;
