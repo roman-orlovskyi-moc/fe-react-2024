@@ -2,7 +2,7 @@ import type { ProductsRequestParameters } from '../interfaces/ProductsRequestPar
 import type { ProductsResponse } from '../interfaces/ProductsResponse.interface.ts';
 import { apiService } from '../services/Api.service.ts';
 
-export const fetchProducts = async (
+export const fetchProductsAPI = async (
     page: number,
     limit: number,
     search?: string,
