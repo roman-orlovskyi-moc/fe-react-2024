@@ -13,7 +13,7 @@ import {
 } from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
 import { setCurrentCategoryId } from '@/store/categories/slice.ts';
-import { productsSelector } from '@/store/products/selector.ts';
+import { productsSelector } from '@/store/products/selectors.ts';
 import { setIsInfiniteScroll } from '@/store/products/slice.ts';
 import { fetchProductsThunk } from '@/store/products/thunks.ts';
 import type { AppDispatch } from '@/store/store.ts';

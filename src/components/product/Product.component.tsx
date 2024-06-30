@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { productSelector } from '@/store/product/selector.ts';
+import { productSelector } from '@/store/product/selectors.ts';
 import { fetchProductThunk } from '@/store/product/thunks.ts';
 import type { AppDispatch } from '@/store/store.ts';
 
