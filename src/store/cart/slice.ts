@@ -1,12 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import type { Cart } from '@/interfaces/Cart.interface.ts';
 import type { CartState } from '@/interfaces/CartState.interface.ts';
 
-import { handleSetCartItem, parseStoredCartData } from './helpers.ts';
+import { calculateCartItemsCount, handleSetCartItem, parseStoredCartData } from './helpers.ts';
+
+const parsedStoredCartData: Cart = parseStoredCartData();
 
 const initialState: CartState = {
-    cart: parseStoredCartData(),
-    cartItemsCount: 0,
+    cart: parsedStoredCartData,
+    cartItemsCount: calculateCartItemsCount(parsedStoredCartData.items),
 };
 
 export const cartSlice = createSlice({

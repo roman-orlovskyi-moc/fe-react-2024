@@ -38,6 +38,6 @@ const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart => {
     }
 };
 
-const calculateCartItemsCount = (cartItems: CartItem[]): number => cartItems.reduce((sum, item) => sum + item.quantity, 0);
+export const calculateCartItemsCount = (cartItems: CartItem[]): number => cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
 const setStoredCartData = (cartData: Cart) => localStorage.setItem('cart', JSON.stringify(cartData));
