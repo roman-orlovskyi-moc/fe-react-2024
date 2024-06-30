@@ -12,6 +12,7 @@ import {
     setSortOrderSearchParameter,
 } from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
+import { setCurrentCategoryId } from '@/store/categories/slice.ts';
 import { productsSelector } from '@/store/products/selector.ts';
 import { setIsInfiniteScroll } from '@/store/products/slice.ts';
 import { fetchProductsThunk } from '@/store/products/thunks.ts';
@@ -53,6 +54,7 @@ export const ProductsComponent: React.FC = () => {
                 sort: productsFilter.sort,
             }),
         );
+        dispatch(setCurrentCategoryId(productsFilter.categoryId || 0));
     }, [dispatch, productsFilter]);
 
     useEffect(() => {
@@ -88,7 +90,6 @@ export const ProductsComponent: React.FC = () => {
         <>
             <ProductsFilterBarComponent
                 search={productsFilter.search}
-                categoryId={productsFilter.categoryId}
                 sort={productsFilter.sort}
                 setProductsSearch={setSearchWithRoute}
                 setProductsCategory={setCategoryWithRoute}

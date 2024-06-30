@@ -8,7 +8,6 @@ import styles from './products-filter-bar.module.css';
 
 interface ProductsFilterBarProps {
     search?: string;
-    categoryId?: number;
     sort?: string;
     setProductsSearch: (search: string) => void;
     setProductsCategory: (categoryId: number) => void;
@@ -17,7 +16,6 @@ interface ProductsFilterBarProps {
 
 export const ProductsFilterBarComponent: React.FC<ProductsFilterBarProps> = ({
     search,
-    categoryId,
     sort,
     setProductsSearch,
     setProductsCategory,
@@ -33,7 +31,7 @@ export const ProductsFilterBarComponent: React.FC<ProductsFilterBarProps> = ({
     return (
         <div className={styles.productsFilterBar}>
             <SearchInputComponent search={search} onSearchSubmit={setProductsSearch} />
-            <CategoriesFilterComponent categoryId={categoryId} onCategoryChange={setProductsCategory} />
+            <CategoriesFilterComponent onCategoryChange={setProductsCategory} />
             <div className={styles.productsFilterSortWrapper}>
                 <span className={styles.productsFilterSortLabel}>Sort by:</span>
                 <DropdownComponent
