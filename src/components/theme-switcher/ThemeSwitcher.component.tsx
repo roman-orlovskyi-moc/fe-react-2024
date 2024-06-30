@@ -1,21 +1,25 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ColorModeDividerIconComponent } from '@/components/icon/ColorModeDividerIcon.component.tsx';
 import { DarkColorModeIconComponent } from '@/components/icon/DarkColorModeIcon.component.tsx';
 import { LightColorModeIconComponent } from '@/components/icon/LightColorModeIcon.component.tsx';
-import { useThemeMode } from '@/hooks/UseThemeMode.hook.ts';
+import type { AppDispatch } from '@/store/store.ts';
+import { themeSelector } from '@/store/theme/selectors.ts';
+import { setColorScheme } from '@/store/theme/slice.ts';
 
 import styles from './theme-switcher.module.css';
 
 export const ThemeSwitcherComponent: React.FC = () => {
-    const { colorScheme, setColorScheme } = useThemeMode();
+    const dispatch = useDispatch<AppDispatch>();
+    const { colorScheme } = useSelector(themeSelector);
 
     const setDarkColorScheme = () => {
-        setColorScheme('dark');
+        dispatch(setColorScheme('dark'));
     };
 
     const setLightColorScheme = () => {
-        setColorScheme('light');
+        dispatch(setColorScheme('light'));
     };
 
     const themeSwitcherLightIconActiveClass = colorScheme === 'dark' ? '' : styles.themeSwitcherActiveIcon;

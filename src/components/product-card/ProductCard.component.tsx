@@ -1,11 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { findCartItemById } from '@/helpers/CartContext.helper.ts';
-import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
-import { useCart } from '@/hooks/UseCart.hook.ts';
+import { findCartItemById, formatPrice } from '@/helpers/ProductDetails.helper.tsx';
 import type { CartItem } from '@/interfaces/CartItem.interface.ts';
 import type { Product } from '@/interfaces/Product.interface.ts';
+import { cartSelector } from '@/store/cart/selectors.ts';
+import { setCartItem } from '@/store/cart/slice.ts';
+import type { AppDispatch } from '@/store/store.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 
@@ -13,7 +15,10 @@ import styles from './product-card.module.css';
 
 export const ProductCardComponent: React.FC<Product> = (productData) => {
     const navigate = useNavigate();
-    const { cart, addToCart } = useCart();
+
+    const dispatch = useDispatch<AppDispatch>();
+    const { cart } = useSelector(cartSelector);
+
     const productCartItem: CartItem | undefined = findCartItemById(cart.items, productData.id);
     const productCartItemCount: number = productCartItem ? productCartItem.quantity : 0;
 
@@ -22,7 +27,7 @@ export const ProductCardComponent: React.FC<Product> = (productData) => {
     };
 
     const addProductToCart = () => {
-        addToCart({ id: productData.id, quantity: 1 });
+        dispatch(setCartItem({ id: productData.id, quantity: 1 }));
     };
 
     return (

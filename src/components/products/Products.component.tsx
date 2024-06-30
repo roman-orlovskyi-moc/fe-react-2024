@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import { ProductsListDataProviderComponent } from '@/data-providers/ProductsListDataProvider.component.tsx';
 import { isMobileView } from '@/helpers/DeviceView.helper.ts';
 import {
     parseRouteFilters,
@@ -12,6 +12,11 @@ import {
     setSortOrderSearchParameter,
 } from '@/helpers/Products.helper.ts';
 import type { ProductsFilter } from '@/interfaces/ProductsFilter.interface.ts';
+import { setCurrentCategoryId } from '@/store/categories/slice.ts';
+import { productsSelector } from '@/store/products/selectors.ts';
+import { setIsInfiniteScroll } from '@/store/products/slice.ts';
+import { fetchProductsThunk } from '@/store/products/thunks.ts';
+import type { AppDispatch } from '@/store/store.ts';
 
 import { LoaderComponent } from '../loader/Loader.component.tsx';
 import { PaginationComponent } from '../pagination/Pagination.component.tsx';
@@ -25,15 +30,32 @@ export const ProductsComponent: React.FC = () => {
 
     const [searchParameters, setSearchParameters] = useSearchParams();
     const [productsFilter, setProductsFilter] = useState<ProductsFilter>(() => parseRouteFilters(searchParameters));
-    const [isInfiniteScroll, setIsInfiniteScroll] = useState<boolean>(isMobileView());
+
+    const dispatch = useDispatch<AppDispatch>();
+    const { products, productsTotal, status, isInfiniteScroll } = useSelector(productsSelector);
 
     useEffect(() => {
-        const handleResize = () => setIsInfiniteScroll(isMobileView());
+        dispatch(setIsInfiniteScroll(isMobileView()));
+
+        const handleResize = () => dispatch(setIsInfiniteScroll(isMobileView()));
 
         window.addEventListener('resize', handleResize);
 
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(
+            fetchProductsThunk({
+                page: productsFilter.page,
+                limit: PRODUCTS_LIMIT,
+                search: productsFilter.search,
+                categoryId: productsFilter.categoryId,
+                sort: productsFilter.sort,
+            }),
+        );
+        dispatch(setCurrentCategoryId(productsFilter.categoryId || 0));
+    }, [dispatch, productsFilter]);
 
     useEffect(() => {
         setProductsFilter(parseRouteFilters(searchParameters));
@@ -65,44 +87,32 @@ export const ProductsComponent: React.FC = () => {
     }, []);
 
     return (
-        <ProductsListDataProviderComponent
-            page={productsFilter.page}
-            limit={PRODUCTS_LIMIT}
-            search={productsFilter.search}
-            categoryId={productsFilter.categoryId}
-            sort={productsFilter.sort}
-            isMergeNewDataWithPrevious={isInfiniteScroll && productsFilter.page > 1}
-        >
-            {({ products, productsTotalCount, isLoading }) => (
-                <>
-                    <ProductsFilterBarComponent
-                        search={productsFilter.search}
-                        categoryId={productsFilter.categoryId}
-                        sort={productsFilter.sort}
-                        setProductsSearch={setSearchWithRoute}
-                        setProductsCategory={setCategoryWithRoute}
-                        setProductsSort={setSortWithRoute}
-                    />
-                    {isLoading ? <LoaderComponent /> : null}
-                    {products ? (
-                        <ProductsListComponent
-                            products={products}
-                            productsTotalCount={productsTotalCount}
-                            isInfiniteScroll={isInfiniteScroll}
-                            loadNextPageProductsData={loadNextPageProductsData}
-                        />
-                    ) : null}
-                    {productsTotalCount > 0 && !isInfiniteScroll ? (
-                        <PaginationComponent
-                            page={productsFilter.page}
-                            limit={PRODUCTS_LIMIT}
-                            total={productsTotalCount}
-                            setCurrentPage={setCurrentPageWithRoute}
-                        />
-                    ) : null}
-                    <ToastContainer position="bottom-right" />
-                </>
-            )}
-        </ProductsListDataProviderComponent>
+        <>
+            <ProductsFilterBarComponent
+                search={productsFilter.search}
+                sort={productsFilter.sort}
+                setProductsSearch={setSearchWithRoute}
+                setProductsCategory={setCategoryWithRoute}
+                setProductsSort={setSortWithRoute}
+            />
+            {status === 'loading' ? <LoaderComponent /> : null}
+            {products ? (
+                <ProductsListComponent
+                    products={products}
+                    productsTotalCount={productsTotal}
+                    isInfiniteScroll={isInfiniteScroll}
+                    loadNextPageProductsData={loadNextPageProductsData}
+                />
+            ) : null}
+            {productsTotal > 0 && !isInfiniteScroll ? (
+                <PaginationComponent
+                    page={productsFilter.page}
+                    limit={PRODUCTS_LIMIT}
+                    total={productsTotal}
+                    setCurrentPage={setCurrentPageWithRoute}
+                />
+            ) : null}
+            <ToastContainer position="bottom-right" />
+        </>
     );
 };

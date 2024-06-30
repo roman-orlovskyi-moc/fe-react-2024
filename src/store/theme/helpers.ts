@@ -1,4 +1,7 @@
-import type { ColorScheme } from '../types/ColorScheme.type.ts';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+import type { ThemeState } from '@/interfaces/ThemeState.interface.ts';
+import type { ColorScheme } from '@/types/ColorScheme.type.ts';
 
 export const parseColorScheme = (): ColorScheme => {
     const savedScheme: string | null = getStoredColorScheme();
@@ -10,4 +13,9 @@ export const parseColorScheme = (): ColorScheme => {
 
 const getStoredColorScheme = (): string | null => localStorage.getItem('themeMode');
 
-export const setStoredColorScheme = (colorScheme: ColorScheme) => localStorage.setItem('themeMode', colorScheme);
+export const handleSetColorScheme = (state: ThemeState, action: PayloadAction<ColorScheme>): void => {
+    state.colorScheme = action.payload;
+    setStoredColorScheme(state.colorScheme);
+};
+
+const setStoredColorScheme = (colorScheme: ColorScheme) => localStorage.setItem('themeMode', colorScheme);

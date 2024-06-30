@@ -1,5 +1,8 @@
-import type { Cart } from '../interfaces/Cart.interface.ts';
-import type { CartItem } from '../interfaces/CartItem.interface.ts';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+import type { Cart } from '@/interfaces/Cart.interface.ts';
+import type { CartItem } from '@/interfaces/CartItem.interface.ts';
+import type { CartState } from '@/interfaces/CartState.interface.ts';
 
 export const parseStoredCartData = (): Cart => {
     const savedCartData: string | null = getStoredCartData();
@@ -8,16 +11,20 @@ export const parseStoredCartData = (): Cart => {
     return isCartProps(parsedCartData) ? (parsedCartData as Cart) : { items: [] };
 };
 
-export const getStoredCartData = (): string | null => localStorage.getItem('cart');
+const getStoredCartData = (): string | null => localStorage.getItem('cart');
 
 const isCartItemProps = (object: any): object is CartItem => object && 'id' in object && 'quantity' in object;
 
 const isCartProps = (object: any): object is Cart =>
     object && Array.isArray(object.items) && object.items.every((element: any) => isCartItemProps(element));
 
-export const setStoredCartData = (cartData: Cart) => localStorage.setItem('cart', JSON.stringify(cartData));
+export const handleSetCartItem = (state: CartState, action: PayloadAction<CartItem>): void => {
+    state.cart = prepareUpdatedCartData(state.cart, action.payload);
+    state.cartItemsCount = calculateCartItemsCount(state.cart.items);
+    setStoredCartData(state.cart);
+};
 
-export const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart => {
+const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart => {
     const itemIndex: number = currentCart.items.findIndex((cartItem) => cartItem.id === item.id);
 
     if (itemIndex === -1) {
@@ -33,4 +40,4 @@ export const prepareUpdatedCartData = (currentCart: Cart, item: CartItem): Cart 
 
 export const calculateCartItemsCount = (cartItems: CartItem[]): number => cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-export const findCartItemById = (cartItems: CartItem[], id: number): CartItem | undefined => cartItems.find((item) => item.id === id);
+const setStoredCartData = (cartData: Cart) => localStorage.setItem('cart', JSON.stringify(cartData));
