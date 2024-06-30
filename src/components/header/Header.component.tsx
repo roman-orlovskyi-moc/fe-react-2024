@@ -1,10 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
-import { calculateCartItemsCount } from '@/helpers/CartContext.helper.ts';
-import { useCart } from '@/hooks/UseCart.hook.ts';
+import { cartSelector } from '@/store/cart/selectors.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
@@ -21,9 +21,9 @@ interface HeaderProps {
 }
 
 export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
-    const { cart } = useCart();
-    const cartItemsCount: number = calculateCartItemsCount(cart.items);
     const MOBILE_MENU_CLOSE_CLICK_TAGS: Set<string> = new Set(['A', 'BUTTON']);
+
+    const { cartItemsCount } = useSelector(cartSelector);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {
         const target = event.target as HTMLElement;

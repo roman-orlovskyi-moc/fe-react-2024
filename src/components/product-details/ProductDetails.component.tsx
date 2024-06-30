@@ -1,11 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
 import { formatPrice } from '@/helpers/ProductDetails.helper.tsx';
-import { useCart } from '@/hooks/UseCart.hook.ts';
 import type { Product } from '@/interfaces/Product.interface.ts';
+import { setCartItem } from '@/store/cart/slice.ts';
+import type { AppDispatch } from '@/store/store.ts';
 
 import { ArrowIconComponent } from '../icon/ArrowIcon.component.tsx';
 import { CartIconComponent } from '../icon/CartIcon.component.tsx';
@@ -14,8 +16,9 @@ import { ProductImageCarouselComponent } from '../product-image-carousel/Product
 import styles from './product-details.module.css';
 
 export const ProductDetailsComponent: React.FC<Product> = (productData) => {
-    const { addToCart } = useCart();
     const navigate = useNavigate();
+
+    const dispatch = useDispatch<AppDispatch>();
 
     const returnToProducts = () => {
         navigate(-1);
@@ -27,7 +30,7 @@ export const ProductDetailsComponent: React.FC<Product> = (productData) => {
     };
 
     const addProductToCart = () => {
-        addToCart({ id: productData.id, quantity: 1 });
+        dispatch(setCartItem({ id: productData.id, quantity: 1 }));
     };
 
     return (
