@@ -15,7 +15,7 @@ const getStoredColorScheme = (): string | null => localStorage.getItem('themeMod
 
 export const handleSetColorScheme = (state: ThemeState, action: PayloadAction<ColorScheme>): void => {
     state.colorScheme = action.payload;
-    setStoredColorScheme(action.payload);
+    setStoredColorScheme(state.colorScheme);
 };
 
 const setStoredColorScheme = (colorScheme: ColorScheme) => localStorage.setItem('themeMode', colorScheme);

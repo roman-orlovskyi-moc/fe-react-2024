@@ -1,10 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import appStyles from '@/App.module.css';
 import { ROUTES } from '@/constants/Routes.constant.ts';
 import { cartSelector } from '@/store/cart/selectors.ts';
+import { mobileMenuSelector } from '@/store/mobile-menu/selectors.ts';
+import { toggleIsMobileMenuOpen } from '@/store/mobile-menu/slice.ts';
+import type { AppDispatch } from '@/store/store.ts';
 
 import { CartIconCounterComponent } from '../cart-icon-counter/CartIconCounter.component.tsx';
 import { HeaderAccountComponent } from '../header-account/HeaderAccount.component.tsx';
@@ -15,15 +18,12 @@ import { ThemeSwitcherComponent } from '../theme-switcher/ThemeSwitcher.componen
 
 import styles from './header.module.css';
 
-interface HeaderProps {
-    isMobileMenuOpen: boolean;
-    toggleMobileMenuOpen: () => void;
-}
-
-export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggleMobileMenuOpen }) => {
+export const HeaderComponent: React.FC = () => {
     const MOBILE_MENU_CLOSE_CLICK_TAGS: Set<string> = new Set(['A', 'BUTTON']);
 
+    const dispatch = useDispatch<AppDispatch>();
     const { cartItemsCount } = useSelector(cartSelector);
+    const { isMobileMenuOpen } = useSelector(mobileMenuSelector);
 
     const handleMobileMenuClose = (event: React.MouseEvent) => {
         const target = event.target as HTMLElement;
@@ -31,6 +31,10 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ isMobileMenuOpen, toggl
         if (isMobileMenuOpen && target && MOBILE_MENU_CLOSE_CLICK_TAGS.has(target.tagName)) {
             toggleMobileMenuOpen();
         }
+    };
+
+    const toggleMobileMenuOpen = () => {
+        dispatch(toggleIsMobileMenuOpen());
     };
 
     return (
